@@ -31,7 +31,6 @@
       font-family: 'Rajdhani', sans-serif; font-size: 16px;
       min-height: 100vh; overflow-x: hidden;
     }
-    /* Blurred bedwars map background */
     body::before {
       content: ''; position: fixed; inset: 0;
       background: url('lighthouse-bedwars-screenshots-1.png') center center / cover no-repeat;
@@ -57,7 +56,7 @@
       display: flex; align-items: center; gap: 10px;
     }
     .nav-logo span { color: var(--accent); }
-    .logo-icon { width: 32px; height: 32px; border-radius: 7px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--surface); font-size: 1.2rem; }
+    .logo-icon { width: 32px; height: 32px; border-radius: 7px; background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
     .nav-links { display: flex; gap: 6px; }
     .nav-links a {
       color: var(--muted); text-decoration: none; font-size: 0.85rem;
@@ -157,7 +156,6 @@
       box-shadow: inset 0 0 0 1px rgba(255,215,0,0.2), inset 4px 0 0 0 #ffd700;
       animation: rowIn 0.5s ease both, goldPulse 3s ease-in-out infinite;
     }
-    tbody tr.rank-diamond:hover, tbody tr.rank-gold:hover { background: rgba(255,215,0,0.09); }
     @keyframes goldPulse {
       0%,100% { box-shadow: inset 0 0 0 1px rgba(255,215,0,0.2), inset 4px 0 0 0 #ffd700, 0 0 18px rgba(255,215,0,0.07); }
       50%      { box-shadow: inset 0 0 0 1px rgba(255,215,0,0.4), inset 4px 0 0 0 #ffd700, 0 0 28px rgba(255,215,0,0.16); }
@@ -225,11 +223,6 @@
     @keyframes spotlightPulse {
       0%,100% { box-shadow: 0 0 30px rgba(255,215,0,0.08), inset 0 0 60px rgba(255,215,0,0.03), inset 4px 0 0 #ffd700; border-color: rgba(255,215,0,0.35); }
       50%      { box-shadow: 0 0 60px rgba(255,215,0,0.18), inset 0 0 80px rgba(255,215,0,0.07), inset 4px 0 0 #ffd700; border-color: rgba(255,215,0,0.65); }
-    }
-    .spotlight-card::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(255,215,0,0.05) 0%, transparent 55%);
-      pointer-events: none;
     }
     .spotlight-card::after {
       content: '👑 ACTIVE #1'; position: absolute; top: 14px; right: 18px;
@@ -328,4 +321,7 @@
     }
     .hamburger-btn:hover { border-color: var(--accent); background: rgba(230,57,70,0.08); }
     .hamburger-btn.open { border-color: var(--accent); background: rgba(230,57,70,0.12); }
-    .ham-line { width: 18px; height: 2px; backgrou
+    .ham-line { width: 18px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.3s; transform-origin: center; }
+    .hamburger-btn.open .ham-line:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--accent); }
+    .hamburger-btn.open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger-btn.open .ham-line:nth-child(3) { transform:

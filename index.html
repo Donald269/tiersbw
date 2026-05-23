@@ -31,6 +31,7 @@
       font-family: 'Rajdhani', sans-serif; font-size: 16px;
       min-height: 100vh; overflow-x: hidden;
     }
+    /* Blurred bedwars map background */
     body::before {
       content: ''; position: fixed; inset: 0;
       background: url('lighthouse-bedwars-screenshots-1.png') center center / cover no-repeat;
@@ -38,11 +39,15 @@
       transform: scale(1.05);
       pointer-events: none; z-index: 0;
     }
+    /* Dark overlay on top for readability */
     body::after {
       content: ''; position: fixed; inset: 0;
       background: linear-gradient(180deg, rgba(10,12,16,0.55) 0%, rgba(10,12,16,0.72) 100%);
       pointer-events: none; z-index: 0;
     }
+
+    /* Remove old particle canvas sizing since we're not using particles */
+    #bg-canvas { display: none; }
     nav {
       position: sticky; top: 0; z-index: 100;
       background: rgba(10,12,16,0.92); backdrop-filter: blur(12px);
@@ -56,7 +61,8 @@
       display: flex; align-items: center; gap: 10px;
     }
     .nav-logo span { color: var(--accent); }
-    .logo-icon { width: 32px; height: 32px; border-radius: 7px; background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .logo-icon { width: 32px; height: 32px; border-radius: 7px; overflow: hidden; }
+    .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
     .nav-links { display: flex; gap: 6px; }
     .nav-links a {
       color: var(--muted); text-decoration: none; font-size: 0.85rem;
@@ -92,6 +98,7 @@
     .main { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 20px 80px; }
     .stats-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 12px; margin-bottom: 24px; }
     .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+    /* PAGE LOAD OVERLAY */
     #page-loader {
       position: fixed; inset: 0; z-index: 9999;
       background: var(--bg);
@@ -118,8 +125,11 @@
       animation: blink 1s ease infinite alternate;
     }
     @keyframes blink { from{opacity:0.4} to{opacity:1} }
+
+    /* MAIN CONTENT fade in after load */
     #app { opacity: 0; transition: opacity 0.5s ease; }
     #app.visible { opacity: 1; }
+
     .stat-num { font-family: 'Oxanium', sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--text); line-height: 1; }
     .stat-num span { color: var(--accent); }
     .stat-lbl { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
@@ -151,15 +161,26 @@
     tbody td { padding: 11px 16px; font-size: 0.95rem; font-weight: 600; }
     tbody td:first-child { text-align: center; }
     tbody td:last-child { text-align: center; }
-    tbody tr.rank-diamond, tbody tr.rank-gold {
+
+    /* GLOWING BORDERS for top 3 */
+    tbody tr.rank-diamond {
       background: rgba(255,215,0,0.04);
       box-shadow: inset 0 0 0 1px rgba(255,215,0,0.2), inset 4px 0 0 0 #ffd700;
       animation: rowIn 0.5s ease both, goldPulse 3s ease-in-out infinite;
     }
+    tbody tr.rank-diamond:hover { background: rgba(255,215,0,0.09); }
+    tbody tr.rank-gold {
+      background: rgba(255,215,0,0.04);
+      box-shadow: inset 0 0 0 1px rgba(255,215,0,0.2), inset 4px 0 0 0 #ffd700;
+      animation: rowIn 0.5s ease both, goldPulse 3s ease-in-out infinite;
+    }
+    tbody tr.rank-gold:hover { background: rgba(255,215,0,0.09); }
     @keyframes goldPulse {
       0%,100% { box-shadow: inset 0 0 0 1px rgba(255,215,0,0.2), inset 4px 0 0 0 #ffd700, 0 0 18px rgba(255,215,0,0.07); }
       50%      { box-shadow: inset 0 0 0 1px rgba(255,215,0,0.4), inset 4px 0 0 0 #ffd700, 0 0 28px rgba(255,215,0,0.16); }
     }
+
+    /* Rank badge */
     .rank-badge-wrap { display: inline-flex; align-items: center; justify-content: center; position: relative; width: 50px; height: 50px; }
     .rank-icon-svg { width: 42px; height: 42px; }
     .rank-number-overlay {
@@ -168,6 +189,7 @@
       background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
       padding: 1px 5px; line-height: 1.3; z-index: 2;
     }
+
     .player-cell { display: flex; align-items: center; gap: 12px; }
     .avatar {
       width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center;
@@ -189,11 +211,15 @@
     .tier-B { background:rgba(252,191,73,0.15); color:var(--b-tier); border:1px solid rgba(252,191,73,0.3); }
     .tier-C { background:rgba(76,201,240,0.15); color:var(--c-tier); border:1px solid rgba(76,201,240,0.3); }
     .tier-D { background:rgba(123,140,222,0.15);color:var(--d-tier); border:1px solid rgba(123,140,222,0.3); }
+
     .tier-key { margin-top: 24px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .tier-key-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
     .key-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--muted); }
+
     footer { position: relative; z-index: 1; border-top: 1px solid var(--border); text-align: center; padding: 22px; font-size: 0.78rem; color: var(--muted); }
     footer strong { color: var(--accent); }
+
+    /* SHARE + COPY BUTTONS */
     .modal-actions { display: flex; gap: 8px; margin-top: 16px; }
     .modal-btn {
       flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px;
@@ -205,7 +231,11 @@
     .modal-btn:hover { border-color: var(--accent); color: var(--text); background: rgba(230,57,70,0.06); }
     .modal-btn.copied { border-color: #50fa7b !important; color: #50fa7b !important; background: rgba(80,250,123,0.06) !important; }
     .modal-btn.shared { border-color: #4cc9f0 !important; color: #4cc9f0 !important; background: rgba(76,201,240,0.06) !important; }
+
+    /* CONFETTI CANVAS */
     #confetti-canvas { position: fixed; inset: 0; z-index: 1100; pointer-events: none; }
+
+    /* TOP 1 SPOTLIGHT */
     .spotlight-wrap {
       position: relative; z-index: 1;
       max-width: 980px; margin: 0 auto 0;
@@ -224,14 +254,19 @@
       0%,100% { box-shadow: 0 0 30px rgba(255,215,0,0.08), inset 0 0 60px rgba(255,215,0,0.03), inset 4px 0 0 #ffd700; border-color: rgba(255,215,0,0.35); }
       50%      { box-shadow: 0 0 60px rgba(255,215,0,0.18), inset 0 0 80px rgba(255,215,0,0.07), inset 4px 0 0 #ffd700; border-color: rgba(255,215,0,0.65); }
     }
+    .spotlight-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(255,215,0,0.05) 0%, transparent 55%);
+      pointer-events: none;
+    }
     .spotlight-card::after {
-      content: '👑 ACTIVE #1'; position: absolute; top: 14px; right: 18px;
+      content: '👑 REIGNING CHAMPION'; position: absolute; top: 14px; right: 18px;
       font-family: 'Oxanium', sans-serif; font-size: 0.62rem; font-weight: 700;
       letter-spacing: 0.2em; color: rgba(255,215,0,0.55);
     }
     .spotlight-diamond { position: relative; width: 72px; height: 72px; flex-shrink: 0; }
-    .spotlight-diamond svg { width: 72px; height: 72px; filter: drop-shadow(0 0 16px #ffd700); animation: diamondSpin 4s ease-in-out infinite; }
-    @keyframes diamondSpin { 0%,100%{filter:drop-shadow(0 0 10px #ffd700)} 50%{filter:drop-shadow(0 0 28px #ffd700)} }
+    .spotlight-diamond svg { width: 72px; height: 72px; filter: drop-shadow(0 0 16px #c084fc); animation: diamondSpin 4s ease-in-out infinite; }
+    @keyframes diamondSpin { 0%,100%{filter:drop-shadow(0 0 10px #c084fc)} 50%{filter:drop-shadow(0 0 28px #c084fc)} }
     .spotlight-rank-num {
       position: absolute; bottom: -6px; right: -8px;
       font-family: 'Oxanium', sans-serif; font-weight: 800; font-size: 1rem;
@@ -255,6 +290,9 @@
       box-shadow: 0 0 20px rgba(255,77,109,0.15);
     }
     .spotlight-cat { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+    .spotlight-hidden { display: none; }
+
+    /* MODAL */
     .modal-overlay {
       position: fixed; inset: 0; z-index: 999;
       background: rgba(0,0,0,0.78); backdrop-filter: blur(8px);
@@ -295,6 +333,8 @@
     .title-silver { background:rgba(192,192,192,0.1); color:#c0c0c0; border-color:rgba(192,192,192,0.3); }
     .title-bronze { background:rgba(205,127,50,0.1);  color:#cd7f32; border-color:rgba(205,127,50,0.3); }
     .title-maint  { background:rgba(107,114,128,0.1); color:var(--muted); border-color:rgba(107,114,128,0.25); }
+
+    /* WATERMARK */
     .watermark {
       position: fixed; bottom: 20px; right: 20px; z-index: 200;
       background: rgba(16,18,26,0.85); backdrop-filter: blur(10px);
@@ -324,4 +364,924 @@
     .ham-line { width: 18px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.3s; transform-origin: center; }
     .hamburger-btn.open .ham-line:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--accent); }
     .hamburger-btn.open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .hamburger-btn.open .ham-line:nth-child(3) { transform:
+    .hamburger-btn.open .ham-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--accent); }
+    .drawer-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0); backdrop-filter: blur(0px);
+      pointer-events: none; transition: background 0.35s, backdrop-filter 0.35s;
+    }
+    .drawer-overlay.open { background: rgba(0,0,0,0.65); backdrop-filter: blur(4px); pointer-events: all; }
+    .side-drawer {
+      position: fixed; top: 0; left: 0; bottom: 0; z-index: 501;
+      width: 290px; max-width: 85vw; background: #0e1018;
+      border-right: 1px solid var(--border);
+      transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      display: flex; flex-direction: column; box-shadow: 4px 0 40px rgba(0,0,0,0.6);
+    }
+    .side-drawer.open { transform: translateX(0); }
+    .drawer-header { padding: 18px 18px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .drawer-logo { font-family: 'Oxanium', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .drawer-logo span { color: var(--accent); }
+    .drawer-close { width: 32px; height: 32px; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); font-size: 1rem; transition: all 0.2s; }
+    .drawer-close:hover { border-color: var(--accent); color: var(--text); }
+    .drawer-nav { padding: 14px 10px; flex: 1; }
+    .drawer-section-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 0 8px; margin-bottom: 6px; margin-top: 14px; display: block; }
+    .drawer-section-label:first-child { margin-top: 0; }
+    .drawer-item { display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 10px; cursor: pointer; color: var(--muted); font-size: 0.92rem; font-weight: 600; transition: all 0.18s; border: 1px solid transparent; margin-bottom: 3px; font-family: 'Rajdhani', sans-serif; text-decoration: none; }
+    .drawer-item:hover { background: var(--surface); color: var(--text); border-color: var(--border); }
+    .drawer-item.hof-btn { background: rgba(255,215,0,0.06); color: #ffd700; border-color: rgba(255,215,0,0.2); }
+    .drawer-item.hof-btn:hover { background: rgba(255,215,0,0.12); border-color: rgba(255,215,0,0.4); }
+    .drawer-item-arrow { margin-left: auto; font-size: 0.75rem; opacity: 0.4; }
+    .drawer-footer { padding: 14px 18px; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--muted); text-align: center; }
+    .drawer-footer strong { color: var(--accent); }
+    .hof-page { position: fixed; inset: 0; z-index: 600; background: var(--bg); overflow-y: auto; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .hof-page.open { transform: translateX(0); }
+    .hof-page-header { position: sticky; top: 0; z-index: 10; background: rgba(10,12,16,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 14px; padding: 0 24px; height: 58px; }
+    .hof-back-btn { display: flex; align-items: center; gap: 6px; font-family: 'Oxanium', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--muted); cursor: pointer; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; transition: all 0.2s; }
+    .hof-back-btn:hover { color: var(--text); border-color: var(--accent); }
+    .hof-page-title { font-family: 'Oxanium', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text); flex: 1; text-align: center; }
+    .hof-page-title span { color: #ffd700; }
+    .hof-content { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; position: relative; z-index: 1; }
+    .hof-hero { text-align: center; margin-bottom: 40px; }
+    .hof-hero-title { font-family: 'Oxanium', sans-serif; font-weight: 800; font-size: clamp(1.8rem,4vw,2.8rem); color: var(--text); }
+    .hof-hero-title span { color: #ffd700; }
+    .hof-hero-sub { color: var(--muted); margin-top: 8px; font-size: 0.95rem; }
+    .hof-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px,1fr)); gap: 14px; }
+    .hof-card { background: var(--card); border: 1px solid rgba(255,215,0,0.18); border-radius: 14px; padding: 22px 16px; text-align: center; position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; animation: rowIn 0.4s ease both; }
+    .hof-card:hover { transform: translateY(-4px); border-color: rgba(255,215,0,0.45); box-shadow: 0 8px 30px rgba(255,215,0,0.08); }
+    .hof-card::before { content: ''; position: absolute; inset: 0; background: rgba(255,215,0,0.025); pointer-events: none; }
+    .hof-card-year { font-family: 'Oxanium', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; color: rgba(255,215,0,0.5); margin-bottom: 12px; }
+    .hof-card-crown { font-size: 2.2rem; margin-bottom: 8px; filter: drop-shadow(0 0 8px #ffd700); }
+    .hof-card-name { font-family: 'Oxanium', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--text); }
+    .hof-card-country { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+    .hof-card-badge { display: inline-block; margin-top: 10px; font-family: 'Oxanium', sans-serif; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: rgba(255,215,0,0.1); color: #ffd700; border: 1px solid rgba(255,215,0,0.25); }
+    .hof-divider { display: flex; align-items: center; gap: 16px; margin: 32px 0 24px; }
+    .hof-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .hof-divider-label { font-family: 'Oxanium', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div id="page-loader">
+  <div class="loader-logo">BG<span>Tiers</span></div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  <div class="loader-label">Loading Rankings...</div>
+</div>
+
+<!-- ANIMATED BACKGROUND -->
+<canvas id="bg-canvas"></canvas>
+
+<div id="app">
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon"><img src="https://i.imgur.com/placeholder.png" id="favicon-img" alt="BG" onerror="this.style.display='none';this.parentElement.textContent='⚔️'" /></div>
+    BG<span>Tiers</span>
+  </a>
+  <div class="nav-links">
+    <a href="#" class="active">Rankings</a>
+    <a href="https://discord.gg/6CX3cxQqC" target="_blank" class="discord-btn">🎮 Discord</a>
+    <a href="#">About</a>
+  </div>
+  <button class="hamburger-btn" id="hamburger-btn" onclick="toggleDrawer()" aria-label="Menu">
+    <div class="ham-line"></div>
+    <div class="ham-line"></div>
+    <div class="ham-line"></div>
+  </button>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Blockman Go · Bedwars</div>
+  <h1>Player <em>Rankings</em></h1>
+  <p class="hero-sub">The definitive tier list for Blockman Go Bedwars players worldwide</p>
+</div>
+
+<div class="tabs-wrap">
+  <button class="tab-btn active" onclick="switchTab('mobile',this)"><span>📱</span> Mobile</button>
+  <button class="tab-btn" onclick="switchTab('emulator',this)"><span>🖥️</span> Emulator</button>
+</div>
+
+<div class="spotlight-wrap" id="spotlight-wrap">
+  <div class="spotlight-card" onclick="openModal(0)">
+    <div class="spotlight-diamond" id="spotlight-icon">
+      <!-- filled by JS -->
+      <div class="spotlight-rank-num">#1</div>
+    </div>
+    <div class="spotlight-info">
+      <div class="spotlight-name" id="spot-name">Matin</div>
+      <div class="spotlight-sub" id="spot-sub">🇦🇱 Albania &nbsp;·&nbsp; @_gotin</div>
+      <div class="spotlight-titles" id="spot-titles">
+        <span class="title-chip title-gold">2024 Top 1</span>
+        <span class="title-chip title-gold">2025 Top 1</span>
+        <span class="title-chip title-gold">2026 Top 1</span>
+      </div>
+    </div>
+    <div class="spotlight-right">
+      <div class="spotlight-tier" id="spot-tier">S</div>
+      <div class="spotlight-cat" id="spot-cat">📱 Mobile</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num" id="total-players">20</div><div class="stat-lbl">Total Players</div></div>
+    <div class="stat-card"><div class="stat-num"><span>Top</span> 20</div><div class="stat-lbl">Max Rankings</div></div>
+    <div class="stat-card"><div class="stat-num"><span>S</span>–D</div><div class="stat-lbl">Tier Range</div></div>
+    <div class="stat-card"><div class="stat-num" id="last-updated"></div><div class="stat-lbl">Last Updated</div></div>
+  </div>
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" placeholder="Search player..." oninput="filterTable()" />
+    </div>
+    <select class="filter-select" id="tier-filter" onchange="filterTable()">
+      <option value="">All Tiers</option>
+      <option value="S">S Tier</option>
+      <option value="A">A Tier</option>
+      <option value="B">B Tier</option>
+      <option value="C">C Tier</option>
+      <option value="D">D Tier</option>
+    </select>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Rank</th><th>Player</th><th>Country</th><th>Tier</th></tr></thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+  <div class="tier-key">
+    <span class="tier-key-label">Tier Key:</span>
+    <span class="key-item"><span class="tier-badge tier-S">S</span> Elite</span>
+    <span class="key-item"><span class="tier-badge tier-A">A</span> High</span>
+    <span class="key-item"><span class="tier-badge tier-B">B</span> Mid</span>
+    <span class="key-item"><span class="tier-badge tier-C">C</span> Low</span>
+    <span class="key-item"><span class="tier-badge tier-D">D</span> Entry</span>
+  </div>
+</div>
+
+<footer>Copyrights © <strong>BGTiers</strong> 2026 &nbsp;·&nbsp; Blockman Go Bedwars Rankings</footer>
+
+<!-- WATERMARK -->
+<div class="watermark">⚒️ Made by <span>Aneld</span> & <span>Beast</span></div>
+
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+
+<!-- SIDE DRAWER -->
+<div class="side-drawer" id="side-drawer">
+  <div class="drawer-header">
+    <div class="drawer-logo">⚔️ BG<span>Tiers</span></div>
+    <div class="drawer-close" onclick="closeDrawer()">✕</div>
+  </div>
+  <div class="drawer-nav">
+    <span class="drawer-section-label">Navigate</span>
+    <div class="drawer-item" onclick="closeDrawer()">🏆 <span>Rankings</span> <span class="drawer-item-arrow">›</span></div>
+    <a href="https://discord.gg/6CX3cxQqC" target="_blank" class="drawer-item" onclick="closeDrawer()">🎮 <span>Discord Server</span> <span class="drawer-item-arrow">↗</span></a>
+    <span class="drawer-section-label">Special</span>
+    <div class="drawer-item hof-btn" onclick="openHOF()">🏛️ <span>Hall of Fame</span> <span class="drawer-item-arrow">›</span></div>
+  </div>
+  <div class="drawer-footer">⚒️ Made by <strong>Aneld</strong> & <strong>Beast</strong></div>
+</div>
+
+<!-- HALL OF FAME PAGE -->
+<div class="hof-page" id="hof-page">
+  <div class="hof-page-header">
+    <button class="hof-back-btn" onclick="closeHOF()">← Back</button>
+    <div class="hof-page-title">🏛️ Hall of <span>Fame</span></div>
+    <div style="width:80px"></div>
+  </div>
+  <div class="hof-content">
+    <div class="hof-hero">
+      <div class="hof-hero-title">The <span>Champions</span></div>
+      <div class="hof-hero-sub">All-time Top 1 players in Blockman Go Bedwars history</div>
+    </div>
+
+    <div class="hof-divider">
+      <div class="hof-divider-line"></div>
+      <div class="hof-divider-label">📱 Mobile — All Time Top 1s</div>
+      <div class="hof-divider-line"></div>
+    </div>
+
+    <div class="hof-grid">
+      <div class="hof-card" style="animation-delay:0s">
+        <div class="hof-card-year">2026</div>
+        <div class="hof-card-crown">👑</div>
+        <div class="hof-card-name">Matin</div>
+        <div class="hof-card-country">🇦🇱 Albania</div>
+        <div class="hof-card-badge">Top 1 Champion</div>
+      </div>
+      <div class="hof-card" style="animation-delay:0.05s">
+        <div class="hof-card-year">2025</div>
+        <div class="hof-card-crown">👑</div>
+        <div class="hof-card-name">Matin</div>
+        <div class="hof-card-country">🇦🇱 Albania</div>
+        <div class="hof-card-badge">Top 1 Champion</div>
+      </div>
+      <div class="hof-card" style="animation-delay:0.1s">
+        <div class="hof-card-year">2024</div>
+        <div class="hof-card-crown">👑</div>
+        <div class="hof-card-name">Matin</div>
+        <div class="hof-card-country">🇦🇱 Albania</div>
+        <div class="hof-card-badge">Top 1 Champion</div>
+      </div>
+      <div class="hof-card" style="animation-delay:0.15s">
+        <div class="hof-card-year">2023</div>
+        <div class="hof-card-crown">👑</div>
+        <div class="hof-card-name">Aneld</div>
+        <div class="hof-card-country">🇦🇱 Albania</div>
+        <div class="hof-card-badge">Top 1 Champion</div>
+      </div>
+      <div class="hof-card" style="animation-delay:0.2s">
+        <div class="hof-card-year">2022</div>
+        <div class="hof-card-crown">👑</div>
+        <div class="hof-card-name">Aneld</div>
+        <div class="hof-card-country">🇦🇱 Albania</div>
+        <div class="hof-card-badge">Top 1 Champion</div>
+      </div>
+    </div>
+
+    <div class="hof-divider" style="margin-top:40px">
+      <div class="hof-divider-line"></div>
+      <div class="hof-divider-label">🖥️ Emulator — All Time Top 1s</div>
+      <div class="hof-divider-line"></div>
+    </div>
+
+    <div class="hof-grid">
+      <div class="hof-card" style="animation-delay:0.25s">
+        <div class="hof-card-year">2026</div>
+        <div class="hof-card-crown">👑</div>
+        <div class="hof-card-name">Beny</div>
+        <div class="hof-card-country">🇨🇿 Czech</div>
+        <div class="hof-card-badge">Top 1 Champion</div>
+      </div>
+      <div class="hof-card" style="border-style:dashed;opacity:0.5;animation-delay:0.3s">
+        <div class="hof-card-year">Earlier</div>
+        <div class="hof-card-crown">🔒</div>
+        <div class="hof-card-name" style="color:var(--muted)">Unknown</div>
+        <div class="hof-card-country" style="font-size:0.75rem">Records pending</div>
+        <div class="hof-card-badge" style="color:var(--muted);border-color:var(--border);background:transparent">Coming Soon</div>
+      </div>
+    </div>
+  </div>
+</div>
+<canvas id="confetti-canvas"></canvas>
+
+<!-- PROFILE MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div class="modal-top">
+      <div class="modal-rank-icon" id="modal-rank-icon"></div>
+      <div>
+        <div class="modal-name" id="modal-name"></div>
+        <div class="modal-country" id="modal-country"></div>
+      </div>
+    </div>
+    <div class="modal-fields">
+      <div class="modal-field"><span class="field-icon">🎮</span><div><div class="field-label">In-Game Name</div><div class="field-value" id="modal-ign"></div></div></div>
+      <div class="modal-field"><span class="field-icon">💬</span><div><div class="field-label">Discord</div><div class="field-value" id="modal-discord"></div></div></div>
+      <div class="modal-field"><span class="field-icon">⚔️</span><div><div class="field-label">Tier</div><div class="field-value" id="modal-tier"></div></div></div>
+    </div>
+    <div class="modal-titles-label">🏆 Titles</div>
+    <div class="modal-titles" id="modal-titles"></div>
+    <div class="modal-actions">
+      <button class="modal-btn" id="copy-discord-btn" onclick="copyDiscord()">💬 Copy Discord</button>
+      <button class="modal-btn" id="share-btn" onclick="shareProfile()">🔗 Share Profile</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- end #app -->
+
+<script>
+// ── RANK BADGE SVGs (matching in-game badges) ─────────────────────────────
+
+// Top 1: Holographic prismatic crystal badge (rainbow/purple/teal)
+function badgeTop1(){
+  return`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="prism1" cx="40%" cy="35%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="30%" stop-color="#c084fc"/>
+      <stop offset="60%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </radialGradient>
+    <radialGradient id="prism2" cx="60%" cy="65%">
+      <stop offset="0%" stop-color="#5eead4"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#e879f9"/>
+    </radialGradient>
+    <filter id="glowP"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="wingP1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e879f9"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="wingP2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5eead4"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+  </defs>
+  <!-- Wings -->
+  <path d="M18,62 L4,48 L10,36 L22,44 L18,62Z" fill="url(#wingP1)" opacity="0.85" filter="url(#glowP)"/>
+  <path d="M15,60 L3,52 L8,40 L18,50Z" fill="#e879f9" opacity="0.5"/>
+  <path d="M82,62 L96,48 L90,36 L78,44 L82,62Z" fill="url(#wingP2)" opacity="0.85" filter="url(#glowP)"/>
+  <path d="M85,60 L97,52 L92,40 L82,50Z" fill="#5eead4" opacity="0.5"/>
+  <!-- Badge body: 12-point starburst -->
+  <polygon points="50,8 56,20 68,14 66,27 79,28 71,38 82,44 72,50 80,58 68,59 68,72 57,66 50,78 43,66 32,72 32,59 20,58 28,50 18,44 29,38 21,28 34,27 34,14 46,20" fill="url(#prism1)" stroke="#c084fc" stroke-width="1.5" filter="url(#glowP)"/>
+  <!-- Inner shield -->
+  <polygon points="50,20 58,29 64,38 60,52 50,58 40,52 36,38 42,29" fill="url(#prism2)" opacity="0.7"/>
+  <!-- Center star -->
+  <polygon points="50,30 53,39 62,39 55,45 58,54 50,48 42,54 45,45 38,39 47,39" fill="white" opacity="0.95" filter="url(#glowP)"/>
+  <!-- Sparkle dots -->
+  <circle cx="50" cy="8" r="2.5" fill="white" opacity="0.9"/>
+  <circle cx="82" cy="44" r="2" fill="#5eead4" opacity="0.9"/>
+  <circle cx="18" cy="44" r="2" fill="#e879f9" opacity="0.9"/>
+</svg>`;
+}
+
+// Top 2-5: Gold badge with wings
+function badgeGoldWing(){
+  return`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="goldBg" cx="50%" cy="40%">
+      <stop offset="0%" stop-color="#ffe066"/>
+      <stop offset="60%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </radialGradient>
+    <filter id="glowG"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <!-- Wings left -->
+  <path d="M20,65 L4,50 L10,36 L24,46 L20,65Z" fill="#fbbf24" opacity="0.9" filter="url(#glowG)"/>
+  <path d="M17,62 L5,54 L10,42 L20,54Z" fill="#fde68a" opacity="0.55"/>
+  <!-- Wings right -->
+  <path d="M80,65 L96,50 L90,36 L76,46 L80,65Z" fill="#fbbf24" opacity="0.9" filter="url(#glowG)"/>
+  <path d="M83,62 L95,54 L90,42 L80,54Z" fill="#fde68a" opacity="0.55"/>
+  <!-- Badge body: 12-point starburst -->
+  <polygon points="50,10 56,21 68,15 66,28 79,30 71,40 82,46 72,52 79,61 67,62 66,75 55,68 50,80 45,68 34,75 33,62 21,61 28,52 18,46 29,40 21,30 34,28 32,15 44,21" fill="url(#goldBg)" stroke="#fbbf24" stroke-width="1.8" filter="url(#glowG)"/>
+  <!-- Inner circle -->
+  <circle cx="50" cy="45" r="18" fill="#f59e0b" opacity="0.4"/>
+  <!-- Center star -->
+  <polygon points="50,30 54,40 65,40 56,47 59,57 50,51 41,57 44,47 35,40 46,40" fill="#fffbeb" opacity="0.95" filter="url(#glowG)"/>
+  <circle cx="50" cy="10" r="2.5" fill="#ffe066" opacity="0.95"/>
+</svg>`;
+}
+
+// Top 6-10: Silver badge with wings
+function badgeSilverWing(){
+  return`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="silvBg" cx="50%" cy="40%">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="55%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </radialGradient>
+    <filter id="glowS"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <!-- Wings left -->
+  <path d="M20,65 L4,50 L10,36 L24,46 L20,65Z" fill="#cbd5e1" opacity="0.9" filter="url(#glowS)"/>
+  <path d="M17,62 L5,54 L10,42 L20,54Z" fill="#e2e8f0" opacity="0.5"/>
+  <!-- Wings right -->
+  <path d="M80,65 L96,50 L90,36 L76,46 L80,65Z" fill="#cbd5e1" opacity="0.9" filter="url(#glowS)"/>
+  <path d="M83,62 L95,54 L90,42 L80,54Z" fill="#e2e8f0" opacity="0.5"/>
+  <!-- Badge body -->
+  <polygon points="50,10 56,21 68,15 66,28 79,30 71,40 82,46 72,52 79,61 67,62 66,75 55,68 50,80 45,68 34,75 33,62 21,61 28,52 18,46 29,40 21,30 34,28 32,15 44,21" fill="url(#silvBg)" stroke="#cbd5e1" stroke-width="1.8" filter="url(#glowS)"/>
+  <circle cx="50" cy="45" r="18" fill="#94a3b8" opacity="0.3"/>
+  <polygon points="50,30 54,40 65,40 56,47 59,57 50,51 41,57 44,47 35,40 46,40" fill="white" opacity="0.92" filter="url(#glowS)"/>
+  <circle cx="50" cy="10" r="2.5" fill="#e2e8f0" opacity="0.95"/>
+</svg>`;
+}
+
+// Top 11-15: Bronze round star badge (no wings)
+function badgeBronzeRound(){
+  return`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bronzeRBg" cx="50%" cy="40%">
+      <stop offset="0%" stop-color="#fcd9a0"/>
+      <stop offset="55%" stop-color="#cd7f32"/>
+      <stop offset="100%" stop-color="#7c4a0a"/>
+    </radialGradient>
+    <filter id="glowBR"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <!-- Outer spiky ring (12 points) -->
+  <polygon points="50,6 55,18 67,13 65,26 78,27 70,37 81,44 71,50 78,60 66,60 65,73 54,67 50,79 46,67 35,73 34,60 22,60 29,50 19,44 30,37 22,27 35,26 33,13 45,18" fill="url(#bronzeRBg)" stroke="#e8954a" stroke-width="1.5" filter="url(#glowBR)"/>
+  <!-- Inner filled circle -->
+  <circle cx="50" cy="44" r="20" fill="#cd7f32" opacity="0.45"/>
+  <!-- Star -->
+  <polygon points="50,30 53,39 63,39 55,45 58,55 50,49 42,55 45,45 37,39 47,39" fill="#fde4b0" opacity="0.95" filter="url(#glowBR)"/>
+</svg>`;
+}
+
+// Top 16-20: Dark bronze hexagon badge (no wings)
+function badgeBronzeHex(){
+  return`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="hexBg" cx="50%" cy="40%">
+      <stop offset="0%" stop-color="#d4935a"/>
+      <stop offset="55%" stop-color="#8b5a2b"/>
+      <stop offset="100%" stop-color="#4a2c0a"/>
+    </radialGradient>
+    <filter id="glowH"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <!-- Hexagon -->
+  <polygon points="50,8 86,28 86,68 50,88 14,68 14,28" fill="url(#hexBg)" stroke="#cd7f32" stroke-width="2" filter="url(#glowH)"/>
+  <!-- Inner darker hex -->
+  <polygon points="50,20 76,35 76,65 50,80 24,65 24,35" fill="#5a3010" opacity="0.5"/>
+  <!-- Star -->
+  <polygon points="50,30 54,40 64,40 56,46 59,56 50,50 41,56 44,46 36,40 46,40" fill="#d4935a" opacity="0.95" filter="url(#glowH)"/>
+</svg>`;
+}
+
+function getIcon(rank){
+  if(rank===1)       return{svg:badgeTop1(),      color:'#c084fc'};
+  if(rank<=5)        return{svg:badgeGoldWing(),   color:'#ffd700'};
+  if(rank<=10)       return{svg:badgeSilverWing(), color:'#c0c0c0'};
+  if(rank<=15)       return{svg:badgeBronzeRound(),color:'#cd7f32'};
+  return                   {svg:badgeBronzeHex(),  color:'#8b5a2b'};
+}
+
+// Inject top1 badge into spotlight
+(function(){
+  const el = document.getElementById('spotlight-icon');
+  if(el) {
+    const num = el.querySelector('.spotlight-rank-num');
+    el.innerHTML = badgeTop1();
+    el.appendChild(num);
+  }
+})();
+
+const players={
+  mobile:[
+    {name:"Aneld",         ign:"Aneld",            discord:"x646x",                country:"🇦🇱 Albania",    tier:"S",titles:["2022 Top 3","2023 Top 1","2024 Top 2","2025 Top 2","2026 Top 1"]},
+    {name:"Quar",          ign:"Quar",             discord:"onezz.23",             country:"🇩🇪 Germany",    tier:"S",titles:["2023 Top 3","2024 Top 3","2026 Top 2"]},
+    {name:"NotEgo",        ign:"NotEgo",           discord:"lucid0208_09371",      country:"🇵🇭 Philippines", tier:"S",titles:["2026 Top 3"]},
+    {name:"Beast",         ign:"Beast",            discord:".b4ast.",              country:"🇮🇳 India",      tier:"A",titles:["2025 Top 6","2026 Top 4"]},
+    {name:"Hashim",        ign:"Hashim",           discord:"nightowns74",          country:"🇵🇰 Pakistan",   tier:"A",titles:["2026 Top 5"]},
+    {name:"CN-Beast",      ign:"CN-Beast",         discord:"chronics.beast",       country:"🇮🇳 India",      tier:"A",titles:["2026 Top 6"]},
+    {name:"Polska",        ign:"Polska",           discord:"polska.wwq",           country:"🇹🇷 Turkey",     tier:"A",titles:["2026 Top 7"]},
+    {name:"Byelzim",       ign:"Byelzim",          discord:"byelzinho02s",         country:"🇧🇷 Brazil",     tier:"B",titles:["2026 Top 8"]},
+    {name:"CN-Dark",       ign:"CN-Dark",          discord:"ofc dark0310",         country:"🇮🇳 India",      tier:"B",titles:["2026 Top 9"]},
+    {name:"Maqa",          ign:"Maqa",             discord:"maqaxblockmango",      country:"🇦🇿 Azerbaijan", tier:"B",titles:["2026 Top 10"]},
+    {name:"Baly",          ign:"Baly",             discord:"baly0495_68229",       country:"🇦🇱 Albania",    tier:"B",titles:["2026 Top 11"]},
+    {name:"CN-MxrningStar",ign:"CN-MxrningStar",   discord:"kurio_neko1",          country:"🇮🇳 India",      tier:"B",titles:["2026 Top 12"]},
+    {name:"IamNotPC",      ign:"IamNotPC",         discord:"veteranuser_",         country:"🇧🇩 Bangladesh", tier:"C",titles:["2026 Top 13"]},
+    {name:"Elzair",        ign:"Elzair",           discord:"elzair_",              country:"🇮🇳 India",      tier:"C",titles:["2026 Top 14"]},
+    {name:"Wally",         ign:"Wally",            discord:"siu05812",             country:"🇮🇳 India",      tier:"C",titles:["2026 Top 15"]},
+    {name:"HarshBG",       ign:"HarshBG",          discord:".harshbg",             country:"🇮🇳 India",      tier:"C",titles:["2026 Top 16"]},
+    {name:"CN-Prook",      ign:"CN-Prook",         discord:"prookblockmango",      country:"🇮🇳 India",      tier:"C",titles:["2026 Top 17"]},
+    {name:"Rize Gamerz",   ign:"Rize Gamerz",      discord:"risegamerz77",         country:"🇮🇳 India",      tier:"D",titles:["2026 Top 18"]},
+    {name:"SirWinter",     ign:"SirWinter",        discord:"fastestguyalive8",     country:"🇮🇳 India",      tier:"D",titles:["2026 Top 19"]},
+    {name:"Nakib",         ign:"Nakib",            discord:"sahariyarnakib",       country:"🇮🇳 India",      tier:"D",titles:["2026 Top 20"]},
+  ],
+  emulator:[
+    {name:"Beny",         ign:"beny(goat)",    discord:"totallynotbeny.",  country:"🇨🇿 Czech",      tier:"S",titles:["2026 Top 1"]},
+    {name:"Bannks",       ign:"bannks(goat)",  discord:"bannks0583_33632", country:"🇪🇸 Spain",      tier:"S",titles:["2026 Top 2"]},
+    {name:"Cold",         ign:"cold(goat)",    discord:"unavailable",      country:"🇮🇳 India",      tier:"S",titles:["2026 Top 3"]},
+    {name:"Goodbye",      ign:"Goodbye(goat)", discord:"goodbyebg.",       country:"🇧🇩 Bangladesh", tier:"A",titles:["2026 Top 4"]},
+    {name:"Astro",        ign:"astro(goat)",   discord:"astrogaming1966",  country:"🇮🇳 India",      tier:"A",titles:["2026 Top 5"]},
+    {name:"Zeus",         ign:"zeus(gey)",     discord:"unavailable",      country:"🇩🇪 Germany",    tier:"A",titles:["2026 Top 6"]},
+    {name:"Teck",         ign:"Teck(gey)",     discord:"tecksmw",          country:"🇮🇳 India",      tier:"A",titles:["2026 Top 7"]},
+    {name:"Furina",       ign:"Furina(gey)",   discord:"unavailable",      country:"🇮🇳 India",      tier:"B",titles:["2026 Top 8"]},
+    {name:"Hito",         ign:"Hito(t1 gey)",  discord:"hitomdx",          country:"🇮🇶 Iraq",       tier:"B",titles:["2026 Top 9"]},
+    {name:"Madox",        ign:"Madox(gey)",    discord:"unavailable",      country:"🇮🇶 Iraq",       tier:"B",titles:["2026 Top 10"]},
+    {name:"Swigh",        ign:"Swigh",         discord:"y00474",           country:"🇮🇶 Iraq",       tier:"B",titles:["2026 Top 11"]},
+    {name:"Atyab",        ign:"Atyab",         discord:"1377651412388937828",country:"🇮🇳 India",tier:"C",titles:["2026 Top 12"]},
+    {name:"Egoist",       ign:"Egoist",        discord:"sheesh_crazydawgs", country:"🇵🇭 Philippines",tier:"C",titles:["2026 Top 13"]},
+    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
+    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
+    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
+    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
+    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
+    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
+    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
+  ]
+};
+
+let currentTab="mobile";
+
+function titleChip(t){
+  if(t==="Under Maintenance") return`<span class="title-chip title-maint">🔧 Under Maintenance</span>`;
+  const l=t.toLowerCase();
+  const cls=l.includes('top 1')?'title-gold':l.includes('top 2')?'title-silver':l.includes('top 3')?'title-bronze':'title-silver';
+  return`<span class="title-chip ${cls}">${t}</span>`;
+}
+
+function avatarBg(tier){
+  return{S:'rgba(255,77,109,0.22)',A:'rgba(247,127,0,0.22)',B:'rgba(252,191,73,0.18)',C:'rgba(76,201,240,0.18)',D:'rgba(123,140,222,0.18)'}[tier]||'#222';
+}
+
+function renderTable(data){
+  const tbody=document.getElementById("table-body");
+  document.getElementById("total-players").textContent=players[currentTab].length;
+  if(!data.length){tbody.innerHTML=`<tr><td colspan="4"><div class="empty">No players found.</div></td></tr>`;return;}
+  tbody.innerHTML=data.map((p,i)=>{
+    const rank=players[currentTab].indexOf(p)+1;
+    const ic=getIcon(rank);
+    const isNC=p.name==="No Contestant";
+    const glowClass = rank===1 ? 'rank-diamond' : rank<=3 ? 'rank-gold' : '';
+    const rankCell=`<div class="rank-badge-wrap">
+      <div class="rank-icon-svg" style="filter:drop-shadow(0 0 5px ${ic.color})">${ic.svg}</div>
+      <span class="rank-number-overlay" style="color:${ic.color}">${rank}</span>
+    </div>`;
+    return`<tr class="${glowClass}" style="animation-delay:${i*0.03}s;${isNC?'opacity:0.4;cursor:default;':''}" onclick="${isNC?'':`openModal(${rank-1})`}">
+      <td>${rankCell}</td>
+      <td><div class="player-cell"><div class="avatar" style="background:${avatarBg(p.tier)}">${p.name.slice(0,2).toUpperCase()}</div><span class="player-name">${p.name}</span></div></td>
+      <td><span class="region-badge">${p.country}</span></td>
+      <td><span class="tier-badge tier-${p.tier}">${p.tier}</span></td>
+    </tr>`;
+  }).join("");
+}
+
+function filterTable(){
+  const q=document.getElementById("search-input").value.toLowerCase();
+  const tier=document.getElementById("tier-filter").value;
+  renderTable(players[currentTab].filter(p=>p.name.toLowerCase().includes(q)&&(!tier||p.tier===tier)));
+}
+
+function switchTab(tab,el){
+  currentTab=tab;
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  el.classList.add("active");
+  document.getElementById("search-input").value="";
+  document.getElementById("tier-filter").value="";
+  renderTable(players[currentTab]);
+  updateSpotlight();
+}
+
+function updateSpotlight(){
+  const p = players[currentTab][0];
+  const isEmulator = currentTab === 'emulator';
+  document.getElementById('spot-name').textContent = p.name;
+  document.getElementById('spot-sub').innerHTML = `${p.country} &nbsp;·&nbsp; @${p.discord}`;
+  document.getElementById('spot-tier').textContent = p.tier;
+  document.getElementById('spot-cat').textContent = isEmulator ? '🖥️ Emulator' : '📱 Mobile';
+  document.getElementById('spot-titles').innerHTML = p.titles.map(titleChip).join('');
+  // show/hide spotlight if top 1 is No Contestant
+  document.getElementById('spotlight-wrap').style.display = p.name === 'No Contestant' ? 'none' : '';
+}
+
+// ── CONFETTI ────────────────────────────────────────────────────────────
+let confettiActive = false;
+function launchConfetti() {
+  if(confettiActive) return;
+  confettiActive = true;
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const COLORS = ['#ffd700','#88eeff','#ff4d6d','#50fa7b','#f77f00','#ff79c6','#4cc9f0'];
+  const SHAPES = ['diamond','rect','circle'];
+  const MAX = 40; // potato-friendly cap
+
+  const particles = Array.from({length: MAX}, () => ({
+    x: Math.random() * canvas.width,
+    y: -10 - Math.random() * 80,
+    vx: (Math.random()-0.5)*3,
+    vy: 2 + Math.random()*3,
+    size: 5 + Math.random()*7,
+    color: COLORS[Math.floor(Math.random()*COLORS.length)],
+    shape: SHAPES[Math.floor(Math.random()*SHAPES.length)],
+    rot: Math.random()*Math.PI*2,
+    rotV: (Math.random()-0.5)*0.15,
+    alpha: 1,
+  }));
+
+  const start = performance.now();
+  const DURATION = 2800;
+
+  function draw(now) {
+    const elapsed = now - start;
+    if(elapsed > DURATION) {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      confettiActive = false;
+      return;
+    }
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const fade = elapsed > DURATION*0.6 ? 1 - (elapsed - DURATION*0.6)/(DURATION*0.4) : 1;
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.rot += p.rotV;
+      ctx.save();
+      ctx.globalAlpha = fade;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      if(p.shape==='rect') {
+        ctx.fillRect(-p.size/2,-p.size/4,p.size,p.size/2);
+      } else if(p.shape==='circle') {
+        ctx.beginPath(); ctx.arc(0,0,p.size/2,0,Math.PI*2); ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.moveTo(0,-p.size); ctx.lineTo(p.size*0.5,-p.size*0.2);
+        ctx.lineTo(p.size*0.5,p.size*0.2); ctx.lineTo(0,p.size);
+        ctx.lineTo(-p.size*0.5,p.size*0.2); ctx.lineTo(-p.size*0.5,-p.size*0.2);
+        ctx.closePath(); ctx.fill();
+      }
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+}
+
+// ── COPY DISCORD ────────────────────────────────────────────────────────
+let currentModalPlayer = null;
+function copyDiscord() {
+  if(!currentModalPlayer || currentModalPlayer.discord==='unavailable') return;
+  navigator.clipboard.writeText('@'+currentModalPlayer.discord).then(()=>{
+    const btn = document.getElementById('copy-discord-btn');
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent='💬 Copy Discord'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ── SHARE PROFILE ───────────────────────────────────────────────────────
+function shareProfile() {
+  if(!currentModalPlayer) return;
+  const p = currentModalPlayer;
+  const rank = players[currentTab].indexOf(p)+1;
+  const text = `🏆 ${p.name} — #${rank} ${currentTab==='mobile'?'Mobile':'Emulator'} | ${p.country} | Tier ${p.tier} | BGTiers Rankings`;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn = document.getElementById('share-btn');
+    btn.textContent = '✅ Copied to clipboard!';
+    btn.classList.add('shared');
+    setTimeout(()=>{ btn.textContent='🔗 Share Profile'; btn.classList.remove('shared'); }, 2000);
+  });
+}
+
+function openModal(idx){
+  const p=players[currentTab][idx];
+  currentModalPlayer = p;
+  const rank=idx+1;
+  const ic=getIcon(rank);
+  document.getElementById("modal-rank-icon").innerHTML=`
+    <div style="width:68px;height:68px;filter:drop-shadow(0 0 14px ${ic.color})">${ic.svg}</div>
+    <div class="modal-rank-num" style="color:${ic.color}">#${rank}</div>`;
+  document.getElementById("modal-name").textContent=p.name;
+  document.getElementById("modal-country").textContent=p.country;
+  document.getElementById("modal-ign").textContent=p.ign;
+  document.getElementById("modal-discord").textContent=p.discord==="unavailable"?"🔒 Unavailable":"@"+p.discord;
+  document.getElementById("modal-tier").innerHTML=`<span class="tier-badge tier-${p.tier}" style="font-size:0.85rem;padding:3px 12px">${p.tier} Tier</span>`;
+  document.getElementById("modal-titles").innerHTML=p.titles.map(titleChip).join("");
+  // Reset buttons
+  const cb=document.getElementById('copy-discord-btn');
+  cb.textContent='💬 Copy Discord'; cb.classList.remove('copied');
+  cb.style.opacity = p.discord==='unavailable'?'0.4':'1';
+  document.getElementById('share-btn').textContent='🔗 Share Profile';
+  document.getElementById('share-btn').classList.remove('shared');
+  document.getElementById("modal-overlay").classList.add("open");
+  document.body.style.overflow="hidden";
+  // Confetti for top 3
+  if(rank<=3) setTimeout(launchConfetti, 200);
+}
+function closeModalBtn(){document.getElementById("modal-overlay").classList.remove("open");document.body.style.overflow="";}
+function closeModal(e){if(e.target===document.getElementById("modal-overlay"))closeModalBtn();}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModalBtn();});
+
+// ── DRAWER ───────────────────────────────────────────────────────────────
+function toggleDrawer() {
+  const drawer = document.getElementById('side-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const btn = document.getElementById('hamburger-btn');
+  const isOpen = drawer.classList.contains('open');
+  if(isOpen) { closeDrawer(); } else {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeDrawer() {
+  document.getElementById('side-drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('hamburger-btn').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function openHOF() {
+  closeDrawer();
+  setTimeout(() => {
+    document.getElementById('hof-page').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }, 200);
+}
+function closeHOF() {
+  document.getElementById('hof-page').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeModalBtn(); }
+});
+
+// Set last updated date dynamically
+document.getElementById('last-updated').innerHTML = `17 <span>May</span>`;
+
+renderTable(players.mobile);
+
+// Page loader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('page-loader').classList.add('hidden');
+    document.getElementById('app').classList.add('visible');
+  }, 1200);
+});
+
+// ── ANIMATED BACKGROUND PARTICLES ────────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Bedwars item types: diamond, emerald, sword, bed, star
+  const ITEMS = ['diamond', 'emerald', 'sword', 'bed', 'star'];
+
+  // Team colors from Bedwars: red, blue, green, yellow + diamond cyan + emerald green
+  const COLORS = [
+    '#88eeff', // diamond cyan
+    '#50fa7b', // emerald green
+    '#ff5555', // red team
+    '#4ec9f0', // blue team
+    '#f1fa8c', // yellow team
+    '#ff79c6', // pink team
+    '#ffd700', // gold
+  ];
+
+  function drawDiamond(ctx, x, y, size, color, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color + '33';
+    ctx.lineWidth = 1.2;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 8;
+    ctx.beginPath();
+    ctx.moveTo(x, y - size);
+    ctx.lineTo(x + size * 0.6, y - size * 0.3);
+    ctx.lineTo(x + size * 0.6, y + size * 0.3);
+    ctx.lineTo(x, y + size);
+    ctx.lineTo(x - size * 0.6, y + size * 0.3);
+    ctx.lineTo(x - size * 0.6, y - size * 0.3);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    // inner highlight
+    ctx.globalAlpha = alpha * 0.4;
+    ctx.fillStyle = '#fff';
+    ctx.beginPath();
+    ctx.moveTo(x, y - size * 0.5);
+    ctx.lineTo(x + size * 0.25, y - size * 0.1);
+    ctx.lineTo(x, y + size * 0.1);
+    ctx.lineTo(x - size * 0.25, y - size * 0.1);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawEmerald(ctx, x, y, size, color, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color + '28';
+    ctx.lineWidth = 1.2;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 8;
+    ctx.beginPath();
+    // octagon-ish emerald shape
+    const s = size * 0.7;
+    ctx.moveTo(x - s*0.4, y - s);
+    ctx.lineTo(x + s*0.4, y - s);
+    ctx.lineTo(x + s, y - s*0.4);
+    ctx.lineTo(x + s, y + s*0.4);
+    ctx.lineTo(x + s*0.4, y + s);
+    ctx.lineTo(x - s*0.4, y + s);
+    ctx.lineTo(x - s, y + s*0.4);
+    ctx.lineTo(x - s, y - s*0.4);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawSword(ctx, x, y, size, color, alpha, angle) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 6;
+    // blade
+    ctx.beginPath();
+    ctx.moveTo(0, -size);
+    ctx.lineTo(0, size * 0.5);
+    ctx.stroke();
+    // crossguard
+    ctx.beginPath();
+    ctx.moveTo(-size * 0.4, size * 0.2);
+    ctx.lineTo(size * 0.4, size * 0.2);
+    ctx.stroke();
+    // handle
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(0, size * 0.2);
+    ctx.lineTo(0, size * 0.7);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawBed(ctx, x, y, size, color, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color + '30';
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.2;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 7;
+    const w = size * 1.4, h = size * 0.8;
+    // bed base
+    ctx.beginPath();
+    ctx.roundRect(x - w/2, y - h/2, w, h, 3);
+    ctx.fill();
+    ctx.stroke();
+    // pillow
+    ctx.fillStyle = color + '55';
+    ctx.beginPath();
+    ctx.roundRect(x - w/2 + 3, y - h/2 + 3, w*0.35, h - 6, 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawStar(ctx, x, y, size, color, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 10;
+    ctx.beginPath();
+    for (let i = 0; i < 5; i++) {
+      const outerA = (i * 4 * Math.PI / 5) - Math.PI / 2;
+      const innerA = outerA + (2 * Math.PI / 10);
+      if (i === 0) ctx.moveTo(x + Math.cos(outerA)*size, y + Math.sin(outerA)*size);
+      else ctx.lineTo(x + Math.cos(outerA)*size, y + Math.sin(outerA)*size);
+      ctx.lineTo(x + Math.cos(innerA)*size*0.4, y + Math.sin(innerA)*size*0.4);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Particle class
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(initial) {
+      this.x     = Math.random() * canvas.width;
+      this.y     = initial ? Math.random() * canvas.height : canvas.height + 30;
+      this.type  = ITEMS[Math.floor(Math.random() * ITEMS.length)];
+      this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      this.size  = 5 + Math.random() * 9;
+      this.speedY = -(0.2 + Math.random() * 0.5);
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.alpha  = 0.08 + Math.random() * 0.18;
+      this.angle  = Math.random() * Math.PI * 2;
+      this.rotSpeed = (Math.random() - 0.5) * 0.012;
+      this.pulse  = Math.random() * Math.PI * 2;
+      this.pulseSpeed = 0.02 + Math.random() * 0.02;
+    }
+    update() {
+      this.y     += this.speedY;
+      this.x     += this.speedX;
+      this.angle += this.rotSpeed;
+      this.pulse += this.pulseSpeed;
+      if (this.y < -40) this.reset(false);
+    }
+    draw() {
+      const a = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
+      switch(this.type) {
+        case 'diamond': drawDiamond(ctx, this.x, this.y, this.size, this.color, a); break;
+        case 'emerald': drawEmerald(ctx, this.x, this.y, this.size, this.color, a); break;
+        case 'sword':   drawSword(ctx, this.x, this.y, this.size, this.color, a, this.angle); break;
+        case 'bed':     drawBed(ctx, this.x, this.y, this.size, this.color, a); break;
+        case 'star':    drawStar(ctx, this.x, this.y, this.size * 0.5, this.color, a); break;
+      }
+    }
+  }
+
+  const particles = Array.from({length: 38}, () => new Particle());
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+</body>
+</html>

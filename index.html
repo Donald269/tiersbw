@@ -4,59 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BG Bedwars – Rankings</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Oxanium:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:      #1a1a1a;
-      --surface: #2d2d2d;
-      --card:    #3a3a3a;
-      --border:  #555555;
+      --bg:      #0c0c0e;
+      --surface: #18181c;
+      --card:    #222228;
+      --border:  #3a3a42;
       --accent:  #e63946;
-      --gold:    #ffd700;
-      --silver:  #c0c0c0;
+      --gold:    #ffdc6e;
+      --silver:  #c8d0d8;
       --bronze:  #cd7f32;
       --diamond: #5de0e6;
-      --text:    #f0f0e8;
-      --muted:   #8a8a7a;
-      --s-tier:  #ff4d6d;
-      --a-tier:  #f77f00;
-      --b-tier:  #fcbf49;
-      --c-tier:  #4cc9f0;
-      --d-tier:  #7b8cde;
-      --mc-grass-top:    #5d9e3a;
-      --mc-grass-side:   #8b6914;
-      --mc-dirt:         #6b4423;
-      --mc-stone:        #7a7a7a;
-      --mc-cobble:       #636363;
-      --mc-wood:         #9a6b2e;
-      --mc-plank:        #b58d3e;
-      --mc-dark:         #1a1208;
-      --mc-obsidian:     #14101e;
-      --mc-netherrack:   #6e2222;
-      --mc-bedrock:      #242424;
+      --text:    #f2f2f5;
+      --muted:   #9a9aa8;
+      --s-tier:  #ff6b8a;
+      --a-tier:  #ff9f43;
+      --b-tier:  #ffc857;
+      --c-tier:  #5bc0eb;
+      --d-tier:  #9aa5ff;
+      --mc-green:       #5dbd2a;
+      --mc-green-dark:  #3c8527;
+      --mc-green-light: #7dce4a;
+      --mc-panel:       rgba(16, 16, 20, 0.88);
+      --mc-panel-edge:  #4a4a52;
+      --mc-panel-mid:   #2a2a30;
+      --mc-dark:        #0c0c0e;
+      --mc-inset-hi:    rgba(255, 255, 255, 0.08);
+      --mc-inset-lo:    rgba(0, 0, 0, 0.35);
+      --radius-sm:      4px;
+      --radius-md:      8px;
+      --font-ui:        'Nunito Sans', 'Segoe UI', system-ui, sans-serif;
+      --font-brand:     'Press Start 2P', cursive;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; image-rendering: pixelated; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
     body {
-      background: var(--mc-dark); color: var(--text);
-      font-family: 'Rajdhani', sans-serif; font-size: 16px;
-      min-height: 100vh; overflow-x: hidden;
+      background: linear-gradient(160deg, #141820 0%, #0c0c0e 42%, #121018 100%);
+      color: var(--text);
+      font-family: var(--font-ui);
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* ── BACKGROUND: dark minecraft feel ── */
+    /* ── BACKGROUND: dark minecraft feel (gradient fallback if screenshot missing) ── */
     body::before {
       content: ''; position: fixed; inset: 0;
-      background: url('lighthouse-bedwars-screenshots-1.png') center center / cover no-repeat;
+      background:
+        linear-gradient(165deg, rgba(36,51,24,0.85) 0%, rgba(18,16,10,0.92) 50%, rgba(26,10,20,0.9) 100%),
+        url('lighthouse-bedwars-screenshots-1.png') center center / cover no-repeat;
       filter: blur(2px) brightness(0.28) saturate(0.7);
       transform: scale(1.03);
       pointer-events: none; z-index: 0;
     }
     body::after {
       content: ''; position: fixed; inset: 0;
-      background:
-        repeating-linear-gradient(0deg, rgba(0,0,0,0.10) 0px, rgba(0,0,0,0.10) 1px, transparent 1px, transparent 8px),
-        repeating-linear-gradient(90deg, rgba(0,0,0,0.07) 0px, rgba(0,0,0,0.07) 1px, transparent 1px, transparent 8px),
-        rgba(8,6,3,0.60);
+      background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%);
       pointer-events: none; z-index: 0;
     }
 
@@ -148,8 +153,8 @@
     .nav-logo span { color: #7ec850; text-shadow: 3px 3px 0 #2a4a10, 0 0 12px #7ec85088; }
     .logo-icon { width: 32px; height: 32px; border-radius: 0; overflow: hidden; image-rendering: pixelated;
       border: 3px solid #000;
-      box-shadow: inset -2px -2px 0 #3a2a08, inset 2px 2px 0 #7ec850, 2px 2px 0 #000; }
-    .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+      box-shadow: inset -2px -2px 0 #3a2a08, inset 2px 2px 0 #7ec850, 2px 2px 0 #000;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; line-height: 1; }
     .nav-links { display: flex; gap: 6px; }
     .nav-links a {
       color: var(--muted); text-decoration: none; font-size: 0.75rem;
@@ -333,6 +338,7 @@
     tbody td { padding: 11px 16px; font-size: 0.95rem; font-weight: 600; }
     tbody td:first-child { text-align: center; }
     tbody td:last-child { text-align: center; }
+    .empty { text-align: center; padding: 28px 16px; color: var(--muted); font-size: 0.95rem; }
 
     /* GLOWING BORDERS for top ranks — MC diamond and gold */
     tbody tr.rank-diamond {
@@ -717,6 +723,378 @@
     .hof-divider { display: flex; align-items: center; gap: 16px; margin: 32px 0 24px; }
     .hof-divider-line { flex: 1; height: 3px; background: #2a1a00; box-shadow: 0 1px 0 #6a4e0044, 0 -1px 0 #000; }
     .hof-divider-label { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-shadow: 1px 1px 0 #000; }
+
+    .info-block {
+      background: var(--mc-panel);
+      border: 2px solid var(--mc-panel-mid);
+      border-top-color: var(--mc-panel-edge);
+      border-left-color: var(--mc-panel-edge);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35), inset 0 1px 0 var(--mc-inset-hi);
+    }
+    .info-block h3 {
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--mc-green-light);
+      margin-bottom: 10px;
+    }
+    .info-block p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; margin-bottom: 8px; }
+    .info-block p:last-child { margin-bottom: 0; }
+    .info-block ul {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1.25rem;
+      margin-top: 6px;
+    }
+    .info-block li { margin-bottom: 6px; }
+    .info-block li:last-child { margin-bottom: 0; }
+    .info-block strong { color: var(--text); font-weight: 700; }
+
+    .changelog-entry {
+      background: var(--mc-panel);
+      border: 2px solid var(--mc-panel-mid);
+      border-left: 3px solid var(--mc-green);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 var(--mc-inset-hi);
+    }
+    .changelog-date {
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--mc-green-light);
+      margin-bottom: 8px;
+    }
+    .changelog-entry h3 {
+      font-family: var(--font-ui);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .changelog-entry ul {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      padding-left: 1.2rem;
+    }
+    .changelog-entry li { margin-bottom: 5px; }
+    .changelog-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-right: 6px;
+      vertical-align: middle;
+      background: rgba(93, 189, 42, 0.15);
+      color: var(--mc-green-light);
+      border: 1px solid var(--mc-green-dark);
+    }
+    .changelog-tag.ui { background: rgba(91, 192, 235, 0.12); color: var(--c-tier); border-color: #2a6a8a; }
+    .changelog-tag.data { background: rgba(255, 200, 87, 0.12); color: var(--b-tier); border-color: #6a5020; }
+    .page-loading, .data-error {
+      text-align: center; color: var(--muted); padding: 40px 20px; font-size: 0.95rem;
+    }
+    .data-error { color: #ff6b8a; }
+    .info-block a, .changelog-entry a {
+      color: var(--mc-green-light); font-weight: 700; text-decoration: none;
+    }
+    .info-block a:hover { text-decoration: underline; }
+
+    /* ══════════════════════════════════════
+       MC 1.21 — modern Java UI (readable type + inventory panels)
+    ══════════════════════════════════════ */
+    .mc-panel {
+      background: var(--mc-panel);
+      border: 2px solid var(--mc-panel-mid);
+      border-top-color: var(--mc-panel-edge);
+      border-left-color: var(--mc-panel-edge);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 var(--mc-inset-hi);
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      background: rgba(14, 14, 18, 0.94) !important;
+      border-bottom: 2px solid var(--mc-panel-mid) !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4), inset 0 1px 0 var(--mc-inset-hi) !important;
+      height: 64px;
+      background-image: none !important;
+    }
+    .nav-logo {
+      font-family: var(--font-brand) !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0 !important;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.8) !important;
+    }
+    .nav-logo span { color: var(--mc-green-light) !important; text-shadow: 2px 2px 0 var(--mc-green-dark) !important; }
+    .logo-icon {
+      border-radius: var(--radius-sm) !important;
+      border: 2px solid var(--mc-panel-mid) !important;
+      box-shadow: inset 0 1px 0 var(--mc-inset-hi), 0 2px 0 rgba(0,0,0,0.5) !important;
+      background: #1a1a22 !important;
+    }
+    .nav-links a {
+      font-family: var(--font-ui) !important;
+      font-size: 0.8rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.02em !important;
+      text-transform: none !important;
+      padding: 8px 14px !important;
+      border-radius: var(--radius-sm) !important;
+      border: 2px solid var(--mc-panel-mid) !important;
+      background: #1a1a20 !important;
+      box-shadow: inset 0 1px 0 var(--mc-inset-hi), 0 2px 0 rgba(0,0,0,0.35) !important;
+    }
+    .nav-links a.active {
+      color: var(--mc-green-light) !important;
+      border-color: var(--mc-green-dark) !important;
+      background: rgba(60, 133, 39, 0.2) !important;
+      box-shadow: inset 0 0 0 1px rgba(93, 189, 42, 0.25), 0 2px 0 rgba(0,0,0,0.35) !important;
+    }
+    .discord-btn {
+      background: rgba(88, 101, 242, 0.15) !important;
+      border-color: #5865f2 !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 0 rgba(0,0,0,0.35) !important;
+    }
+
+    .hero-label {
+      font-family: var(--font-ui) !important;
+      font-size: 0.7rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.06em !important;
+      color: var(--mc-green-light) !important;
+      background: rgba(60, 133, 39, 0.15) !important;
+      border: 2px solid var(--mc-green-dark) !important;
+      border-radius: 999px !important;
+      box-shadow: inset 0 1px 0 var(--mc-inset-hi) !important;
+      padding: 6px 16px !important;
+    }
+    .hero h1 {
+      font-family: var(--font-brand) !important;
+      font-size: clamp(1rem, 2.8vw, 1.65rem) !important;
+      line-height: 1.55 !important;
+      letter-spacing: 0 !important;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.85) !important;
+    }
+    .hero h1 em { color: var(--mc-green-light) !important; text-shadow: 3px 3px 0 var(--mc-green-dark) !important; }
+    .hero-sub { font-family: var(--font-ui) !important; font-size: 1rem !important; max-width: 36rem; margin-left: auto; margin-right: auto; }
+
+    .tab-btn {
+      font-family: var(--font-ui) !important;
+      font-size: 0.875rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.02em !important;
+      text-transform: none !important;
+      padding: 10px 22px !important;
+      border-radius: var(--radius-sm) !important;
+      border: 2px solid var(--mc-panel-mid) !important;
+      background: #2a2a32 !important;
+      box-shadow: inset 0 1px 0 var(--mc-inset-hi), 0 3px 0 rgba(0,0,0,0.4) !important;
+    }
+    .tab-btn.active {
+      background: linear-gradient(180deg, #4a9e28 0%, var(--mc-green-dark) 100%) !important;
+      color: #fff !important;
+      border-color: var(--mc-green-dark) !important;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.4) !important;
+    }
+    .tab-btn:active { transform: translateY(2px); box-shadow: inset 0 2px 4px rgba(0,0,0,0.35) !important; }
+
+    .stat-card, .table-wrap, .spotlight-card, .modal, .side-drawer, .hof-page-header, .hof-card, .watermark {
+      border: 2px solid var(--mc-panel-mid) !important;
+      border-top-color: var(--mc-panel-edge) !important;
+      border-left-color: var(--mc-panel-edge) !important;
+      border-radius: var(--radius-md) !important;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.4), inset 0 1px 0 var(--mc-inset-hi) !important;
+    }
+    .stat-card { background: var(--mc-panel) !important; padding: 18px 20px !important; }
+    .stat-num {
+      font-family: var(--font-brand) !important;
+      font-size: 1rem !important;
+      letter-spacing: 0 !important;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.75) !important;
+    }
+    .stat-num span { color: var(--mc-green-light) !important; }
+    .stat-lbl { font-family: var(--font-ui) !important; letter-spacing: 0.04em !important; font-size: 0.72rem !important; }
+
+    .search-wrap input, .filter-select {
+      font-family: var(--font-ui) !important;
+      border-radius: var(--radius-sm) !important;
+      border: 2px solid var(--mc-panel-mid) !important;
+      background: #141418 !important;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.35), inset 0 1px 0 var(--mc-inset-hi) !important;
+      padding: 11px 14px 11px 36px !important;
+    }
+    .search-wrap input:focus { box-shadow: inset 0 2px 6px rgba(0,0,0,0.35), 0 0 0 2px var(--mc-green) !important; }
+    .filter-select { padding: 11px 14px !important; }
+
+    .table-wrap { background: var(--mc-panel) !important; overflow: hidden; }
+    thead tr {
+      background: rgba(60, 133, 39, 0.12) !important;
+      border-bottom: 2px solid var(--mc-panel-mid) !important;
+      box-shadow: none !important;
+    }
+    thead th {
+      font-family: var(--font-ui) !important;
+      font-size: 0.7rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.06em !important;
+      color: var(--mc-green-light) !important;
+      text-shadow: none !important;
+      padding: 14px 16px !important;
+    }
+    tbody tr { border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
+    tbody tr:hover { background: rgba(93, 189, 42, 0.08) !important; box-shadow: inset 3px 0 0 var(--mc-green) !important; }
+    tbody td { font-family: var(--font-ui) !important; font-weight: 600 !important; font-size: 0.95rem !important; padding: 12px 16px !important; }
+    .player-name { font-weight: 700 !important; font-size: 1rem !important; }
+    .avatar {
+      font-family: var(--font-ui) !important;
+      font-size: 0.7rem !important;
+      font-weight: 800 !important;
+      border-radius: var(--radius-sm) !important;
+      border: 2px solid var(--mc-panel-mid) !important;
+      box-shadow: inset 0 1px 0 var(--mc-inset-hi) !important;
+    }
+    .region-badge {
+      font-family: var(--font-ui) !important;
+      border-radius: 999px !important;
+      border: 1px solid var(--mc-panel-edge) !important;
+      background: rgba(255,255,255,0.04) !important;
+      box-shadow: none !important;
+      padding: 4px 12px !important;
+    }
+    .tier-badge {
+      font-family: var(--font-ui) !important;
+      font-size: 0.75rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.03em !important;
+      border-radius: var(--radius-sm) !important;
+      border: 1px solid rgba(0,0,0,0.4) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1) !important;
+      min-width: 42px !important;
+      padding: 5px 10px !important;
+      text-shadow: none !important;
+    }
+    .rank-number-overlay {
+      font-family: var(--font-ui) !important;
+      font-size: 0.65rem !important;
+      font-weight: 800 !important;
+      border-radius: var(--radius-sm) !important;
+      border: 1px solid var(--mc-panel-edge) !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4) !important;
+      text-shadow: none !important;
+    }
+    .tier-key-label { font-family: var(--font-ui) !important; font-size: 0.7rem !important; letter-spacing: 0.05em !important; }
+    .key-item { font-family: var(--font-ui) !important; font-size: 0.85rem !important; }
+
+    .spotlight-card {
+      background: linear-gradient(135deg, rgba(40,32,12,0.95) 0%, rgba(20,18,14,0.95) 100%) !important;
+      animation: spotlightPulse 4s ease-in-out infinite !important;
+    }
+    @keyframes spotlightPulse {
+      0%,100% { box-shadow: 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 var(--mc-inset-hi), 0 0 24px rgba(255,220,110,0.08) !important; }
+      50% { box-shadow: 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 var(--mc-inset-hi), 0 0 36px rgba(255,220,110,0.16) !important; }
+    }
+    .spotlight-card::after {
+      font-family: var(--font-ui) !important;
+      font-size: 0.65rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.08em !important;
+    }
+    .spotlight-name {
+      font-family: var(--font-brand) !important;
+      font-size: clamp(0.85rem, 2vw, 1.15rem) !important;
+      line-height: 1.5 !important;
+      letter-spacing: 0 !important;
+    }
+    .spotlight-tier {
+      font-family: var(--font-brand) !important;
+      font-size: 1.1rem !important;
+      letter-spacing: 0 !important;
+      border-radius: var(--radius-sm) !important;
+    }
+    .title-chip {
+      font-family: var(--font-ui) !important;
+      font-size: 0.68rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      border-radius: var(--radius-sm) !important;
+      border: 1px solid rgba(0,0,0,0.35) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08) !important;
+      text-shadow: none !important;
+      padding: 5px 10px !important;
+    }
+
+    .modal { background: #121218 !important; }
+    .modal-name { font-family: var(--font-brand) !important; font-size: 0.85rem !important; line-height: 1.5 !important; letter-spacing: 0 !important; }
+    .modal-country, .field-value, .hero-sub, .spotlight-sub { font-family: var(--font-ui) !important; }
+    .field-label, .modal-titles-label {
+      font-family: var(--font-ui) !important;
+      font-size: 0.65rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.06em !important;
+    }
+    .modal-field { border-radius: var(--radius-sm) !important; border: 2px solid var(--mc-panel-mid) !important; box-shadow: inset 0 2px 4px rgba(0,0,0,0.25) !important; }
+    .modal-btn, .hof-back-btn, .hamburger-btn, .drawer-close {
+      font-family: var(--font-ui) !important;
+      font-size: 0.8rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      border-radius: var(--radius-sm) !important;
+      border: 2px solid var(--mc-panel-mid) !important;
+      box-shadow: inset 0 1px 0 var(--mc-inset-hi), 0 2px 0 rgba(0,0,0,0.35) !important;
+      padding: 10px 14px !important;
+    }
+    .modal-btn.copied { background: rgba(60, 133, 39, 0.35) !important; color: var(--mc-green-light) !important; }
+
+    footer {
+      background: rgba(12, 12, 16, 0.9) !important;
+      border-top: 2px solid var(--mc-panel-mid) !important;
+      box-shadow: inset 0 1px 0 var(--mc-inset-hi) !important;
+      font-family: var(--font-ui) !important;
+    }
+    footer strong { color: var(--mc-green-light) !important; }
+    .watermark {
+      font-family: var(--font-ui) !important;
+      font-size: 0.7rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      border-radius: var(--radius-sm) !important;
+    }
+    .watermark span { color: var(--mc-green-light) !important; text-shadow: none !important; }
+
+    .side-drawer {
+      background: #101014 !important;
+      background-image: none !important;
+      border-right: 2px solid var(--mc-panel-mid) !important;
+    }
+    .drawer-logo { font-family: var(--font-brand) !important; font-size: 0.65rem !important; letter-spacing: 0 !important; }
+    .drawer-section-label { font-family: var(--font-ui) !important; font-size: 0.65rem !important; font-weight: 800 !important; letter-spacing: 0.06em !important; }
+    .drawer-item { font-family: var(--font-ui) !important; border-radius: var(--radius-sm) !important; }
+    .hof-page { background: #0c0c0e !important; }
+    .hof-hero-title, .hof-page-title { font-family: var(--font-brand) !important; letter-spacing: 0 !important; line-height: 1.5 !important; }
+    .info-block h3, .changelog-entry h3, .changelog-date { font-family: var(--font-ui) !important; }
+    #rules-page .hof-page-title span { color: var(--mc-green-light) !important; text-shadow: none !important; }
+    #changelog-page .hof-page-title span { color: var(--c-tier) !important; text-shadow: none !important; }
+    .hof-card-name { font-family: var(--font-brand) !important; font-size: 0.65rem !important; line-height: 1.45 !important; }
+    .hof-card-badge, .hof-card-year { font-family: var(--font-ui) !important; letter-spacing: 0.04em !important; }
+
+    #page-loader { background: #0c0c0e !important; }
+    .loader-logo { font-family: var(--font-brand) !important; font-size: 1.25rem !important; letter-spacing: 0 !important; }
+    .loader-logo span { color: var(--mc-green-light) !important; }
+    .loader-label { font-family: var(--font-ui) !important; font-size: 0.75rem !important; font-weight: 700 !important; letter-spacing: 0.05em !important; }
+    .loader-bar-wrap { border-radius: var(--radius-sm) !important; border: 2px solid var(--mc-panel-mid) !important; box-shadow: inset 0 2px 4px rgba(0,0,0,0.4) !important; }
+    .loader-bar { background: linear-gradient(90deg, var(--mc-green-dark), var(--mc-green-light)) !important; }
   </style>
 </head>
 <body>
@@ -734,13 +1112,13 @@
 <div id="app">
 <nav>
   <a href="#" class="nav-logo">
-    <div class="logo-icon"><img src="https://i.imgur.com/placeholder.png" id="favicon-img" alt="BG" onerror="this.style.display='none';this.parentElement.textContent='⚔️'" /></div>
+    <div class="logo-icon" aria-hidden="true">⚔️</div>
     BG<span>Tiers</span>
   </a>
   <div class="nav-links">
     <a href="#" class="active">Rankings</a>
     <a href="https://discord.gg/6CX3cxQqC" target="_blank" class="discord-btn">🎮 Discord</a>
-    <a href="#">About</a>
+    <a href="#" onclick="openAbout(); return false;">About</a>
   </div>
   <button class="hamburger-btn" id="hamburger-btn" onclick="toggleDrawer()" aria-label="Menu">
     <div class="ham-line"></div>
@@ -767,13 +1145,9 @@
       <div class="spotlight-rank-num">#1</div>
     </div>
     <div class="spotlight-info">
-      <div class="spotlight-name" id="spot-name">Matin</div>
-      <div class="spotlight-sub" id="spot-sub">🇦🇱 Albania &nbsp;·&nbsp; @_gotin</div>
-      <div class="spotlight-titles" id="spot-titles">
-        <span class="title-chip title-gold">2024 Top 1</span>
-        <span class="title-chip title-gold">2025 Top 1</span>
-        <span class="title-chip title-gold">2026 Top 1</span>
-      </div>
+      <div class="spotlight-name" id="spot-name">—</div>
+      <div class="spotlight-sub" id="spot-sub">Loading…</div>
+      <div class="spotlight-titles" id="spot-titles"></div>
     </div>
     <div class="spotlight-right">
       <div class="spotlight-tier" id="spot-tier">S</div>
@@ -837,6 +1211,10 @@
     <span class="drawer-section-label">Navigate</span>
     <div class="drawer-item" onclick="closeDrawer()">🏆 <span>Rankings</span> <span class="drawer-item-arrow">›</span></div>
     <a href="https://discord.gg/6CX3cxQqC" target="_blank" class="drawer-item" onclick="closeDrawer()">🎮 <span>Discord Server</span> <span class="drawer-item-arrow">↗</span></a>
+    <div class="drawer-item" onclick="closeDrawer(); openAbout();">ℹ️ <span>About BGTiers</span> <span class="drawer-item-arrow">›</span></div>
+    <span class="drawer-section-label">Info</span>
+    <div class="drawer-item" onclick="openRules()">📜 <span>Rules</span> <span class="drawer-item-arrow">›</span></div>
+    <div class="drawer-item" onclick="openChangelog()">📋 <span>Changelog</span> <span class="drawer-item-arrow">›</span></div>
     <span class="drawer-section-label">Special</span>
     <div class="drawer-item hof-btn" onclick="openHOF()">🏛️ <span>Hall of Fame</span> <span class="drawer-item-arrow">›</span></div>
   </div>
@@ -846,7 +1224,7 @@
 <!-- HALL OF FAME PAGE -->
 <div class="hof-page" id="hof-page">
   <div class="hof-page-header">
-    <button class="hof-back-btn" onclick="closeHOF()">← Back</button>
+    <button class="hof-back-btn" onclick="closeSubPages()">← Back</button>
     <div class="hof-page-title">🏛️ Hall of <span>Fame</span></div>
     <div style="width:80px"></div>
   </div>
@@ -924,7 +1302,53 @@
     </div>
   </div>
 </div>
+
+<!-- RULES PAGE -->
+<div class="hof-page" id="rules-page">
+  <div class="hof-page-header">
+    <button class="hof-back-btn" onclick="closeSubPages()">← Back</button>
+    <div class="hof-page-title">📜 <span>Rules</span></div>
+    <div style="width:80px"></div>
+  </div>
+  <div class="hof-content" id="rules-mount">
+    <p class="page-loading">Loading rules…</p>
+  </div>
+</div>
+
+<!-- CHANGELOG PAGE -->
+<div class="hof-page" id="changelog-page">
+  <div class="hof-page-header">
+    <button class="hof-back-btn" onclick="closeSubPages()">← Back</button>
+    <div class="hof-page-title">📋 <span>Changelog</span></div>
+    <div style="width:80px"></div>
+  </div>
+  <div class="hof-content" id="changelog-mount">
+    <p class="page-loading">Loading changelog…</p>
+  </div>
+</div>
+
 <canvas id="confetti-canvas"></canvas>
+
+<!-- ABOUT MODAL -->
+<div class="modal-overlay" id="about-overlay" onclick="closeAbout(event)">
+  <div class="modal" role="dialog" aria-labelledby="about-title">
+    <button class="modal-close" onclick="closeAboutBtn()">✕</button>
+    <div class="modal-top" style="margin-bottom:16px">
+      <div class="logo-icon" style="width:52px;height:52px;font-size:1.4rem" aria-hidden="true">⚔️</div>
+      <div>
+        <div class="modal-name" id="about-title">BGTiers</div>
+        <div class="modal-country">Blockman Go · Bedwars Rankings</div>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:0.95rem;line-height:1.5;margin-bottom:18px;font-family:'Rajdhani',sans-serif">
+      Community tier lists for Mobile and Emulator players. Rankings, Hall of Fame, and player profiles — updated by the BGTiers team.
+    </p>
+    <div class="modal-actions">
+      <a href="https://discord.gg/6CX3cxQqC" target="_blank" rel="noopener" class="modal-btn discord-btn" style="text-decoration:none">🎮 Join Discord</a>
+      <button class="modal-btn" onclick="closeAboutBtn()">Close</button>
+    </div>
+  </div>
+</div>
 
 <!-- PROFILE MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
@@ -1099,62 +1523,101 @@ function getIcon(rank){
   return                   {svg:badgeBronzeHex(),  color:'#8b5a2b'};
 }
 
-// Inject top1 badge into spotlight
-(function(){
-  const el = document.getElementById('spotlight-icon');
-  if(el) {
-    const num = el.querySelector('.spotlight-rank-num');
-    el.innerHTML = badgeTop1();
-    el.appendChild(num);
-  }
-})();
+const MAX_RANKINGS = 20;
 
-const players={
-  mobile:[
-    {name:"Aneld",         ign:"Aneld",            discord:"x646x",                country:"🇦🇱 Albania",    tier:"S",titles:["2022 Top 3","2023 Top 1","2024 Top 2","2025 Top 2","2026 Top 1"]},
-    {name:"Quar",          ign:"Quar",             discord:"onezz.23",             country:"🇩🇪 Germany",    tier:"S",titles:["2023 Top 3","2024 Top 3","2026 Top 2"]},
-    {name:"NotEgo",        ign:"NotEgo",           discord:"lucid0208_09371",      country:"🇵🇭 Philippines", tier:"S",titles:["2026 Top 3"]},
-    {name:"Beast",         ign:"Beast",            discord:".b4ast.",              country:"🇮🇳 India",      tier:"A",titles:["2025 Top 6","2026 Top 4"]},
-    {name:"Hashim",        ign:"Hashim",           discord:"nightowns74",          country:"🇵🇰 Pakistan",   tier:"A",titles:["2026 Top 5"]},
-    {name:"CN-Beast",      ign:"CN-Beast",         discord:"chronics.beast",       country:"🇮🇳 India",      tier:"A",titles:["2026 Top 6"]},
-    {name:"Polska",        ign:"Polska",           discord:"polska.wwq",           country:"🇹🇷 Turkey",     tier:"A",titles:["2026 Top 7"]},
-    {name:"Byelzim",       ign:"Byelzim",          discord:"byelzinho02s",         country:"🇧🇷 Brazil",     tier:"B",titles:["2026 Top 8"]},
-    {name:"CN-Dark",       ign:"CN-Dark",          discord:"ofc dark0310",         country:"🇮🇳 India",      tier:"B",titles:["2026 Top 9"]},
-    {name:"Maqa",          ign:"Maqa",             discord:"maqaxblockmango",      country:"🇦🇿 Azerbaijan", tier:"B",titles:["2026 Top 10"]},
-    {name:"Baly",          ign:"Baly",             discord:"baly0495_68229",       country:"🇦🇱 Albania",    tier:"B",titles:["2026 Top 11"]},
-    {name:"CN-MxrningStar",ign:"CN-MxrningStar",   discord:"kurio_neko1",          country:"🇮🇳 India",      tier:"B",titles:["2026 Top 12"]},
-    {name:"IamNotPC",      ign:"IamNotPC",         discord:"veteranuser_",         country:"🇧🇩 Bangladesh", tier:"C",titles:["2026 Top 13"]},
-    {name:"Elzair",        ign:"Elzair",           discord:"elzair_",              country:"🇮🇳 India",      tier:"C",titles:["2026 Top 14"]},
-    {name:"Wally",         ign:"Wally",            discord:"siu05812",             country:"🇮🇳 India",      tier:"C",titles:["2026 Top 15"]},
-    {name:"HarshBG",       ign:"HarshBG",          discord:".harshbg",             country:"🇮🇳 India",      tier:"C",titles:["2026 Top 16"]},
-    {name:"CN-Prook",      ign:"CN-Prook",         discord:"prookblockmango",      country:"🇮🇳 India",      tier:"C",titles:["2026 Top 17"]},
-    {name:"Rize Gamerz",   ign:"Rize Gamerz",      discord:"risegamerz77",         country:"🇮🇳 India",      tier:"D",titles:["2026 Top 18"]},
-    {name:"SirWinter",     ign:"SirWinter",        discord:"fastestguyalive8",     country:"🇮🇳 India",      tier:"D",titles:["2026 Top 19"]},
-    {name:"Nakib",         ign:"Nakib",            discord:"sahariyarnakib",       country:"🇮🇳 India",      tier:"D",titles:["2026 Top 20"]},
-  ],
-  emulator:[
-    {name:"Beny",         ign:"beny(goat)",    discord:"totallynotbeny.",  country:"🇨🇿 Czech",      tier:"S",titles:["2026 Top 1"]},
-    {name:"Bannks",       ign:"bannks(goat)",  discord:"bannks0583_33632", country:"🇪🇸 Spain",      tier:"S",titles:["2026 Top 2"]},
-    {name:"Cold",         ign:"cold(goat)",    discord:"unavailable",      country:"🇮🇳 India",      tier:"S",titles:["2026 Top 3"]},
-    {name:"Goodbye",      ign:"Goodbye(goat)", discord:"goodbyebg.",       country:"🇧🇩 Bangladesh", tier:"A",titles:["2026 Top 4"]},
-    {name:"Astro",        ign:"astro(goat)",   discord:"astrogaming1966",  country:"🇮🇳 India",      tier:"A",titles:["2026 Top 5"]},
-    {name:"Zeus",         ign:"zeus(gey)",     discord:"unavailable",      country:"🇩🇪 Germany",    tier:"A",titles:["2026 Top 6"]},
-    {name:"Teck",         ign:"Teck(gey)",     discord:"tecksmw",          country:"🇮🇳 India",      tier:"A",titles:["2026 Top 7"]},
-    {name:"Furina",       ign:"Furina(gey)",   discord:"unavailable",      country:"🇮🇳 India",      tier:"B",titles:["2026 Top 8"]},
-    {name:"Hito",         ign:"Hito(t1 gey)",  discord:"hitomdx",          country:"🇮🇶 Iraq",       tier:"B",titles:["2026 Top 9"]},
-    {name:"Madox",        ign:"Madox(gey)",    discord:"unavailable",      country:"🇮🇶 Iraq",       tier:"B",titles:["2026 Top 10"]},
-    {name:"Swigh",        ign:"Swigh",         discord:"y00474",           country:"🇮🇶 Iraq",       tier:"B",titles:["2026 Top 11"]},
-    {name:"Atyab",        ign:"Atyab",         discord:"1377651412388937828",country:"🇮🇳 India",tier:"C",titles:["2026 Top 12"]},
-    {name:"Egoist",       ign:"Egoist",        discord:"sheesh_crazydawgs", country:"🇵🇭 Philippines",tier:"C",titles:["2026 Top 13"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-  ]
-};
+/** Leaderboard for active tab — never more than top 20 */
+function tabPlayers(tab) {
+  return players[tab].slice(0, MAX_RANKINGS);
+}
+
+/** Loaded from data/ranks.json — edit that file on GitHub, not here */
+let players = { mobile: [], emulator: [] };
+
+const DATA_BASE = 'data';
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function renderRulesPage(data) {
+  const el = document.getElementById('rules-mount');
+  if (!el || !data) return;
+  const h = data.hero || {};
+  let html = `
+    <div class="hof-hero">
+      <div class="hof-hero-title">${escapeHtml(h.title || 'Ranking')} <span>${escapeHtml(h.accent || 'Rules')}</span></div>
+      <div class="hof-hero-sub">${escapeHtml(h.subtitle || '')}</div>
+    </div>`;
+  (data.sections || []).forEach(sec => {
+    html += `<div class="info-block"><h3>${escapeHtml(sec.title || '')}</h3>`;
+    if (sec.paragraphs) sec.paragraphs.forEach(p => { html += `<p>${escapeHtml(p)}</p>`; });
+    if (sec.list && sec.list.length) {
+      html += '<ul>' + sec.list.map(li => `<li>${escapeHtml(li)}</li>`).join('') + '</ul>';
+    }
+    if (sec.link && sec.link.href) {
+      html += `<p><a href="${escapeHtml(sec.link.href)}" target="_blank" rel="noopener">${escapeHtml(sec.link.text || 'Link')}</a></p>`;
+    }
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+
+function renderChangelogPage(data) {
+  const el = document.getElementById('changelog-mount');
+  if (!el || !data) return;
+  const h = data.hero || {};
+  let html = `
+    <div class="hof-hero">
+      <div class="hof-hero-title">${escapeHtml(h.title || 'Site')} <span>${escapeHtml(h.accent || 'Updates')}</span></div>
+      <div class="hof-hero-sub">${escapeHtml(h.subtitle || '')}</div>
+    </div>`;
+  (data.entries || []).forEach(entry => {
+    const tagCls = entry.tagClass ? ` ${entry.tagClass}` : '';
+    const tag = entry.tag ? `<span class="changelog-tag${tagCls}">${escapeHtml(entry.tag)}</span> ` : '';
+    html += `<div class="changelog-entry">
+      <div class="changelog-date">${escapeHtml(entry.date || '')}</div>
+      <h3>${tag}${escapeHtml(entry.title || '')}</h3>
+      <ul>${(entry.items || []).map(i => `<li>${escapeHtml(i)}</li>`).join('')}</ul>
+    </div>`;
+  });
+  if (data.footer) html += `<p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:8px">${escapeHtml(data.footer)}</p>`;
+  el.innerHTML = html;
+}
+
+function applyLastUpdated(last) {
+  const el = document.getElementById('last-updated');
+  if (!el || !last) return;
+  el.innerHTML = `${last.day} <span>${escapeHtml(last.month)}</span>`;
+}
+
+async function initSite() {
+  try {
+    const [ranksRes, rulesRes, logRes] = await Promise.all([
+      fetch(`${DATA_BASE}/ranks.json`),
+      fetch(`${DATA_BASE}/rules.json`),
+      fetch(`${DATA_BASE}/changelog.json`),
+    ]);
+    if (!ranksRes.ok || !rulesRes.ok || !logRes.ok) throw new Error('Missing data files');
+    const ranks = await ranksRes.json();
+    const rules = await rulesRes.json();
+    const changelog = await logRes.json();
+    players = { mobile: ranks.mobile || [], emulator: ranks.emulator || [] };
+    applyLastUpdated(ranks.lastUpdated);
+    renderRulesPage(rules);
+    renderChangelogPage(changelog);
+    renderTable(tabPlayers('mobile'));
+    updateSpotlight();
+  } catch (err) {
+    console.error(err);
+    document.getElementById('rules-mount').innerHTML = '<p class="data-error">Could not load rules.json</p>';
+    document.getElementById('changelog-mount').innerHTML = '<p class="data-error">Could not load changelog.json</p>';
+    document.getElementById('table-body').innerHTML = '<tr><td colspan="4"><div class="data-error">Could not load ranks.json — upload the data/ folder to GitHub.</div></td></tr>';
+  }
+}
 
 let currentTab="mobile";
 
@@ -1171,10 +1634,11 @@ function avatarBg(tier){
 
 function renderTable(data){
   const tbody=document.getElementById("table-body");
-  document.getElementById("total-players").textContent=players[currentTab].length;
+  const list = tabPlayers(currentTab);
+  document.getElementById("total-players").textContent=list.length;
   if(!data.length){tbody.innerHTML=`<tr><td colspan="4"><div class="empty">No players found.</div></td></tr>`;return;}
   tbody.innerHTML=data.map((p,i)=>{
-    const rank=players[currentTab].indexOf(p)+1;
+    const rank=list.indexOf(p)+1;
     const ic=getIcon(rank);
     const isNC=p.name==="No Contestant";
     const glowClass = rank===1 ? 'rank-diamond' : rank<=3 ? 'rank-gold' : '';
@@ -1194,7 +1658,7 @@ function renderTable(data){
 function filterTable(){
   const q=document.getElementById("search-input").value.toLowerCase();
   const tier=document.getElementById("tier-filter").value;
-  renderTable(players[currentTab].filter(p=>p.name.toLowerCase().includes(q)&&(!tier||p.tier===tier)));
+  renderTable(tabPlayers(currentTab).filter(p=>p.name.toLowerCase().includes(q)&&(!tier||p.tier===tier)));
 }
 
 function switchTab(tab,el){
@@ -1203,20 +1667,31 @@ function switchTab(tab,el){
   el.classList.add("active");
   document.getElementById("search-input").value="";
   document.getElementById("tier-filter").value="";
-  renderTable(players[currentTab]);
+  renderTable(tabPlayers(currentTab));
   updateSpotlight();
 }
 
+function refreshSpotlightBadge(){
+  const el = document.getElementById('spotlight-icon');
+  if(!el) return;
+  el.innerHTML = badgeTop1();
+  const num = document.createElement('div');
+  num.className = 'spotlight-rank-num';
+  num.textContent = '#1';
+  el.appendChild(num);
+}
+
 function updateSpotlight(){
-  const p = players[currentTab][0];
+  const p = tabPlayers(currentTab)[0];
+  if(!p) return;
   const isEmulator = currentTab === 'emulator';
   document.getElementById('spot-name').textContent = p.name;
   document.getElementById('spot-sub').innerHTML = `${p.country} &nbsp;·&nbsp; @${p.discord}`;
   document.getElementById('spot-tier').textContent = p.tier;
   document.getElementById('spot-cat').textContent = isEmulator ? '🖥️ Emulator' : '📱 Mobile';
   document.getElementById('spot-titles').innerHTML = p.titles.map(titleChip).join('');
-  // show/hide spotlight if top 1 is No Contestant
   document.getElementById('spotlight-wrap').style.display = p.name === 'No Contestant' ? 'none' : '';
+  refreshSpotlightBadge();
 }
 
 // ── CONFETTI ────────────────────────────────────────────────────────────
@@ -1299,7 +1774,7 @@ function copyDiscord() {
 function shareProfile() {
   if(!currentModalPlayer) return;
   const p = currentModalPlayer;
-  const rank = players[currentTab].indexOf(p)+1;
+  const rank = tabPlayers(currentTab).indexOf(p)+1;
   const text = `🏆 ${p.name} — #${rank} ${currentTab==='mobile'?'Mobile':'Emulator'} | ${p.country} | Tier ${p.tier} | BGTiers Rankings`;
   navigator.clipboard.writeText(text).then(()=>{
     const btn = document.getElementById('share-btn');
@@ -1310,7 +1785,8 @@ function shareProfile() {
 }
 
 function openModal(idx){
-  const p=players[currentTab][idx];
+  const p=tabPlayers(currentTab)[idx];
+  if(!p) return;
   currentModalPlayer = p;
   const rank=idx+1;
   const ic=getIcon(rank);
@@ -1357,32 +1833,50 @@ function closeDrawer() {
   document.getElementById('hamburger-btn').classList.remove('open');
   document.body.style.overflow = '';
 }
-function openHOF() {
+const SUB_PAGES = ['hof-page', 'rules-page', 'changelog-page'];
+
+function closeSubPages() {
+  SUB_PAGES.forEach(id => document.getElementById(id).classList.remove('open'));
+  document.body.style.overflow = '';
+}
+
+function openSubPage(pageId) {
   closeDrawer();
+  closeSubPages();
   setTimeout(() => {
-    document.getElementById('hof-page').classList.add('open');
+    document.getElementById(pageId).classList.add('open');
     document.body.style.overflow = 'hidden';
   }, 200);
 }
-function closeHOF() {
-  document.getElementById('hof-page').classList.remove('open');
+
+function openHOF() { openSubPage('hof-page'); }
+function openRules() { openSubPage('rules-page'); }
+function openChangelog() { openSubPage('changelog-page'); }
+function closeHOF() { closeSubPages(); }
+function openAbout(){
+  document.getElementById('about-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAboutBtn(){
+  document.getElementById('about-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+function closeAbout(e){
+  if(e.target === document.getElementById('about-overlay')) closeAboutBtn();
+}
+
 document.addEventListener('keydown', e => {
-  if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeModalBtn(); }
+  if(e.key === 'Escape') { closeDrawer(); closeSubPages(); closeModalBtn(); closeAboutBtn(); }
 });
 
-// Set last updated date dynamically
-document.getElementById('last-updated').innerHTML = `17 <span>May</span>`;
-
-renderTable(players.mobile);
-
-// Page loader
+// Page loader + load data/ranks.json, rules.json, changelog.json
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('page-loader').classList.add('hidden');
-    document.getElementById('app').classList.add('visible');
-  }, 1200);
+  initSite().finally(() => {
+    setTimeout(() => {
+      document.getElementById('page-loader').classList.add('hidden');
+      document.getElementById('app').classList.add('visible');
+    }, 800);
+  });
 });
 
 // ── ANIMATED BACKGROUND PARTICLES ────────────────────────────────────────

@@ -6,21 +6,21 @@
   },
   "sections": [
     {
-      "title": "🏆 Leaderboard scope",
+      "title": "🏆 How does Ranking work?",
       "list": [
-        "Each platform (Mobile and Emulator) has its own Top 20 only — ranks 1 through 20.",
-        "Order in the table is the official rank (#1 is the champion spotlight).",
-        "Players outside the Top 20 are not listed until they earn a spot."
+        "You will have to pvp someone from the list and win againts them incase you want to participate ranking leaderboard!",
+        "First to reach 10 kills wins the round and goes to the oppoments region for the next round..",
+        "You need to record atleast 5 clips of your POV! [Refusing to do will lead into a 10-0 auto loss]",
+        "You should also take screenshots of your enchantments. Not providing so, will lead to punishments."
+؜؜؜
       ]
     },
     {
-      "title": "⚔️ Tier grades (S → D)",
+      "title": "✅ What is allowed?",
       "list": [
-        "S Tier — Elite · top performers on the list",
-        "A Tier — High · strong competitive level",
-        "B Tier — Mid · solid, consistent players",
-        "C Tier — Low · developing or inconsistent",
-        "D Tier — Entry · bottom of the current Top 20"
+        "Mount/Pet/Talent/Runes are allowed.",
+        "Playing on someone else's account is also allowed.",
+        "Taking more then 5 record is also allowed.",
       ],
       "paragraphs": [
         "Tiers reflect skill and placement for the current season, not lifetime history alone."
@@ -54,9 +54,9 @@
     {
       "title": "🚫 Not allowed",
       "list": [
-        "Fake accounts, stat boosting, or paying for rank",
-        "Harassment based on placement or country",
-        "Leaking private Discord info from profiles"
+        "Simply, hacks, plug-ins, panel and other hacks.",
+        "No Spectators allowed.",
+        "Playing unfair device advantages such as Emulator Vs Mobile."
       ]
     }
   ]

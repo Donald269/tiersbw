@@ -1702,6 +1702,14 @@ function closeAbout(e){
   if(e.target === document.getElementById('about-overlay')) closeAboutBtn();
 }
 
+// Helper to hide the loader safely
+function hideLoader() {
+  setTimeout(() => {
+    document.getElementById('page-loader').classList.add('hidden');
+    document.getElementById('app').classList.add('visible');
+  }, CONFIG.LOADER_DELAY);
+}
+
 // ── INITIALIZATION ───────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
   // Set last updated date
@@ -1730,13 +1738,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeModalBtn(); closeAboutBtn(); }
   });
 
-  // Handle Loader
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.getElementById('page-loader').classList.add('hidden');
-      document.getElementById('app').classList.add('visible');
-    }, CONFIG.LOADER_DELAY);
-  });
+  // Handle Loader: If the page is already loaded (common with fast local files), 
+  // hide it immediately. Otherwise, wait for the window load event.
+  if (document.readyState === 'complete') {
+    hideLoader();
+  } else {
+    window.addEventListener('load', hideLoader);
+  }
 });
 
 // ── ANIMATED BACKGROUND PARTICLES ────────────────────────────────────────

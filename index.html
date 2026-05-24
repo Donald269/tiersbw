@@ -1212,6 +1212,64 @@
 </div>
 <canvas id="confetti-canvas"></canvas>
 
+<!-- RULES MODAL -->
+<div class="modal-overlay" id="rules-overlay" onclick="closeRules(event)">
+  <div class="modal" role="dialog" aria-labelledby="rules-title" style="max-height: 90vh; overflow-y: auto;">
+    <button class="modal-close" onclick="closeRulesBtn()">✕</button>
+    <div class="modal-top" style="margin-bottom:16px">
+      <div class="logo-icon" style="width:52px;height:52px;font-size:1.4rem" aria-hidden="true">📜</div>
+      <div>
+        <div class="modal-name" id="rules-title">Ranking Rules! 2026 👑</div>
+        <div class="modal-country">Official Guidelines</div>
+      </div>
+    </div>
+    <div class="modal-fields" style="gap: 12px;">
+      <div class="modal-field">
+        <span class="field-icon">🧐</span>
+        <div>
+          <div class="field-label">How does Ranking Work?</div>
+          <div class="field-value" style="font-size:0.85rem">
+            To rank up, PvP someone on the list. First to 10 kills wins. 
+            Winner travels to the opponent's region for the next round.
+            <strong>Must record 5 clips of POV</strong> and screenshot enchantments.
+          </div>
+        </div>
+      </div>
+      <div class="modal-field">
+        <span class="field-icon">✅</span>
+        <div>
+          <div class="field-label">Allowed</div>
+          <div class="field-value" style="font-size:0.85rem">
+            Mounts, Pets, Talents, Runes, and playing on shared accounts are all permitted.
+          </div>
+        </div>
+      </div>
+      <div class="modal-field">
+        <span class="field-icon">⛔</span>
+        <div>
+          <div class="field-label">Strictly Forbidden</div>
+          <div class="field-value" style="font-size:0.85rem">
+            Hacks, plugins, panels, and spectators. <strong>Emulator vs Mobile matches are not allowed.</strong>
+          </div>
+        </div>
+      </div>
+      <div class="modal-field">
+        <span class="field-icon">🤔</span>
+        <div>
+          <div class="field-label">Disputes & Reporting</div>
+          <div class="field-value" style="font-size:0.85rem">
+            Report opponents who don't record or "duck" matches for 3+ days. Bans range from 7 days to 1 month.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <a href="https://discord.gg/6CX3cxQqC" target="_blank" class="modal-btn discord-btn" style="text-decoration:none">🎮 Join Discord</a>
+      <button class="modal-btn" onclick="closeRulesBtn()">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- ABOUT MODAL -->
 <div class="modal-overlay" id="about-overlay" onclick="closeAbout(event)">
   <div class="modal" role="dialog" aria-labelledby="about-title">

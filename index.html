@@ -660,6 +660,9 @@
     .drawer-item.hof-btn { background: #1a1200; color: #ffd700; border: 3px solid #000;
       box-shadow: inset -2px -2px 0 #6a4e00, inset 2px 2px 0 #ffe08044, 2px 2px 0 #000; }
     .drawer-item.hof-btn:hover { background: #241a00; }
+    .drawer-item.changelog-btn { background: #0a1a2a; color: #4cc9f0; border: 3px solid #000;
+      box-shadow: inset -2px -2px 0 #051020, inset 2px 2px 0 #4cc9f044, 2px 2px 0 #000; }
+    .drawer-item.changelog-btn:hover { background: #0e2238; }
     .drawer-item-arrow { margin-left: auto; font-size: 0.75rem; opacity: 0.4; }
     .drawer-footer { padding: 14px 18px; border-top: 3px solid #000; box-shadow: inset 0 3px 0 #5a3a0a; font-size: 0.65rem; color: var(--muted); text-align: center; font-family: 'Rajdhani', sans-serif; }
     .drawer-footer strong { color: #7ec850; }
@@ -999,12 +1002,95 @@
     .hof-card-name { font-family: var(--font-brand) !important; font-size: 0.65rem !important; line-height: 1.45 !important; }
     .hof-card-badge, .hof-card-year { font-family: var(--font-ui) !important; letter-spacing: 0.04em !important; }
 
-    #page-loader { background: #0c0c0e !important; }
-    .loader-logo { font-family: var(--font-brand) !important; font-size: 1.25rem !important; letter-spacing: 0 !important; }
-    .loader-logo span { color: var(--mc-green-light) !important; }
-    .loader-label { font-family: var(--font-ui) !important; font-size: 0.75rem !important; font-weight: 700 !important; letter-spacing: 0.05em !important; }
-    .loader-bar-wrap { border-radius: var(--radius-sm) !important; border: 2px solid var(--mc-panel-mid) !important; box-shadow: inset 0 2px 4px rgba(0,0,0,0.4) !important; }
-    .loader-bar { background: linear-gradient(90deg, var(--mc-green-dark), var(--mc-green-light)) !important; }
+    /* ── CHANGELOG PAGE ── */
+    .changelog-page {
+      position: fixed; inset: 0; z-index: 600; background: #0a0806;
+      overflow-y: auto; transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .changelog-page.open { transform: translateX(0); }
+    .changelog-page-header {
+      position: sticky; top: 0; z-index: 10;
+      background: #0e1828;
+      border-bottom: 4px solid #000;
+      box-shadow: 0 4px 0 #000, inset 0 -4px 0 #051020, inset 0 3px 0 #4cc9f022;
+      display: flex; align-items: center; gap: 14px; padding: 0 24px; height: 58px;
+    }
+    .changelog-back-btn {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Press Start 2P', monospace; font-size: 0.5rem;
+      color: var(--muted); cursor: pointer;
+      background: #555; border: 3px solid #000;
+      box-shadow: inset -2px -2px 0 #333, inset 2px 2px 0 #888, 2px 2px 0 #000;
+      padding: 7px 12px; transition: all 0.1s;
+    }
+    .changelog-back-btn:hover { background: #686868; color: var(--text); }
+    .changelog-page-title {
+      font-family: 'Press Start 2P', monospace; font-size: 0.75rem;
+      color: var(--text); flex: 1; text-align: center; text-shadow: 2px 2px 0 #000;
+    }
+    .changelog-page-title span { color: #4cc9f0; text-shadow: 2px 2px 0 #051a2a; }
+    .changelog-content { max-width: 800px; margin: 0 auto; padding: 36px 20px 80px; }
+    .changelog-hero { text-align: center; margin-bottom: 36px; }
+    .changelog-hero-title {
+      font-family: 'Press Start 2P', monospace; font-size: clamp(0.9rem,2.5vw,1.3rem);
+      color: var(--text); text-shadow: 3px 3px 0 #000; line-height: 1.5;
+    }
+    .changelog-hero-title span { color: #4cc9f0; text-shadow: 2px 2px 0 #051a2a; }
+    .changelog-hero-sub { color: var(--muted); margin-top: 10px; font-size: 0.9rem; font-family: 'Rajdhani', sans-serif; }
+
+    /* Each update block */
+    .changelog-block {
+      background: #0e1828;
+      border: 4px solid #000;
+      box-shadow: inset -4px -4px 0 #051020, inset 4px 4px 0 #4cc9f022, 0 0 0 2px #000, 4px 4px 0 #000;
+      margin-bottom: 18px; overflow: hidden;
+      animation: rowIn 0.4s ease both;
+    }
+    .changelog-block-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px;
+      border-bottom: 3px solid #000;
+      box-shadow: 0 2px 0 #4cc9f022;
+      background: #0a1220;
+    }
+    .changelog-date {
+      font-family: 'Press Start 2P', monospace; font-size: 0.52rem;
+      color: #4cc9f0; text-shadow: 1px 1px 0 #051a2a; white-space: nowrap;
+    }
+    .changelog-version {
+      font-family: 'Press Start 2P', monospace; font-size: 0.45rem;
+      padding: 4px 10px; background: #051020; color: var(--muted);
+      border: 2px solid #000;
+      box-shadow: inset -1px -1px 0 #030810, inset 1px 1px 0 #4cc9f033, 1px 1px 0 #000;
+      margin-left: auto; white-space: nowrap;
+    }
+    .changelog-entries { padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; }
+    .changelog-entry {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 14px;
+      background: #0a1018;
+      border: 3px solid #000;
+      box-shadow: inset -2px -2px 0 #050810, inset 2px 2px 0 rgba(255,255,255,0.04), 2px 2px 0 #000;
+      font-family: 'Rajdhani', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--text);
+    }
+    .entry-tag {
+      font-family: 'Press Start 2P', monospace; font-size: 0.42rem; font-weight: 400;
+      padding: 4px 8px; flex-shrink: 0; margin-top: 2px;
+      border: 2px solid #000;
+      box-shadow: inset -1px -1px 0 rgba(0,0,0,0.5), inset 1px 1px 0 rgba(255,255,255,0.1), 1px 1px 0 #000;
+      text-shadow: 1px 1px 0 #000;
+    }
+    .tag-removed  { background: #2a0a0a; color: #ff5555; }
+    .tag-added    { background: #0a2a0a; color: #7ec850; }
+    .tag-moved    { background: #0a1a2a; color: #4cc9f0; }
+    .tag-updated  { background: #2a1a00; color: #ffd700; }
+    .tag-tier     { background: #1a002a; color: #c084fc; }
+    .changelog-empty {
+      text-align: center; padding: 40px 20px;
+      font-family: 'Press Start 2P', monospace; font-size: 0.55rem;
+      color: var(--muted); text-shadow: 1px 1px 0 #000; line-height: 2;
+    }
   </style>
 </head>
 <body>
@@ -1125,6 +1211,7 @@
     <div class="drawer-item" onclick="closeDrawer(); openAbout();">ℹ️ <span>About BGTiers</span> <span class="drawer-item-arrow">›</span></div>
     <span class="drawer-section-label">Special</span>
     <div class="drawer-item hof-btn" onclick="openHOF()">🏛️ <span>Hall of Fame</span> <span class="drawer-item-arrow">›</span></div>
+    <div class="drawer-item changelog-btn" onclick="openChangelog()">📋 <span>Change Logs</span> <span class="drawer-item-arrow">›</span></div>
   </div>
   <div class="drawer-footer">⚒️ Made by <strong>Aneld</strong> & <strong>Beast</strong></div>
 </div>
@@ -1211,6 +1298,24 @@
   </div>
 </div>
 <canvas id="confetti-canvas"></canvas>
+
+<!-- CHANGELOG PAGE -->
+<div class="changelog-page" id="changelog-page">
+  <div class="changelog-page-header">
+    <button class="changelog-back-btn" onclick="closeChangelog()">← Back</button>
+    <div class="changelog-page-title">📋 Change <span>Logs</span></div>
+    <div style="width:80px"></div>
+  </div>
+  <div class="changelog-content">
+    <div class="changelog-hero">
+      <div class="changelog-hero-title">Ranking <span>Updates</span></div>
+      <div class="changelog-hero-sub">All rank changes, additions, and removals — most recent first</div>
+    </div>
+    <div id="changelog-list">
+      <!-- Populated by JS from CHANGELOGS array below -->
+    </div>
+  </div>
+</div>
 
 <!-- RULES MODAL -->
 <div class="modal-overlay" id="rules-overlay" onclick="closeRules(event)">
@@ -1324,7 +1429,7 @@ const CONFIG = {
   MAX_RANKINGS: 20,
   LOADER_DELAY: 1200,
   CONFETTI_DURATION: 2800,
-  UPDATE_DATE: "23 May"
+  UPDATE_DATE: "24 May"
 };
 
 // ── RANK BADGE SVGs (matching in-game badges) ─────────────────────────────
@@ -1479,48 +1584,48 @@ function tabPlayers(tab) {
 
 let players = {
   mobile:[
-    {name:"Matin",          ign:"Matin",            discord:"_gotin",               country:"🇦🇱 Albania",    tier:"S",titles:["2024 Top 1","2025 Top 1","2026 Top 1"]},
-    {name:"Aneld",          ign:"Aneld",            discord:"x646x",                country:"🇦🇱 Albania",    tier:"S",titles:["2022 Top 3","2023 Top 1","2024 Top 2","2025 Top 2","2026 Top 2"]},
-    {name:"Quar",           ign:"Quar",             discord:"onezz.23",             country:"🇩🇪 Germany",    tier:"S",titles:["2023 Top 3","2024 Top 3","2026 Top 3"]},
-    {name:"NotEgo",         ign:"NotEgo",           discord:"lucid0208_09371",      country:"🇵🇭 Philippines", tier:"A",titles:["2026 Top 4"]},
-    {name:"Beast",          ign:"Beast",            discord:".b4ast.",              country:"🇮🇳 India",      tier:"A",titles:["2025 Top 6","2026 Top 5"]},
-    {name:"Sarthak",        ign:"Sarthak",          discord:"_.fireofc_.",          country:"🇳🇵 Nepal",      tier:"A",titles:["2026 Top 6"]},
-    {name:"Hashim",         ign:"Hashim",           discord:"nightowns74",          country:"🇵🇰 Pakistan",   tier:"A",titles:["2026 Top 7"]},
-    {name:"CN-Beast",       ign:"CN-Beast",         discord:"chronics.beast",       country:"🇮🇳 India",      tier:"B",titles:["2026 Top 8"]},
-    {name:"CN-Dark",        ign:"CN-Dark",          discord:"ofc dark0310",         country:"🇮🇳 India",      tier:"B",titles:["2026 Top 9"]},
-    {name:"CN-Amitesh",     ign:"Amitesh",          discord:"insanesavi",           country:"🇮🇳 India",      tier:"B",titles:["2026 Top 10"]},
-    {name:"HarshBG",        ign:"HarshBG",          discord:".harshbg",             country:"🇮🇳 India",      tier:"B",titles:["2026 Top 11"]},
-    {name:"Baly",           ign:"Baly",             discord:"baly0495_68229",       country:"🇦🇱 Albania",    tier:"B",titles:["2026 Top 12"]},
-    {name:"CN-MxrningStar", ign:"CN-MxrningStar",   discord:"kurio_neko1",          country:"🇮🇳 India",      tier:"C",titles:["2026 Top 13"]},
-    {name:"IamNotPC",       ign:"IamNotPC",         discord:"veteranuser_",         country:"🇧🇩 Bangladesh", tier:"C",titles:["2026 Top 14"]},
-    {name:"Zenvor",         ign:"Zenvor",           discord:"zenvor.owns",          country:"🇷🇺 Russia",     tier:"C",titles:["2026 Top 15"]},
-    {name:"Wally",          ign:"Wally",            discord:"siu05812",             country:"🇮🇳 India",      tier:"C",titles:["2026 Top 16"]},
-    {name:"CN-Prook",       ign:"CN-Prook",         discord:"prookblockmango",      country:"🇮🇳 India",      tier:"C",titles:["2026 Top 17"]},
-    {name:"CN-Rise",        ign:"Rize Gamerz",      discord:"risegamerz77",         country:"🇮🇳 India",      tier:"D",titles:["2026 Top 18"]},
-    {name:"SirWinter",      ign:"SirWinter",        discord:"fastestguyalive8",     country:"🇮🇳 India",      tier:"D",titles:["2026 Top 19"]},
-    {name:"Nakib",          ign:"Nakib",            discord:"sahariyarnakib",       country:"🇮🇳 India",      tier:"D",titles:["2026 Top 20"]},
+    {name:"Matin",          ign:"Matin",            discord:"_gotin",                  country:"🇦🇱 Albania",     tier:"S", titles:["2024 Top 1","2025 Top 1","2026 Top 1"]},
+    {name:"Aneld",          ign:"Aneld",            discord:"x646x",                   country:"🇦🇱 Albania",     tier:"S", titles:["2022 Top 3","2023 Top 1","2024 Top 2","2025 Top 2","2026 Top 2"]},
+    {name:"Quar",           ign:"Quar",             discord:"onezz.23",                country:"🇩🇪 Germany",     tier:"S", titles:["2023 Top 3","2024 Top 3","2026 Top 3"]},
+    {name:"NotEgo",         ign:"NotEgo",           discord:"lucid0208_09371",         country:"🇵🇭 Philippines", tier:"A", titles:["2026 Top 4"]},
+    {name:"Beast",          ign:"Beast",            discord:".b4ast.",                 country:"🇮🇳 India",       tier:"A", titles:["2025 Top 6","2026 Top 5"]},
+    {name:"Sarthak",        ign:"Sarthak",          discord:"_.fireofc_.",             country:"🇳🇵 Nepal",       tier:"A", titles:["2026 Top 6"]},
+    {name:"Hashim",         ign:"Hashim",           discord:"nightowns74",             country:"🇵🇰 Pakistan",    tier:"A", titles:["2026 Top 7"]},
+    {name:"CN-Beast",       ign:"CN-Beast",         discord:"chronics.beast",          country:"🇮🇳 India",       tier:"B", titles:["2026 Top 8"]},
+    {name:"CN-Dark",        ign:"CN-Dark",          discord:"ofc dark0310",            country:"🇮🇳 India",       tier:"B", titles:["2026 Top 9"]},
+    {name:"CN-Amitesh",     ign:"Amitesh",          discord:"insanesavi",              country:"🇮🇳 India",       tier:"B", titles:["2026 Top 10"]},
+    {name:"HarshBG",        ign:"HarshBG",          discord:".harshbg",                country:"🇮🇳 India",       tier:"B", titles:["2026 Top 11"]},
+    {name:"Baly",           ign:"Baly",             discord:"baly0495_68229",          country:"🇦🇱 Albania",     tier:"B", titles:["2026 Top 12"]},
+    {name:"CN-MxrningStar", ign:"CN-MxrningStar",   discord:"kurio_neko1",             country:"🇮🇳 India",       tier:"C", titles:["2026 Top 13"]},
+    {name:"IamNotPC",       ign:"IamNotPC",         discord:"veteranuser_",            country:"🇧🇩 Bangladesh",  tier:"C", titles:["2026 Top 14"]},
+    {name:"Zenvor",         ign:"Zenvor",           discord:"zenvor.owns",             country:"🇷🇺 Russia",      tier:"C", titles:["2026 Top 15"]},
+    {name:"Wally",          ign:"Wally",            discord:"siu05812",                country:"🇮🇳 India",       tier:"C", titles:["2026 Top 16"]},
+    {name:"CN-Prook",       ign:"CN-Prook",         discord:"prookblockmango",         country:"🇮🇳 India",       tier:"C", titles:["2026 Top 17"]},
+    {name:"CN-Rise",        ign:"Rize Gamerz",      discord:"risegamerz77",            country:"🇮🇳 India",       tier:"D", titles:["2026 Top 18"]},
+    {name:"SirWinter",      ign:"SirWinter",        discord:"fastestguyalive8",        country:"🇮🇳 India",       tier:"D", titles:["2026 Top 19"]},
+    {name:"Nakib",          ign:"Nakib",            discord:"sahariyarnakib",          country:"🇮🇳 India",       tier:"D", titles:["2026 Top 20"]},
   ],
   emulator:[
-    {name:"Beny",         ign:"beny(goat)",    discord:"totallynotbeny.",  country:"🇨🇿 Czech",      tier:"S",titles:["2026 Top 1"]},
-    {name:"Bannks",       ign:"bannks(goat)",  discord:"bannks0583_33632", country:"🇪🇸 Spain",      tier:"S",titles:["2026 Top 2"]},
-    {name:"Cold",         ign:"cold(goat)",    discord:"unavailable",      country:"🇮🇳 India",      tier:"S",titles:["2026 Top 3"]},
-    {name:"Goodbye",      ign:"Goodbye(goat)", discord:"goodbyebg.",       country:"🇧🇩 Bangladesh", tier:"A",titles:["2026 Top 4"]},
-    {name:"Astro",        ign:"astro(goat)",   discord:"astrogaming1966",  country:"🇮🇳 India",      tier:"A",titles:["2026 Top 5"]},
-    {name:"Zeus",         ign:"zeus(gey)",     discord:"unavailable",      country:"🇩🇪 Germany",    tier:"A",titles:["2026 Top 6"]},
-    {name:"Teck",         ign:"Teck(gey)",     discord:"tecksmw",          country:"🇮🇳 India",      tier:"A",titles:["2026 Top 7"]},
-    {name:"Furina",       ign:"Furina(gey)",   discord:"unavailable",      country:"🇮🇳 India",      tier:"B",titles:["2026 Top 8"]},
-    {name:"Hito",         ign:"Hito(t1 gey)",  discord:"hitomdx",          country:"🇮🇶 Iraq",       tier:"B",titles:["2026 Top 9"]},
-    {name:"Madox",        ign:"Madox(gey)",    discord:"unavailable",      country:"🇮🇶 Iraq",       tier:"B",titles:["2026 Top 10"]},
-    {name:"Swigh",        ign:"Swigh",         discord:"y00474",           country:"🇮🇶 Iraq",       tier:"B",titles:["2026 Top 11"]},
-    {name:"Atyab",        ign:"Atyab",         discord:"1377651412388937828",country:"🇮🇳 India",tier:"C",titles:["2026 Top 12"]},
-    {name:"Egoist",       ign:"Egoist",        discord:"sheesh_crazydawgs", country:"🇵🇭 Philippines",tier:"C",titles:["2026 Top 13"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
-    {name:"No Contestant",ign:"—",             discord:"unavailable",      country:"🌍 Soon",tier:"D",titles:["Under Maintenance"]},
+    {name:"Beny",          ign:"beny(goat)",     discord:"totallynotbeny.",         country:"🇨🇿 Czech",       tier:"S", titles:["2026 Top 1"]},
+    {name:"Bannks",        ign:"bannks(goat)",   discord:"bannks0583_33632",        country:"🇪🇸 Spain",       tier:"S", titles:["2026 Top 2"]},
+    {name:"Cold",          ign:"cold(goat)",     discord:"unavailable",             country:"🇮🇳 India",       tier:"S", titles:["2026 Top 3"]},
+    {name:"Goodbye",       ign:"Goodbye(goat)",  discord:"goodbyebg.",              country:"🇧🇩 Bangladesh",  tier:"A", titles:["2026 Top 4"]},
+    {name:"Astro",         ign:"astro(goat)",    discord:"astrogaming1966",         country:"🇮🇳 India",       tier:"A", titles:["2026 Top 5"]},
+    {name:"Zeus",          ign:"zeus(gey)",      discord:"unavailable",             country:"🇩🇪 Germany",     tier:"A", titles:["2026 Top 6"]},
+    {name:"Teck",          ign:"Teck(gey)",      discord:"tecksmw",                 country:"🇮🇳 India",       tier:"A", titles:["2026 Top 7"]},
+    {name:"Furina",        ign:"Furina(gey)",    discord:"unavailable",             country:"🇮🇳 India",       tier:"B", titles:["2026 Top 8"]},
+    {name:"Hito",          ign:"Hito(t1 gey)",   discord:"hitomdx",                 country:"🇮🇶 Iraq",        tier:"B", titles:["2026 Top 9"]},
+    {name:"Madox",         ign:"Madox(gey)",     discord:"unavailable",             country:"🇮🇶 Iraq",        tier:"B", titles:["2026 Top 10"]},
+    {name:"Swigh",         ign:"Swigh",          discord:"y00474",                  country:"🇮🇶 Iraq",        tier:"B", titles:["2026 Top 11"]},
+    {name:"Atyab",         ign:"Atyab",          discord:"1377651412388937828",     country:"🇮🇳 India",       tier:"C", titles:["2026 Top 12"]},
+    {name:"Egoist",        ign:"Egoist",         discord:"sheesh_crazydawgs",       country:"🇵🇭 Philippines", tier:"C", titles:["2026 Top 13"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
   ]
 };
 
@@ -1805,7 +1910,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Global keyboard listeners
   document.addEventListener('keydown', e => {
-    if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeModalBtn(); closeAboutBtn(); closeRulesBtn(); }
+    if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeChangelog(); closeModalBtn(); closeAboutBtn(); closeRulesBtn(); }
   });
 
   // Handle Loader: If the page is already loaded (common with fast local files), 
@@ -1816,6 +1921,83 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.addEventListener('load', hideLoader);
   }
 });
+
+// ── CHANGELOG ────────────────────────────────────────────────────────────
+// To add a new update: add a new object at the TOP of this array.
+// Types: "removed" | "added" | "moved" | "updated" | "tier"
+const CHANGELOGS = [
+  {
+    date: "24 May 2026",
+    version: "v2.1",
+    entries: [
+      { type: "added",   text: "Sarthak added at #6 Mobile" },
+      { type: "added",   text: "CN-Amitesh added at #10 Mobile" },
+      { type: "added",   text: "Zenvor added at #15 Mobile" },
+      { type: "moved",   text: "Aneld moved to #2 Mobile" },
+      { type: "moved",   text: "NotEgo moved to #4 Mobile" },
+    ]
+  },
+  {
+    date: "17 May 2026",
+    version: "v2.0",
+    entries: [
+      { type: "removed", text: "HarshBG removed from rankings" },
+      { type: "removed", text: "Hexa removed from rankings" },
+      { type: "removed", text: "Dragon removed from rankings" },
+      { type: "removed", text: "Abhi removed from rankings" },
+      { type: "moved",   text: "Aneld moved to Top 1 Mobile" },
+      { type: "moved",   text: "Quar moved to Top 3 Mobile" },
+      { type: "tier",    text: "NotEgo tier changed to A" },
+      { type: "added",   text: "Bely added at #12 Mobile" },
+    ]
+  },
+  {
+    date: "1 Jan 2026",
+    version: "v1.0",
+    entries: [
+      { type: "added", text: "BGTiers website launched" },
+      { type: "added", text: "Mobile leaderboard — Season 2026 rankings go live" },
+      { type: "added", text: "Emulator leaderboard — Season 2026 rankings go live" },
+    ]
+  },
+];
+
+const TAG_LABELS = { removed:"REMOVED", added:"ADDED", moved:"MOVED", updated:"UPDATED", tier:"TIER" };
+
+function renderChangelog() {
+  const container = document.getElementById('changelog-list');
+  if (!CHANGELOGS.length) {
+    container.innerHTML = `<div class="changelog-empty">No updates yet.<br>Check back soon!</div>`;
+    return;
+  }
+  container.innerHTML = CHANGELOGS.map((block, bi) => `
+    <div class="changelog-block" style="animation-delay:${bi*0.06}s">
+      <div class="changelog-block-header">
+        <span class="changelog-date">📅 ${block.date}</span>
+        <span class="changelog-version">${block.version}</span>
+      </div>
+      <div class="changelog-entries">
+        ${block.entries.map(e => `
+          <div class="changelog-entry">
+            <span class="entry-tag tag-${e.type}">${TAG_LABELS[e.type]}</span>
+            <span>${e.text}</span>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function openChangelog() {
+  closeDrawer();
+  setTimeout(() => {
+    renderChangelog();
+    document.getElementById('changelog-page').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }, 200);
+}
+function closeChangelog() {
+  document.getElementById('changelog-page').classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 // ── ANIMATED BACKGROUND PARTICLES ────────────────────────────────────────
 (function() {

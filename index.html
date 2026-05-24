@@ -1121,6 +1121,7 @@
     <span class="drawer-section-label">Navigate</span>
     <div class="drawer-item" onclick="closeDrawer()">🏆 <span>Rankings</span> <span class="drawer-item-arrow">›</span></div>
     <a href="https://discord.gg/6CX3cxQqC" target="_blank" class="drawer-item" onclick="closeDrawer()">🎮 <span>Discord Server</span> <span class="drawer-item-arrow">↗</span></a>
+    <div class="drawer-item" onclick="closeDrawer(); openRules();">📜 <span>Rules & Guidelines</span> <span class="drawer-item-arrow">›</span></div>
     <div class="drawer-item" onclick="closeDrawer(); openAbout();">ℹ️ <span>About BGTiers</span> <span class="drawer-item-arrow">›</span></div>
     <span class="drawer-section-label">Special</span>
     <div class="drawer-item hof-btn" onclick="openHOF()">🏛️ <span>Hall of Fame</span> <span class="drawer-item-arrow">›</span></div>
@@ -1701,6 +1702,17 @@ function closeAboutBtn(){
 function closeAbout(e){
   if(e.target === document.getElementById('about-overlay')) closeAboutBtn();
 }
+function openRules(){
+  document.getElementById('rules-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeRulesBtn(){
+  document.getElementById('rules-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeRules(e){
+  if(e.target === document.getElementById('rules-overlay')) closeRulesBtn();
+}
 
 // Helper to hide the loader safely
 function hideLoader() {
@@ -1735,7 +1747,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Global keyboard listeners
   document.addEventListener('keydown', e => {
-    if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeModalBtn(); closeAboutBtn(); }
+    if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeModalBtn(); closeAboutBtn(); closeRulesBtn(); }
   });
 
   // Handle Loader: If the page is already loaded (common with fast local files), 

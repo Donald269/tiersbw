@@ -1418,7 +1418,7 @@ function tabPlayers(tab) {
   return players[tab].slice(0, CONFIG.MAX_RANKINGS);
 }
 
-const players = {
+let players = {
   mobile:[
     {name:"Matin",          ign:"Matin",            discord:"_gotin",               country:"🇦🇱 Albania",    tier:"S",titles:["2024 Top 1","2025 Top 1","2026 Top 1"]},
     {name:"Aneld",          ign:"Aneld",            discord:"x646x",                country:"🇦🇱 Albania",    tier:"S",titles:["2022 Top 3","2023 Top 1","2024 Top 2","2025 Top 2","2026 Top 2"]},
@@ -1710,14 +1710,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Fetch data from external JSON
   try {
     const response = await fetch('data.json');
-    players = await response.json();
-    
-    // Initialize UI once data is ready
-    renderTable(tabPlayers('mobile'));
-    updateSpotlight();
+    if (response.ok) {
+      const data = await response.json();
+      players = data;
+      console.log("Successfully loaded rankings from data.json");
+    } else {
+      console.warn("data.json not found (404). Using hardcoded fallback data.");
+    }
   } catch (error) {
-    console.error("Error loading player data:", error);
+    console.error("Fetch blocked or failed. Using hardcoded fallback data.", error);
   }
+
+  // Initialize UI (using either fetched data or the hardcoded fallback)
+  renderTable(tabPlayers('mobile'));
+  updateSpotlight();
 
   // Global keyboard listeners
   document.addEventListener('keydown', e => {

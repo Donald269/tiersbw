@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>BW Tiers</title>
+
+</head>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="google-adsense-account" content="ca-pub-9542766228619097">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BG Bedwars – Rankings</title>
@@ -53,8 +59,7 @@
     body::before {
       content: ''; position: fixed; inset: 0;
       background:
-        linear-gradient(165deg, rgba(36,51,24,0.85) 0%, rgba(18,16,10,0.92) 50%, rgba(26,10,20,0.9) 100%),
-        url('lighthouse-bedwars-screenshots-1.png') center center / cover no-repeat;
+        url('fav2.png') center center / cover no-repeat;
       filter: blur(2px) brightness(0.28) saturate(0.7);
       transform: scale(1.03);
       pointer-events: none; z-index: 0;
@@ -376,23 +381,17 @@
     tbody tr.rank-diamond {
       background: rgba(93,224,230,0.04);
       box-shadow: inset 5px 0 0 #5de0e6, inset 0 0 0 1px rgba(93,224,230,0.12);
-      animation: rowIn 0.5s ease both, diamondPulse 3s ease-in-out infinite;
+      animation: rowIn 0.5s ease both;
     }
     tbody tr.rank-diamond:hover { background: rgba(93,224,230,0.09); }
     tbody tr.rank-gold {
       background: rgba(255,215,0,0.04);
-      box-shadow: inset 5px 0 0 #ffd700, inset 0 0 0 1px rgba(255,215,0,0.12);
-      animation: rowIn 0.5s ease both, goldPulse 3s ease-in-out infinite;
+      box-shadow: inset 5px 0 0 #ffd700;
+      animation: rowIn 0.5s ease both;
     }
     tbody tr.rank-gold:hover { background: rgba(255,215,0,0.09); }
-    @keyframes diamondPulse {
-      0%,100% { box-shadow: inset 5px 0 0 #5de0e6, inset 0 0 0 1px rgba(93,224,230,0.12), 0 0 10px rgba(93,224,230,0.05); }
-      50%      { box-shadow: inset 5px 0 0 #5de0e6, inset 0 0 0 1px rgba(93,224,230,0.30), 0 0 22px rgba(93,224,230,0.12); }
-    }
-    @keyframes goldPulse {
-      0%,100% { box-shadow: inset 5px 0 0 #ffd700, inset 0 0 0 1px rgba(255,215,0,0.12), 0 0 10px rgba(255,215,0,0.05); }
-      50%      { box-shadow: inset 5px 0 0 #ffd700, inset 0 0 0 1px rgba(255,215,0,0.30), 0 0 22px rgba(255,215,0,0.12); }
-    }
+    @keyframes diamondPulse { 0%{} }
+    @keyframes goldPulse { 0%{} }
 
     /* Rank badge */
     .rank-badge-wrap { display: inline-flex; align-items: center; justify-content: center; position: relative; width: 50px; height: 50px; }
@@ -409,29 +408,17 @@
 
     .player-cell { display: flex; align-items: center; gap: 12px; }
     .avatar {
-      width: 48px; height: 48px;
+      width: 36px; height: 36px;
       border: 3px solid #000;
       box-shadow:
         inset -2px -2px 0 #2a1a00,
         inset  2px  2px 0 #7ec85066,
         2px 2px 0 #000;
       display: flex; align-items: center;
-      justify-content: center; font-size: 0.75rem; font-weight: 700; color: var(--text);
+      justify-content: center; font-size: 0.8rem; font-weight: 700; color: var(--text);
       flex-shrink: 0; font-family: 'Press Start 2P', monospace;
       image-rendering: pixelated;
       background: #2a2a2a;
-      overflow: hidden; position: relative;
-    }
-    .avatar img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top center;
-      image-rendering: pixelated;
-      display: block;
-    }
-    .avatar-initials {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.65rem; font-weight: 700; color: var(--text);
-      line-height: 1;
     }
     .player-name { font-size: 0.98rem; font-weight: 700; color: var(--text); }
     .region-badge {
@@ -523,8 +510,9 @@
       text-shadow: 1px 1px 0 #000;
     }
     .spotlight-diamond { position: relative; width: 72px; height: 72px; flex-shrink: 0; }
-    .spotlight-diamond svg { width: 72px; height: 72px; filter: drop-shadow(0 0 16px #c084fc); animation: diamondSpin 4s ease-in-out infinite; }
-    @keyframes diamondSpin { 0%,100%{filter:drop-shadow(0 0 10px #c084fc)} 50%{filter:drop-shadow(0 0 28px #c084fc)} }
+    @keyframes spotlightPulse { 0%{} }
+    .spotlight-diamond svg { width: 72px; height: 72px; filter: drop-shadow(0 0 12px #c084fc); }
+    @keyframes diamondSpin { 0%{} }
     .spotlight-rank-num {
       position: absolute; bottom: -6px; right: -8px;
       font-family: 'Press Start 2P', monospace; font-weight: 400; font-size: 0.7rem;
@@ -1049,7 +1037,186 @@
     .hof-card-name { font-family: var(--font-brand) !important; font-size: 0.65rem !important; line-height: 1.45 !important; }
     .hof-card-badge, .hof-card-year { font-family: var(--font-ui) !important; letter-spacing: 0.04em !important; }
 
-    /* ── CHANGELOG PAGE ── */
+    /* ══════════════════════════════════════════
+       CARD-BASED PLAYER UI — mctiers.com inspired
+    ══════════════════════════════════════════ */
+    .table-wrap { display: none !important; }
+    .tier-key { display: none !important; }
+
+    .mode-toggle-wrap {
+      display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;
+    }
+    .mode-btn {
+      font-family: var(--font-ui); font-weight: 800; font-size: 0.85rem;
+      padding: 9px 26px; border-radius: 8px;
+      border: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04); color: var(--muted);
+      cursor: pointer; transition: all 0.15s;
+    }
+    .mode-btn:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+    .mode-btn.active {
+      background: rgba(230,57,70,0.18);
+      border-color: rgba(230,57,70,0.5);
+      color: #ff8a8a;
+    }
+
+    #card-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 16px; margin-bottom: 40px;
+    }
+    @media (min-width: 640px) { #card-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { #card-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .player-card {
+      background: rgba(22,22,28,0.92);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07);
+      overflow: visible; cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+      animation: cardIn 0.4s ease both;
+      position: relative;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .player-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.10);
+    }
+    .card-header {
+      border-radius: 16px 16px 0 0;
+      padding: 14px 18px 10px;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      position: relative; min-height: 72px;
+    }
+    .card-header-rank1  { background: linear-gradient(135deg, #2d1a5e 0%, #1a1030 100%); }
+    .card-header-rank2  { background: linear-gradient(135deg, #2d2200 0%, #1a1500 100%); }
+    .card-header-rank3  { background: linear-gradient(135deg, #2d2200 0%, #1a1500 100%); }
+    .card-header-default { background: linear-gradient(135deg, #1a1a22 0%, #12121a 100%); }
+
+    .card-rank-num {
+      font-family: var(--font-brand); font-size: 1.4rem;
+      color: #fff; text-shadow: 2px 2px 0 rgba(0,0,0,0.7);
+      line-height: 1; padding: 6px 0 0;
+    }
+    .card-rank-num.rank1 { color: #d4a0ff; text-shadow: 0 0 20px #c084fc88; }
+    .card-rank-num.rank2, .card-rank-num.rank3 { color: #ffd700; text-shadow: 0 0 14px #ffd70066; }
+
+    .card-region {
+      font-weight: 800; font-size: 0.72rem;
+      padding: 5px 12px; border-radius: 6px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--text); letter-spacing: 0.04em;
+    }
+
+    .card-skin-wrap {
+      position: absolute; bottom: -4px; left: 50%;
+      transform: translateX(-50%);
+      width: 80px; height: 110px; z-index: 5; pointer-events: none;
+    }
+    .card-skin-wrap img {
+      width: 100%; height: 100%;
+      object-fit: contain; object-position: bottom;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.7));
+      image-rendering: pixelated;
+    }
+
+    .card-body {
+      padding: 70px 18px 18px; text-align: center;
+    }
+    .card-player-name {
+      font-family: var(--font-brand); font-size: 0.88rem;
+      color: var(--text); text-shadow: 2px 2px 0 rgba(0,0,0,0.6);
+      line-height: 1.4; margin-bottom: 4px;
+    }
+    .card-player-sub {
+      font-size: 0.78rem; color: var(--muted);
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .card-tiers-label {
+      font-weight: 800; font-size: 0.62rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px; text-align: left;
+    }
+    .card-tiers-grid {
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start;
+    }
+    .tier-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .tier-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(30,30,38,0.9);
+      border: 2px solid rgba(255,255,255,0.10);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .tier-ht1 .tier-icon { border-color: #ffd700; box-shadow: 0 2px 10px #ffd70044, inset 0 1px 0 rgba(255,255,255,0.1); }
+    .tier-ht2 .tier-icon { border-color: #a0a8b0; }
+    .tier-ht3 .tier-icon { border-color: #cd7f32; }
+    .tier-lt1 .tier-icon { border-color: #b08800; }
+    .tier-lt2 .tier-icon { border-color: #606870; }
+    .tier-lt3 .tier-icon { border-color: #7a5a30; opacity: 0.75; }
+
+    .tier-sub-label {
+      font-size: 0.6rem; font-weight: 800; letter-spacing: 0.02em;
+      padding: 2px 6px; border-radius: 4px; line-height: 1.3;
+    }
+    .tier-ht1 .tier-sub-label { color: #fff9e0; background: #b8860b; }
+    .tier-ht2 .tier-sub-label { color: #e8eaf0; background: #5a6070; }
+    .tier-ht3 .tier-sub-label { color: #f0d8b8; background: #7a4818; }
+    .tier-lt1 .tier-sub-label { color: #ffe480; background: #6a5000; }
+    .tier-lt2 .tier-sub-label { color: #a8aab8; background: #2e3038; }
+    .tier-lt3 .tier-sub-label { color: #c8a880; background: #3a2a10; }
+
+    .player-card.no-contestant { opacity: 0.4; pointer-events: none; }
+    #card-empty { text-align: center; padding: 48px 20px; color: var(--muted); font-size: 0.95rem; display: none; }
+
+    /* ── CHALLENGE POPUP ── */
+    .challenge-overlay {
+      position: fixed; inset: 0; z-index: 1200;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .challenge-overlay.open { opacity: 1; pointer-events: all; }
+    .challenge-popup {
+      background: #12100a;
+      border: 4px solid #ff6b35;
+      box-shadow: inset -3px -4px 0 #5a1a00, inset 3px 3px 0 #ff6b3522, 6px 6px 0 #000;
+      padding: 32px 28px; width: 90%; max-width: 380px;
+      text-align: center;
+      transform: scale(0.9); transition: transform 0.2s;
+    }
+    .challenge-overlay.open .challenge-popup { transform: scale(1); }
+    .challenge-popup-title {
+      font-family: 'Press Start 2P', monospace; font-size: 0.9rem;
+      color: #fff; margin-bottom: 20px; text-shadow: 2px 2px 0 #000;
+    }
+    .challenge-popup-title span { color: #ff6b35; text-shadow: 2px 2px 0 #5a1a00; }
+    .challenge-popup-question {
+      font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 600;
+      color: var(--muted); line-height: 1.6; margin-bottom: 26px;
+    }
+    .challenge-popup-question strong { color: #fff; }
+    .challenge-popup-btns { display: flex; gap: 12px; justify-content: center; }
+    .challenge-yes, .challenge-no {
+      font-family: 'Press Start 2P', monospace; font-size: 0.55rem;
+      padding: 12px 22px; border: 3px solid #000; cursor: pointer;
+      box-shadow: inset -2px -3px 0 rgba(0,0,0,0.4), inset 2px 2px 0 rgba(255,255,255,0.1), 3px 3px 0 #000;
+      transition: all 0.1s; text-shadow: 1px 1px 0 #000;
+    }
+    .challenge-yes { background: #0a2a0a; color: #7ec850; border-color: #3a6a10; }
+    .challenge-yes:hover { background: #122e12; transform: translateY(-1px); }
+    .challenge-yes:active { transform: translateY(2px); box-shadow: 1px 1px 0 #000; }
+    .challenge-no { background: #2a0a0a; color: #ff5555; border-color: #6a1010; }
+    .challenge-no:hover { background: #2e1212; transform: translateY(-1px); }
+    .challenge-no:active { transform: translateY(2px); box-shadow: 1px 1px 0 #000; }
     .changelog-page {
       position: fixed; inset: 0; z-index: 600; background: #0a0806;
       overflow-y: auto; transform: translateX(100%);
@@ -1144,6 +1311,9 @@
       position: fixed; inset: 0; z-index: 600; background: #08110a;
       overflow-y: auto; transform: translateX(100%);
       transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      background:
+        radial-gradient(circle at top, rgba(155,255,107,0.10) 0%, rgba(155,255,107,0.03) 24%, transparent 55%),
+        linear-gradient(180deg, #08110a 0%, #050805 100%);
     }
     .history-page.open { transform: translateX(0); }
     .history-page-header {
@@ -1153,6 +1323,7 @@
       box-shadow: 0 4px 0 #000, inset 0 -4px 0 #0a2412, inset 0 3px 0 #69b96a22;
       display: flex; align-items: center; gap: 14px; padding: 0 24px; height: 58px;
     }
+    .history-header-spacer { flex: 0 0 80px; }
     .history-back-btn {
       display: flex; align-items: center; gap: 6px;
       font-family: 'Press Start 2P', monospace; font-size: 0.5rem;
@@ -1167,8 +1338,15 @@
       color: var(--text); flex: 1; text-align: center; text-shadow: 2px 2px 0 #000;
     }
     .history-page-title span { color: #9bff6b; text-shadow: 2px 2px 0 #304a10; }
-    .history-content { max-width: 1100px; margin: 0 auto; padding: 36px 20px 80px; }
-    .history-hero { text-align: center; margin-bottom: 28px; }
+    .history-content { max-width: 1240px; margin: 0 auto; padding: 36px 20px 80px; }
+    .history-hero {
+      text-align: center;
+      margin-bottom: 22px;
+      padding: 18px 16px 16px;
+      background: linear-gradient(180deg, rgba(13,26,16,0.96) 0%, rgba(8,17,10,0.96) 100%);
+      border: 4px solid #000;
+      box-shadow: inset -4px -4px 0 #0a2412, inset 4px 4px 0 #69b96a22, 0 0 0 2px #000, 4px 4px 0 #000;
+    }
     .history-hero-title {
       font-family: 'Press Start 2P', monospace; font-size: clamp(0.9rem,2.5vw,1.3rem);
       color: var(--text); text-shadow: 3px 3px 0 #000; line-height: 1.5;
@@ -1177,8 +1355,8 @@
     .history-hero-sub { color: var(--muted); margin-top: 10px; font-size: 0.9rem; font-family: 'Rajdhani', sans-serif; }
     .history-layout {
       display: grid;
-      grid-template-columns: minmax(250px, 320px) minmax(0, 1fr);
-      gap: 16px;
+      grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+      gap: 18px;
       align-items: start;
     }
     .history-panel {
@@ -1186,8 +1364,16 @@
       border: 4px solid #000;
       box-shadow: inset -4px -4px 0 #0a2412, inset 4px 4px 0 #69b96a22, 0 0 0 2px #000, 4px 4px 0 #000;
     }
-    .history-sidebar { padding: 16px; }
-    .history-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+    .history-sidebar {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: sticky;
+      top: 82px;
+      max-height: calc(100vh - 112px);
+    }
+    .history-tabs { display: flex; gap: 8px; margin-bottom: 0; flex: 0 0 auto; }
     .history-tab {
       flex: 1;
       padding: 10px 12px;
@@ -1203,35 +1389,37 @@
     .history-tab.active { background: #21331d; color: #9bff6b; }
     .history-player-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 8px;
-      max-height: 68vh;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      max-height: none;
       overflow: auto;
-      padding-right: 2px;
+      padding-right: 4px;
+      flex: 1;
     }
     .history-player-btn {
       width: 100%;
       text-align: left;
-      padding: 10px 12px;
+      padding: 12px 14px;
       background: #111811;
       border: 3px solid #000;
       box-shadow: inset -2px -2px 0 #0a2412, inset 2px 2px 0 #39503b, 2px 2px 0 #000;
       color: var(--text);
       cursor: pointer;
       font-family: 'Rajdhani', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
       border-radius: 0;
+      line-height: 1.2;
     }
     .history-player-btn:hover { background: #1a2518; }
     .history-player-btn.active { background: #21331d; color: #9bff6b; box-shadow: inset -2px -2px 0 #0a2412, inset 2px 2px 0 #9bff6b33, 2px 2px 0 #000; }
-    .history-main { padding: 16px; }
+    .history-main { padding: 0; }
     .history-detail {
-      background: #0a120c;
+      background: linear-gradient(180deg, #0a120c 0%, #0c160f 100%);
       border: 4px solid #000;
       box-shadow: inset -4px -4px 0 #0a2412, inset 4px 4px 0 #69b96a22, 0 0 0 2px #000, 4px 4px 0 #000;
-      padding: 20px;
-      min-height: 360px;
+      padding: 22px;
+      min-height: 520px;
     }
     .history-detail-top {
       display: flex;
@@ -1239,6 +1427,8 @@
       gap: 16px;
       flex-wrap: wrap;
       margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 3px solid rgba(155,255,107,0.14);
     }
     .history-avatar {
       width: 56px; height: 56px;
@@ -1250,8 +1440,8 @@
       color: var(--text);
       flex-shrink: 0;
     }
-    .history-name { font-family: 'Press Start 2P', monospace; font-size: 1rem; color: var(--text); line-height: 1.5; text-shadow: 2px 2px 0 #000; }
-    .history-meta { color: var(--muted); font-size: 0.9rem; margin-top: 6px; font-family: 'Rajdhani', sans-serif; }
+    .history-name { font-family: 'Press Start 2P', monospace; font-size: 0.95rem; color: var(--text); line-height: 1.5; text-shadow: 2px 2px 0 #000; }
+    .history-meta { color: var(--muted); font-size: 0.82rem; margin-top: 6px; font-family: 'Rajdhani', sans-serif; line-height: 1.4; }
     .history-meta strong { color: #9bff6b; }
     .history-empty-state {
       min-height: 260px;
@@ -1292,6 +1482,7 @@
       border: 2px solid #000;
       background: #0a120c;
       box-shadow: inset -1px -1px 0 #0a2412, inset 1px 1px 0 #39503b, 1px 1px 0 #000;
+      white-space: nowrap;
     }
     .history-entries { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
     .history-entry {
@@ -1305,8 +1496,10 @@
       font-family: 'Rajdhani', sans-serif;
       font-size: 0.95rem;
       color: var(--text);
+      line-height: 1.4;
     }
     .history-entry .entry-tag { margin-top: 1px; }
+    .history-entry > span:last-child { overflow-wrap: anywhere; }
     .history-entry-note { color: var(--muted); font-size: 0.85rem; margin-top: 10px; font-family: 'Rajdhani', sans-serif; }
     .history-empty-note {
       text-align: center; padding: 18px;
@@ -1315,12 +1508,43 @@
     }
     @media (max-width: 900px) {
       .history-layout { grid-template-columns: 1fr; }
+      .history-sidebar {
+        position: relative;
+        top: auto;
+        max-height: none;
+      }
       .history-player-list { max-height: none; }
+      .history-hero { text-align: left; }
+      .history-detail { min-height: 0; }
     }
     @media (max-width: 620px) {
-      .history-content { padding: 24px 12px 60px; }
-      .history-main, .history-sidebar, .history-detail { padding: 12px; }
-      .history-player-btn { font-size: 0.9rem; }
+      .history-page-header { padding: 0 12px; gap: 8px; }
+      .history-header-spacer { flex-basis: 48px; }
+      .history-back-btn { padding: 6px 10px; font-size: 0.44rem; }
+      .history-page-title { font-size: 0.62rem; text-align: right; }
+      .history-content { padding: 16px 10px 48px; }
+      .history-hero {
+        padding: 14px 12px 12px;
+        margin-bottom: 16px;
+      }
+      .history-hero-title { font-size: 0.82rem; line-height: 1.6; }
+      .history-hero-sub { font-size: 0.8rem; }
+      .history-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+      .history-tab { padding: 10px 8px; font-size: 0.4rem; }
+      .history-sidebar, .history-detail { padding: 12px; }
+      .history-player-list { gap: 8px; }
+      .history-player-btn { font-size: 0.82rem; padding: 11px 12px; }
+      .history-detail-top { align-items: flex-start; padding-bottom: 12px; margin-bottom: 14px; }
+      .history-avatar { width: 48px; height: 48px; font-size: 0.72rem; }
+      .history-name { font-size: 0.78rem; line-height: 1.55; }
+      .history-meta { font-size: 0.74rem; }
+      .history-block-header { align-items: flex-start; gap: 8px; }
+      .history-version { margin-left: 0; font-size: 0.38rem; }
+      .history-date { font-size: 0.38rem; line-height: 1.7; }
+      .history-entries { padding: 10px; gap: 6px; }
+      .history-entry { flex-direction: column; gap: 6px; font-size: 0.86rem; padding: 9px 10px; }
+      .history-entry .entry-tag { margin-top: 0; }
+      .history-empty-state { font-size: 0.48rem; padding: 22px 14px; line-height: 1.9; }
     }
   </style>
 </head>
@@ -1393,27 +1617,32 @@
   <div class="controls">
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
-      <input type="text" id="search-input" placeholder="Search name, country, or discord..." oninput="filterTable()" />
+      <input type="text" id="search-input" placeholder="Search name, country, or discord..." oninput="renderCards()" />
     </div>
-    <select class="filter-select" id="tier-filter" onchange="filterTable()">
-      <option value="">All Tiers</option>
-      <option value="S">S Tier</option>
-      <option value="A">A Tier</option>
-      <option value="B">B Tier</option>
-      <option value="C">C Tier</option>
-      <option value="D">D Tier</option>
-    </select>
     <button type="button" class="clear-filters" id="clear-filters" onclick="resetFilters()">Clear</button>
   </div>
+
+  <!-- Arena / Wild mode toggle -->
+  <div class="mode-toggle-wrap">
+    <button class="mode-btn active" id="mode-arena" onclick="setMode('arena')">⚔️ Arena</button>
+    <button class="mode-btn" id="mode-wild" onclick="setMode('wild')">🌀 Wild</button>
+  </div>
+
   <div class="results-bar" aria-live="polite">
     <div><span class="results-count" id="results-count">0</span> visible</div>
     <div class="results-hint" id="active-filters">All players</div>
   </div>
-  <div class="table-wrap">
+
+  <div id="card-grid"></div>
+  <div id="card-empty">No players match your search.</div>
+
+  <!-- Legacy table (hidden, keeps JS working) -->
+  <div class="table-wrap" style="display:none">
     <table>
       <thead><tr><th>Rank</th><th>Player</th><th>Country</th><th>Tier</th></tr></thead>
       <tbody id="table-body"></tbody>
     </table>
+  </div>
   </div>
   <div class="tier-key">
     <span class="tier-key-label">Tier Key:</span>
@@ -1559,7 +1788,7 @@
   <div class="history-page-header">
     <button class="history-back-btn" onclick="closeHistory()">← Back</button>
     <div class="history-page-title">🕒 Ranks <span>History</span></div>
-    <div style="width:80px"></div>
+    <div class="history-header-spacer" aria-hidden="true"></div>
   </div>
   <div class="history-content">
     <div class="history-hero">
@@ -1683,7 +1912,19 @@
       <button class="modal-btn" id="share-btn" onclick="shareProfile()">🔗 Share Profile</button>
     </div>
     <div class="modal-actions" style="margin-top:8px">
-      <button class="modal-btn download-btn" id="download-btn" onclick="downloadCard()" style="width:100%;background:#0a0a18;border-color:#c084fc;color:#c084fc;">✦ Download Player Card</button>
+      <button class="modal-btn challenge-btn" onclick="openChallengePopup()" style="width:100%;background:#1a0a00;border-color:#ff6b35;color:#ff6b35;">⚔️ Challenge This Player</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGE POPUP -->
+<div class="challenge-overlay" id="challenge-overlay" onclick="closeChallengePopup(event)">
+  <div class="challenge-popup">
+    <div class="challenge-popup-title">⚔️ <span>Challenge</span></div>
+    <div class="challenge-popup-question">Have you joined the<br><strong>Bedwars Tiers</strong> official Discord server?</div>
+    <div class="challenge-popup-btns">
+      <button class="challenge-yes" onclick="event.stopPropagation();handleChallengeYes()">✅ Yes</button>
+      <button class="challenge-no" onclick="event.stopPropagation();handleChallengeNo()">❌ No</button>
     </div>
   </div>
 </div>
@@ -1696,7 +1937,7 @@ const CONFIG = {
   MAX_RANKINGS: 20,
   LOADER_DELAY: 1200,
   CONFETTI_DURATION: 2800,
-  UPDATE_DATE: "28 May"
+  UPDATE_DATE: "3 June"
 };
 
 // ── RANK BADGE SVGs (matching in-game badges) ─────────────────────────────
@@ -1851,48 +2092,48 @@ function tabPlayers(tab) {
 
 let players = {
   mobile:[
-    {name:"Matin",          ign:"Matin",          discord:"_gotin",              country:"🇦🇱 Albania",     tier:"S", skin:"skins/Matin.png",          titles:["2024 Top 1","2025 Top 1","2026 Top 1"]},
-    {name:"Aneld",          ign:"Aneld",          discord:"x646x",               country:"🇦🇱 Albania",     tier:"S", skin:"skins/Aneld.png",          titles:["2022 Top 3","2023 Top 1","2024 Top 2","2025 Top 2","2026 Top 2"]},
-    {name:"Quar",           ign:"Quar",           discord:"onezz.23",            country:"🇩🇪 Germany",     tier:"S", skin:"skins/Quar.png",           titles:["2023 Top 3","2024 Top 3","2026 Top 3"]},
-    {name:"Beast",          ign:"Beast",          discord:".b4ast.",             country:"🇮🇳 India",       tier:"A", skin:"skins/Beast.png",          titles:["2025 Top 6","2026 Top 4"]},
-    {name:"CN-Sarthak",     ign:"CN-Sarthak",     discord:"_.fireofc_.",         country:"🇳🇵 Nepal",       tier:"A", skin:"skins/CN-Sarthak.png",     titles:["2026 Top 5"]},
-    {name:"CN-MxrningStar", ign:"CN-MxrningStar", discord:"kurio_neko1",         country:"🇮🇳 India",       tier:"A", skin:"skins/CN-MxrningStar.png", titles:["2026 Top 6"]},
-    {name:"Hashim",         ign:"Hashim",         discord:"nightowns74",         country:"🇵🇰 Pakistan",    tier:"A", skin:"skins/Hashim.png",         titles:["2026 Top 7"]},
-    {name:"Bloody",         ign:"Bloody",         discord:"vex__z",              country:"🇵🇭 Philippines", tier:"B", skin:"skins/Bloody.png",         titles:["2026 Top 8"]},
-    {name:"Dark",           ign:"Dark",           discord:"ofc dark0310",        country:"🇮🇳 India",       tier:"B", skin:"skins/Dark.png",           titles:["2026 Top 9"]},
-    {name:"Amitesh",        ign:"Amitesh",        discord:"insanesavi",          country:"🇮🇳 India",       tier:"B", skin:"skins/Amitesh.png",        titles:["2026 Top 10"]},
-    {name:"HolyCritFall",   ign:"Null",           discord:"holycritfall_74204",  country:"🇮🇳 India",       tier:"B", skin:"skins/HolyCritFall.png",   titles:["2026 Top 11"]},
-    {name:"Rise",           ign:"Rize Gamerz",    discord:"risegamerz77",        country:"🇮🇳 India",       tier:"B", skin:"skins/Rise.png",           titles:["2026 Top 12"]},
-    {name:"Baly",           ign:"Baly",           discord:"baly0495_68229",      country:"🇦🇱 Albania",     tier:"B", skin:"skins/Baly.png",           titles:["2026 Top 13"]},
-    {name:"IamNotPC",       ign:"IamNotPC",       discord:"veteranuser_",        country:"🇧🇩 Bangladesh",  tier:"C", skin:"skins/IamNotPC.png",       titles:["2026 Top 14"]},
-    {name:"Chained",        ign:"Chained",        discord:"darkraven9002",       country:"🇮🇳 India",       tier:"C", skin:"skins/Chained.png",        titles:["2026 Top 15"]},
-    {name:"Zenvor",         ign:"Zenvor",         discord:"zenvor.owns",         country:"🇷🇺 Russia",      tier:"C", skin:"skins/Zenvor.png",         titles:["2026 Top 16"]},
-    {name:"Ash",            ign:"Ash",            discord:"ash_2200",            country:"🇮🇳 India",       tier:"C", skin:"skins/Ash.png",            titles:["2026 Top 17"]},
-    {name:"Princi",         ign:"Princi",         discord:"princiblockmango",    country:"🇮🇳 India",       tier:"C", skin:"skins/Princi.png",         titles:["2026 Top 18"]},
-    {name:"SirWinter",      ign:"SirWinter",      discord:"fastestguyalive8",    country:"🇮🇳 India",       tier:"D", skin:"skins/SirWinter.png",      titles:["2026 Top 19"]},
-    {name:"Nakib",          ign:"Nakib",          discord:"sahariyarnakib",      country:"🇮🇳 India",       tier:"D", skin:"skins/Nakib.png",          titles:["2026 Top 20"]},
+    {name:"Matin",          ign:"Matin",            discord:"_gotin",                  country:"🇦🇱 Albania",     tier:"S", titles:["2024 Top 1","2025 Top 1","2026 Top 1"]},
+    {name:"Aneld",          ign:"Aneld",            discord:"x646x",                   country:"🇦🇱 Albania",     tier:"S", titles:["2022 Top 3","2023 Top 1","2024 Top 2","2025 Top 2","2026 Top 2"]},
+    {name:"Quar",           ign:"Quar",             discord:"onezz.23",                country:"🇩🇪 Germany",     tier:"S", titles:["2023 Top 3","2024 Top 3","2026 Top 3"]},
+    {name:"Beast",          ign:"Beast",            discord:".b4ast.",                 country:"🇮🇳 India",       tier:"A", titles:["2025 Top 6","2026 Top 4"]},
+    {name:"Sarthak",        ign:"Sarthak",          discord:"_.fireofc_.",             country:"🇳🇵 Nepal",       tier:"A", titles:["2026 Top 5"]},
+    {name:"MxrningStar",    ign:"MxrningStar",      discord:"kurio_neko1",             country:"🇮🇳 India",       tier:"A", titles:["2026 Top 6"]},
+    {name:"Hashim",         ign:"Hashim",           discord:"nightowns74",             country:"🇵🇰 Pakistan",    tier:"A", titles:["2026 Top 7"]},
+    {name:"Bloody",         ign:"Bloody",           discord:"vex__z",                  country:"🇵🇭 Philippines", tier:"B", titles:["2026 Top 8"]},
+    {name:"Dark",           ign:"Dark",             discord:"ofc dark0310",            country:"🇮🇳 India",       tier:"B", titles:["2026 Top 9"]},
+    {name:"Amitesh",        ign:"Amitesh",          discord:"insanesavi",              country:"🇮🇳 India",       tier:"B", titles:["2026 Top 10"]},
+    {name:"HolyCritFall",   ign:"Null",             discord:"holycritfall_74204",      country:"🇮🇳 India",       tier:"B", titles:["2026 Top 11"]},
+    {name:"Rise",           ign:"Rize Gamerz",      discord:"risegamerz77",            country:"🇮🇳 India",       tier:"B", titles:["2026 Top 12"]},
+    {name:"Baly",           ign:"Baly",             discord:"baly0495_68229",          country:"🇦🇱 Albania",     tier:"B", titles:["2026 Top 13"]},
+    {name:"IamNotPC",       ign:"IamNotPC",         discord:"veteranuser_",            country:"🇧🇩 Bangladesh",  tier:"C", titles:["2026 Top 14"]},
+    {name:"Chained",        ign:"Chained",          discord:"darkraven9002",           country:"🇮🇳 India",       tier:"C", titles:["2026 Top 15"]},
+    {name:"Zenvor",         ign:"Zenvor",           discord:"zenvor.owns",             country:"🇷🇺 Russia",      tier:"C", titles:["2026 Top 16"]},
+    {name:"Beta",           ign:"Puttar",           discord:"lowkbeta2.0",             country:"🇮🇳 India",       tier:"C", titles:["2026 Top 17"]},
+    {name:"Princi",         ign:"Princi",           discord:"princiblockmango",        country:"🇮🇳 India",       tier:"C", titles:["2026 Top 18"]},
+    {name:"SirWinter",      ign:"SirWinter",        discord:"fastestguyalive8",        country:"🇮🇳 India",       tier:"D", titles:["2026 Top 19"]},
+    {name:"Nakib",          ign:"Nakib",            discord:"sahariyarnakib",          country:"🇮🇳 India",       tier:"D", titles:["2026 Top 20"]},
   ],
   emulator:[
-    {name:"Beny",          ign:"beny(goat)",    discord:"totallynotbeny.",      country:"🇨🇿 Czech",       tier:"S", skin:"skins/Beny.png",    titles:["2026 Top 1"]},
-    {name:"Bannks",        ign:"bannks(goat)",  discord:"bannks0583_33632",     country:"🇪🇸 Spain",       tier:"S", skin:"skins/Bannks.png",  titles:["2026 Top 2"]},
-    {name:"Cold",          ign:"cold(goat)",    discord:"unavailable",          country:"🇮🇳 India",       tier:"S", skin:"skins/Cold.png",    titles:["2026 Top 3"]},
-    {name:"Goodbye",       ign:"Goodbye(goat)", discord:"goodbyebg.",           country:"🇧🇩 Bangladesh",  tier:"A", skin:"skins/Goodbye.png", titles:["2026 Top 4"]},
-    {name:"Astro",         ign:"astro(goat)",   discord:"astrogaming1966",      country:"🇮🇳 India",       tier:"A", skin:"skins/Astro.png",   titles:["2026 Top 5"]},
-    {name:"Zeus",          ign:"zeus(gey)",     discord:"unavailable",          country:"🇩🇪 Germany",     tier:"A", skin:"skins/Zeus.png",    titles:["2026 Top 6"]},
-    {name:"Teck",          ign:"Teck(gey)",     discord:"tecksmw",              country:"🇮🇳 India",       tier:"A", skin:"skins/Teck.png",    titles:["2026 Top 7"]},
-    {name:"Furina",        ign:"Furina(gey)",   discord:"unavailable",          country:"🇮🇳 India",       tier:"B", skin:"skins/Furina.png",  titles:["2026 Top 8"]},
-    {name:"Hito",          ign:"Hito(t1 gey)",  discord:"hitomdx",              country:"🇮🇶 Iraq",        tier:"B", skin:"skins/Hito.png",    titles:["2026 Top 9"]},
-    {name:"Madox",         ign:"Madox(gey)",    discord:"unavailable",          country:"🇮🇶 Iraq",        tier:"B", skin:"skins/Madox.png",   titles:["2026 Top 10"]},
-    {name:"Swigh",         ign:"Swigh",         discord:"y00474",               country:"🇮🇶 Iraq",        tier:"B", skin:"skins/Swigh.png",   titles:["2026 Top 11"]},
-    {name:"Atyab",         ign:"Atyab",         discord:"1377651412388937828",  country:"🇮🇳 India",       tier:"C", skin:"skins/Atyab.png",   titles:["2026 Top 12"]},
-    {name:"Egoist",        ign:"Egoist",        discord:"sheesh_crazydawgs",    country:"🇵🇭 Philippines", tier:"C", skin:"skins/Egoist.png",  titles:["2026 Top 13"]},
-    {name:"No Contestant", ign:"—",             discord:"unavailable",          country:"🌍 Soon",         tier:"D", skin:"",                  titles:["Under Maintenance"]},
-    {name:"No Contestant", ign:"—",             discord:"unavailable",          country:"🌍 Soon",         tier:"D", skin:"",                  titles:["Under Maintenance"]},
-    {name:"No Contestant", ign:"—",             discord:"unavailable",          country:"🌍 Soon",         tier:"D", skin:"",                  titles:["Under Maintenance"]},
-    {name:"No Contestant", ign:"—",             discord:"unavailable",          country:"🌍 Soon",         tier:"D", skin:"",                  titles:["Under Maintenance"]},
-    {name:"No Contestant", ign:"—",             discord:"unavailable",          country:"🌍 Soon",         tier:"D", skin:"",                  titles:["Under Maintenance"]},
-    {name:"No Contestant", ign:"—",             discord:"unavailable",          country:"🌍 Soon",         tier:"D", skin:"",                  titles:["Under Maintenance"]},
-    {name:"No Contestant", ign:"—",             discord:"unavailable",          country:"🌍 Soon",         tier:"D", skin:"",                  titles:["Under Maintenance"]},
+    {name:"Beny",          ign:"beny(goat)",     discord:"totallynotbeny.",         country:"🇨🇿 Czech",       tier:"S", titles:["2026 Top 1"]},
+    {name:"Bannks",        ign:"bannks(goat)",   discord:"bannks0583_33632",        country:"🇪🇸 Spain",       tier:"S", titles:["2026 Top 2"]},
+    {name:"Cold",          ign:"cold(goat)",     discord:"unavailable",             country:"🇮🇳 India",       tier:"S", titles:["2026 Top 3"]},
+    {name:"Goodbye",       ign:"Goodbye(goat)",  discord:"goodbyebg.",              country:"🇧🇩 Bangladesh",  tier:"A", titles:["2026 Top 4"]},
+    {name:"Astro",         ign:"astro(goat)",    discord:"astrogaming1966",         country:"🇮🇳 India",       tier:"A", titles:["2026 Top 5"]},
+    {name:"Zeus",          ign:"zeus(gey)",      discord:"unavailable",             country:"🇩🇪 Germany",     tier:"A", titles:["2026 Top 6"]},
+    {name:"Teck",          ign:"Teck(gey)",      discord:"tecksmw",                 country:"🇮🇳 India",       tier:"A", titles:["2026 Top 7"]},
+    {name:"Furina",        ign:"Furina(gey)",    discord:"unavailable",             country:"🇮🇳 India",       tier:"B", titles:["2026 Top 8"]},
+    {name:"Hito",          ign:"Hito(t1 gey)",   discord:"hitomdx",                 country:"🇮🇶 Iraq",        tier:"B", titles:["2026 Top 9"]},
+    {name:"Madox",         ign:"Madox(gey)",     discord:"unavailable",             country:"🇮🇶 Iraq",        tier:"B", titles:["2026 Top 10"]},
+    {name:"Swigh",         ign:"Swigh",          discord:"y00474",                  country:"🇮🇶 Iraq",        tier:"B", titles:["2026 Top 11"]},
+    {name:"Atyab",         ign:"Atyab",          discord:"1377651412388937828",     country:"🇮🇳 India",       tier:"C", titles:["2026 Top 12"]},
+    {name:"Egoist",        ign:"Egoist",         discord:"sheesh_crazydawgs",       country:"🇵🇭 Philippines", tier:"C", titles:["2026 Top 13"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
+    {name:"No Contestant", ign:"—",              discord:"unavailable",             country:"🌍 Soon",         tier:"D", titles:["Under Maintenance"]},
   ]
 };
 
@@ -2154,7 +2395,125 @@ function updateResultsMeta() {
 
 function renderCurrentView() {
   renderTable(getFilteredPlayers());
+  renderCards();
   updateResultsMeta();
+}
+
+// ── CARD RENDERING SYSTEM ────────────────────────────────────────────────
+let currentMode = 'arena'; // 'arena' | 'wild'
+
+// Arena categories: each player gets these based on their tier
+const ARENA_CATS = [
+  { key:'sword',  icon:'⚔️',  label:'Sword'  },
+  { key:'axe',    icon:'🪓',  label:'Axe'    },
+  { key:'heart',  icon:'❤️',  label:'Health' },
+  { key:'shield', icon:'🛡️',  label:'Shield' },
+];
+const WILD_CATS = [
+  { key:'potion', icon:'🧪',  label:'Potion' },
+  { key:'pearl',  icon:'🔮',  label:'Pearl'  },
+  { key:'bow',    icon:'🏹',  label:'Bow'    },
+  { key:'tnt',    icon:'💣',  label:'TNT'    },
+];
+
+// Derive sub-tier from overall tier
+function getSubTier(tier, rank) {
+  const map = { S: 'HT1', A: ['HT1','LT1'], B: ['HT2','LT2'], C: ['HT3','LT3'], D: 'LT3' };
+  if (tier === 'S') return 'HT1';
+  if (tier === 'D') return 'LT3';
+  const options = map[tier] || ['HT2','LT2'];
+  // alternate based on rank parity
+  return rank % 2 === 0 ? options[1] : options[0];
+}
+
+function subTierClass(st) {
+  return 'tier-' + st.toLowerCase();
+}
+
+function cardHeaderClass(rank) {
+  if (rank === 1) return 'card-header-rank1';
+  if (rank <= 3) return 'card-header-rank2';
+  return 'card-header-default';
+}
+
+function rankNumClass(rank) {
+  if (rank === 1) return 'rank1';
+  if (rank <= 3) return 'rank3';
+  return '';
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById('mode-arena').classList.toggle('active', mode === 'arena');
+  document.getElementById('mode-wild').classList.toggle('active', mode === 'wild');
+  renderCards();
+}
+
+function renderCards() {
+  const grid = document.getElementById('card-grid');
+  const empty = document.getElementById('card-empty');
+  if (!grid) return;
+
+  const list = tabPlayers(currentTab);
+  const searchVal = (document.getElementById('search-input')?.value || '').toLowerCase();
+  const cats = currentMode === 'arena' ? ARENA_CATS : WILD_CATS;
+
+  const filtered = list.filter(p => {
+    if (!searchVal) return true;
+    return (p.name + p.country + p.discord + p.ign).toLowerCase().includes(searchVal);
+  });
+
+  // Update results count
+  const countEl = document.getElementById('results-count');
+  const hintEl = document.getElementById('active-filters');
+  if (countEl) countEl.textContent = filtered.filter(p => p.name !== 'No Contestant').length;
+  if (hintEl) hintEl.textContent = searchVal ? `Searching "${searchVal}"` : `All players`;
+
+  if (!filtered.length) {
+    grid.innerHTML = '';
+    if (empty) empty.style.display = 'block';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+
+  grid.innerHTML = filtered.map((p, i) => {
+    const rank = list.indexOf(p) + 1;
+    const isNC = p.name === 'No Contestant';
+    const subTier = getSubTier(p.tier, rank);
+    const stClass = subTierClass(subTier);
+    const skinPath = `skins/${p.name.replace(/\s+/g,'_')}.png`;
+
+    // Build tier icons row
+    const tiersHtml = cats.map(cat => `
+      <div class="tier-item ${stClass}">
+        <div class="tier-icon">${cat.icon}</div>
+        <span class="tier-sub-label">${subTier}</span>
+      </div>`).join('');
+
+    // Country flag + region code
+    const countryParts = p.country.split(' ');
+    const flag = countryParts[0] || '';
+    const region = currentMode === 'arena' ? 'Combat' : 'Wild';
+
+    return `
+    <div class="player-card ${isNC ? 'no-contestant' : ''}" onclick="${isNC ? '' : `openModal(${rank-1})`}" style="animation-delay:${i*0.04}s">
+      <div class="card-header ${cardHeaderClass(rank)}">
+        <div class="card-rank-num ${rankNumClass(rank)}">${rank}.</div>
+        <div class="card-region">${flag}</div>
+        <div class="card-skin-wrap">
+          <img src="${skinPath}" alt="${p.name}" onerror="this.src='player.png'">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-player-name">${p.name}</div>
+        <div class="card-player-sub">
+          <span>◈</span> ${region} · ${p.tier} Tier
+        </div>
+        <div class="card-tiers-label">TIERS</div>
+        <div class="card-tiers-grid">${tiersHtml}</div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function renderTable(data){
@@ -2173,7 +2532,7 @@ function renderTable(data){
     </div>`;
     return`<tr class="${glowClass}" style="animation-delay:${i*0.03}s;${isNC?'opacity:0.4;cursor:default;':''}" onclick="${isNC?'':`openModal(${rank-1})`}">
       <td>${rankCell}</td>
-      <td><div class="player-cell"><div class="avatar" style="${p.skin?'':`background:${avatarBg(p.tier)}`}">${p.skin?`<img src="${p.skin}" alt="${p.name}" onerror="this.parentElement.innerHTML='<span class=\\'avatar-initials\\'>${p.name.slice(0,2).toUpperCase()}</span>';this.parentElement.style.background='${avatarBg(p.tier)}'">` : `<span class="avatar-initials">${p.name.slice(0,2).toUpperCase()}</span>`}</div><span class="player-name">${p.name}</span></div></td>
+      <td><div class="player-cell"><div class="avatar" style="background:${avatarBg(p.tier)}">${p.name.slice(0,2).toUpperCase()}</div><span class="player-name">${p.name}</span></div></td>
       <td><span class="region-badge">${p.country}</span></td>
       <td><span class="tier-badge tier-${p.tier}">${p.tier}</span></td>
     </tr>`;
@@ -2186,9 +2545,8 @@ function filterTable(){
 }
 
 function resetFilters(){
-  const { search, tier } = getViewControls();
+  const { search } = getViewControls();
   if (search) search.value = '';
-  if (tier) tier.value = '';
   saveViewState();
   renderCurrentView();
   if (search) search.focus();
@@ -2346,251 +2704,6 @@ function closeModalBtn(){document.getElementById("modal-overlay").classList.remo
 function closeModal(e){if(e.target===document.getElementById("modal-overlay"))closeModalBtn();}
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModalBtn();});
 
-// ── DOWNLOAD PLAYER CARD ─────────────────────────────────────────────────
-function downloadCard() {
-  const p = currentModalPlayer;
-  if (!p) return;
-  const btn = document.getElementById('download-btn');
-  btn.textContent = '⏳ Generating...';
-  btn.style.opacity = '0.6';
-
-  const rank = tabPlayers(currentTab).indexOf(p) + 1;
-
-  // Card dimensions: 1200x630 (Twitter/Discord banner ratio)
-  const W = 1200, H = 630;
-  const canvas = document.createElement('canvas');
-  canvas.width = W; canvas.height = H;
-  const ctx = canvas.getContext('2d');
-
-  // ── BACKGROUND: dark base + holographic gradient ──
-  const bg = ctx.createLinearGradient(0, 0, W, H);
-  bg.addColorStop(0,   '#0a0015');
-  bg.addColorStop(0.3, '#050820');
-  bg.addColorStop(0.6, '#0a1520');
-  bg.addColorStop(1,   '#150a25');
-  ctx.fillStyle = bg;
-  ctx.fillRect(0, 0, W, H);
-
-  // Holographic diagonal shine blobs
-  const shine1 = ctx.createRadialGradient(300, 200, 0, 300, 200, 500);
-  shine1.addColorStop(0, 'rgba(192,132,252,0.18)');
-  shine1.addColorStop(0.5, 'rgba(56,189,248,0.08)');
-  shine1.addColorStop(1, 'transparent');
-  ctx.fillStyle = shine1;
-  ctx.fillRect(0, 0, W, H);
-
-  const shine2 = ctx.createRadialGradient(950, 450, 0, 950, 450, 400);
-  shine2.addColorStop(0, 'rgba(232,121,249,0.15)');
-  shine2.addColorStop(0.5, 'rgba(94,234,212,0.07)');
-  shine2.addColorStop(1, 'transparent');
-  ctx.fillStyle = shine2;
-  ctx.fillRect(0, 0, W, H);
-
-  // ── GRID PATTERN ──
-  ctx.strokeStyle = 'rgba(192,132,252,0.06)';
-  ctx.lineWidth = 1;
-  for (let x = 0; x < W; x += 40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-  for (let y = 0; y < H; y += 40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-
-  // ── RAINBOW BORDER ──
-  const borderGrad = ctx.createLinearGradient(0, 0, W, H);
-  borderGrad.addColorStop(0,    '#c084fc');
-  borderGrad.addColorStop(0.25, '#38bdf8');
-  borderGrad.addColorStop(0.5,  '#5eead4');
-  borderGrad.addColorStop(0.75, '#e879f9');
-  borderGrad.addColorStop(1,    '#c084fc');
-  ctx.strokeStyle = borderGrad;
-  ctx.lineWidth = 6;
-  ctx.strokeRect(3, 3, W-6, H-6);
-
-  // Inner border glow
-  ctx.strokeStyle = 'rgba(192,132,252,0.25)';
-  ctx.lineWidth = 2;
-  ctx.strokeRect(14, 14, W-28, H-28);
-
-  // ── LEFT ACCENT BAR ──
-  const barGrad = ctx.createLinearGradient(0, 0, 0, H);
-  barGrad.addColorStop(0,   '#c084fc');
-  barGrad.addColorStop(0.5, '#38bdf8');
-  barGrad.addColorStop(1,   '#e879f9');
-  ctx.fillStyle = barGrad;
-  ctx.fillRect(28, 28, 8, H-56);
-
-  // ── RANK NUMBER (big, left) ──
-  const rankColor = rank===1 ? '#c084fc' : rank<=5 ? '#ffd700' : rank<=10 ? '#c0c0c0' : '#cd7f32';
-  ctx.save();
-  ctx.globalAlpha = 0.08;
-  ctx.font = 'bold 320px "Arial Black", Arial';
-  ctx.fillStyle = rankColor;
-  ctx.textAlign = 'left';
-  ctx.fillText(`#${rank}`, 55, H - 30);
-  ctx.restore();
-
-  // ── BGTIERS LOGO TEXT (top left) ──
-  ctx.font = 'bold 22px "Press Start 2P", monospace';
-  ctx.fillStyle = '#ffffff';
-  ctx.textAlign = 'left';
-  ctx.shadowColor = '#c084fc';
-  ctx.shadowBlur = 12;
-  ctx.fillText('BG', 52, 68);
-  ctx.fillStyle = '#e63946';
-  ctx.shadowColor = '#e63946';
-  ctx.fillText('Tiers', 100, 68);
-  ctx.shadowBlur = 0;
-
-  // ── TAB LABEL (top left, below logo) ──
-  ctx.font = '600 15px "Press Start 2P", monospace';
-  ctx.fillStyle = 'rgba(192,132,252,0.7)';
-  ctx.fillText(currentTab === 'mobile' ? '📱 MOBILE' : '🖥️ EMULATOR', 52, 96);
-
-  // ── RANK BADGE (large, center-left area) ──
-  // Draw a glowing circle behind rank badge
-  const badgeCX = 200, badgeCY = H/2 + 20;
-  const glowGrad = ctx.createRadialGradient(badgeCX, badgeCY, 0, badgeCX, badgeCY, 130);
-  glowGrad.addColorStop(0, `${rankColor}44`);
-  glowGrad.addColorStop(1, 'transparent');
-  ctx.fillStyle = glowGrad;
-  ctx.beginPath(); ctx.arc(badgeCX, badgeCY, 130, 0, Math.PI*2); ctx.fill();
-
-  // Rank number in badge area
-  ctx.font = 'bold 90px "Press Start 2P", monospace';
-  ctx.textAlign = 'center';
-  ctx.fillStyle = rankColor;
-  ctx.shadowColor = rankColor;
-  ctx.shadowBlur = 30;
-  ctx.fillText(`#${rank}`, badgeCX, badgeCY + 30);
-  ctx.shadowBlur = 0;
-
-  // ── DIVIDER LINE ──
-  const divX = 360;
-  const divGrad = ctx.createLinearGradient(divX, 60, divX, H-60);
-  divGrad.addColorStop(0, 'transparent');
-  divGrad.addColorStop(0.2, 'rgba(192,132,252,0.5)');
-  divGrad.addColorStop(0.8, 'rgba(56,189,248,0.5)');
-  divGrad.addColorStop(1, 'transparent');
-  ctx.strokeStyle = divGrad;
-  ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(divX, 60); ctx.lineTo(divX, H-60); ctx.stroke();
-
-  // ── PLAYER NAME ──
-  const nameX = 400;
-  ctx.textAlign = 'left';
-  // Name shadow/glow
-  ctx.font = 'bold 72px "Arial Black", Arial';
-  ctx.shadowColor = rankColor;
-  ctx.shadowBlur = 25;
-  ctx.fillStyle = '#ffffff';
-  // Truncate long names
-  let displayName = p.name;
-  while (ctx.measureText(displayName).width > 700 && displayName.length > 4) displayName = displayName.slice(0,-1)+'…';
-  ctx.fillText(displayName, nameX, 200);
-  ctx.shadowBlur = 0;
-
-  // IGN (if different from name)
-  if (p.ign && p.ign !== p.name) {
-    ctx.font = '500 24px "Arial", sans-serif';
-    ctx.fillStyle = 'rgba(192,132,252,0.8)';
-    ctx.fillText(`IGN: ${p.ign}`, nameX, 238);
-  }
-
-  // ── COUNTRY ──
-  ctx.font = '600 28px "Arial", sans-serif';
-  ctx.fillStyle = 'rgba(255,255,255,0.7)';
-  ctx.fillText(p.country, nameX, 285);
-
-  // ── TIER BADGE ──
-  const tierColors = {S:'#ff6b8a',A:'#ff9f43',B:'#ffc857',C:'#5bc0eb',D:'#9aa5ff'};
-  const tierColor = tierColors[p.tier] || '#fff';
-  const tierBgColors = {S:'rgba(255,107,138,0.15)',A:'rgba(255,159,67,0.15)',B:'rgba(255,200,87,0.15)',C:'rgba(91,192,235,0.15)',D:'rgba(154,165,255,0.15)'};
-
-  // Tier pill
-  ctx.font = 'bold 26px "Press Start 2P", monospace';
-  const tierText = `${p.tier} TIER`;
-  const tierW = ctx.measureText(tierText).width + 40;
-  const tierX = nameX, tierY = 310;
-
-  // Pill background
-  ctx.fillStyle = tierBgColors[p.tier] || 'rgba(255,255,255,0.1)';
-  roundRect(ctx, tierX, tierY, tierW, 46, 6);
-  ctx.fill();
-  // Pill border
-  ctx.strokeStyle = tierColor;
-  ctx.lineWidth = 2;
-  roundRect(ctx, tierX, tierY, tierW, 46, 6);
-  ctx.stroke();
-  // Tier text
-  ctx.fillStyle = tierColor;
-  ctx.shadowColor = tierColor;
-  ctx.shadowBlur = 10;
-  ctx.textAlign = 'center';
-  ctx.fillText(tierText, tierX + tierW/2, tierY + 32);
-  ctx.shadowBlur = 0;
-  ctx.textAlign = 'left';
-
-  // ── DISCORD ──
-  const discordY = 395;
-  ctx.font = '500 20px "Arial", sans-serif';
-  ctx.fillStyle = 'rgba(114,137,218,0.9)';
-  ctx.fillText('💬  ' + (p.discord === 'unavailable' ? '🔒 Unavailable' : '@' + p.discord), nameX, discordY);
-
-  // ── TITLES ──
-  const titlesStartY = 445;
-  ctx.font = 'bold 14px "Press Start 2P", monospace';
-  let tx = nameX, ty = titlesStartY;
-  p.titles.forEach((title, i) => {
-    const isTop1 = title.includes('Top 1');
-    const isTop2 = title.includes('Top 2') || title.includes('Top 3');
-    const chipColor = isTop1 ? '#ffd700' : isTop2 ? '#c0c0c0' : 'rgba(255,255,255,0.4)';
-    const chipBg = isTop1 ? 'rgba(255,215,0,0.12)' : isTop2 ? 'rgba(192,192,192,0.1)' : 'rgba(255,255,255,0.05)';
-    const chipW = ctx.measureText(title).width + 28;
-    if (tx + chipW > W - 40) { tx = nameX; ty += 40; }
-    ctx.fillStyle = chipBg;
-    roundRect(ctx, tx, ty - 22, chipW, 32, 4); ctx.fill();
-    ctx.strokeStyle = chipColor; ctx.lineWidth = 1.5;
-    roundRect(ctx, tx, ty - 22, chipW, 32, 4); ctx.stroke();
-    ctx.fillStyle = chipColor;
-    ctx.fillText(title, tx + 14, ty);
-    tx += chipW + 10;
-  });
-
-  // ── BOTTOM WATERMARK ──
-  ctx.font = '500 16px "Press Start 2P", monospace';
-  ctx.textAlign = 'right';
-  ctx.fillStyle = 'rgba(192,132,252,0.4)';
-  ctx.fillText('bgtiers.vercel.app', W - 30, H - 30);
-
-  // Holographic shimmer scan line
-  const shimmer = ctx.createLinearGradient(0, H*0.4, W, H*0.6);
-  shimmer.addColorStop(0, 'transparent');
-  shimmer.addColorStop(0.4, 'rgba(255,255,255,0.03)');
-  shimmer.addColorStop(0.5, 'rgba(255,255,255,0.06)');
-  shimmer.addColorStop(0.6, 'rgba(255,255,255,0.03)');
-  shimmer.addColorStop(1, 'transparent');
-  ctx.fillStyle = shimmer;
-  ctx.fillRect(0, 0, W, H);
-
-  // ── DOWNLOAD ──
-  setTimeout(() => {
-    const link = document.createElement('a');
-    link.download = `${p.name.replace(/\s+/g,'-')}-BGTiers-card.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-    btn.textContent = '✦ Download Player Card';
-    btn.style.opacity = '1';
-  }, 100);
-}
-
-// Helper: rounded rect path
-function roundRect(ctx, x, y, w, h, r) {
-  ctx.beginPath();
-  ctx.moveTo(x+r, y);
-  ctx.lineTo(x+w-r, y); ctx.arcTo(x+w, y, x+w, y+r, r);
-  ctx.lineTo(x+w, y+h-r); ctx.arcTo(x+w, y+h, x+w-r, y+h, r);
-  ctx.lineTo(x+r, y+h); ctx.arcTo(x, y+h, x, y+h-r, r);
-  ctx.lineTo(x, y+r); ctx.arcTo(x, y, x+r, y, r);
-  ctx.closePath();
-}
-
 // ── DRAWER ───────────────────────────────────────────────────────────────
 function toggleDrawer() {
   const drawer = document.getElementById('side-drawer');
@@ -2682,7 +2795,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Global keyboard listeners
   document.addEventListener('keydown', e => {
-    if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeHistory(); closeChangelog(); closeModalBtn(); closeAboutBtn(); closeRulesBtn(); }
+    if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeHistory(); closeChangelog(); closeChallengePopup(); closeModalBtn(); closeAboutBtn(); closeRulesBtn(); }
   });
 
   // Handle Loader: If the page is already loaded (common with fast local files), 
@@ -2693,6 +2806,30 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', hideLoader);
   }
 });
+
+// ── CHALLENGE POPUP ──────────────────────────────────────────────────────
+const DISCORD_INVITE  = 'https://discord.gg/EZgnanmbnV';
+const DISCORD_TICKETS = 'https://discord.com/channels/1390796624909041714/1392915689903362148';
+
+function openChallengePopup() {
+  document.getElementById('challenge-overlay').classList.add('open');
+}
+function closeChallengePopup(e) {
+  if (!e || e.target === document.getElementById('challenge-overlay'))
+    document.getElementById('challenge-overlay').classList.remove('open');
+}
+function handleChallengeYes() {
+  document.getElementById('challenge-overlay').classList.remove('open');
+  const a = document.createElement('a');
+  a.href = DISCORD_TICKETS; a.target = '_blank'; a.rel = 'noopener';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+function handleChallengeNo() {
+  document.getElementById('challenge-overlay').classList.remove('open');
+  const a = document.createElement('a');
+  a.href = DISCORD_INVITE; a.target = '_blank'; a.rel = 'noopener';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
 
 // ── CHANGELOG ────────────────────────────────────────────────────────────
 // To add a new update: add a new object at the TOP of this array.
@@ -2807,202 +2944,7 @@ function closeHistory() {
   document.body.style.overflow = '';
 }
 
-// ── ANIMATED BACKGROUND PARTICLES ────────────────────────────────────────
-(function() {
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  // Bedwars item types: diamond, emerald, sword, bed, star
-  const ITEMS = ['diamond', 'emerald', 'sword', 'bed', 'star'];
-
-  // Team colors from Bedwars: red, blue, green, yellow + diamond cyan + emerald green
-  const COLORS = [
-    '#88eeff', // diamond cyan
-    '#50fa7b', // emerald green
-    '#ff5555', // red team
-    '#4ec9f0', // blue team
-    '#f1fa8c', // yellow team
-    '#ff79c6', // pink team
-    '#ffd700', // gold
-  ];
-
-  function drawDiamond(ctx, x, y, size, color, alpha) {
-    ctx.save();
-    ctx.globalAlpha = alpha;
-    ctx.strokeStyle = color;
-    ctx.fillStyle = color + '33';
-    ctx.lineWidth = 1.2;
-    ctx.shadowColor = color;
-    ctx.shadowBlur = 8;
-    ctx.beginPath();
-    ctx.moveTo(x, y - size);
-    ctx.lineTo(x + size * 0.6, y - size * 0.3);
-    ctx.lineTo(x + size * 0.6, y + size * 0.3);
-    ctx.lineTo(x, y + size);
-    ctx.lineTo(x - size * 0.6, y + size * 0.3);
-    ctx.lineTo(x - size * 0.6, y - size * 0.3);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-    // inner highlight
-    ctx.globalAlpha = alpha * 0.4;
-    ctx.fillStyle = '#fff';
-    ctx.beginPath();
-    ctx.moveTo(x, y - size * 0.5);
-    ctx.lineTo(x + size * 0.25, y - size * 0.1);
-    ctx.lineTo(x, y + size * 0.1);
-    ctx.lineTo(x - size * 0.25, y - size * 0.1);
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
-  }
-
-  function drawEmerald(ctx, x, y, size, color, alpha) {
-    ctx.save();
-    ctx.globalAlpha = alpha;
-    ctx.strokeStyle = color;
-    ctx.fillStyle = color + '28';
-    ctx.lineWidth = 1.2;
-    ctx.shadowColor = color;
-    ctx.shadowBlur = 8;
-    ctx.beginPath();
-    // octagon-ish emerald shape
-    const s = size * 0.7;
-    ctx.moveTo(x - s*0.4, y - s);
-    ctx.lineTo(x + s*0.4, y - s);
-    ctx.lineTo(x + s, y - s*0.4);
-    ctx.lineTo(x + s, y + s*0.4);
-    ctx.lineTo(x + s*0.4, y + s);
-    ctx.lineTo(x - s*0.4, y + s);
-    ctx.lineTo(x - s, y + s*0.4);
-    ctx.lineTo(x - s, y - s*0.4);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-    ctx.restore();
-  }
-
-  function drawSword(ctx, x, y, size, color, alpha, angle) {
-    ctx.save();
-    ctx.globalAlpha = alpha;
-    ctx.translate(x, y);
-    ctx.rotate(angle);
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1.5;
-    ctx.shadowColor = color;
-    ctx.shadowBlur = 6;
-    // blade
-    ctx.beginPath();
-    ctx.moveTo(0, -size);
-    ctx.lineTo(0, size * 0.5);
-    ctx.stroke();
-    // crossguard
-    ctx.beginPath();
-    ctx.moveTo(-size * 0.4, size * 0.2);
-    ctx.lineTo(size * 0.4, size * 0.2);
-    ctx.stroke();
-    // handle
-    ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    ctx.moveTo(0, size * 0.2);
-    ctx.lineTo(0, size * 0.7);
-    ctx.stroke();
-    ctx.restore();
-  }
-
-  function drawBed(ctx, x, y, size, color, alpha) {
-    ctx.save();
-    ctx.globalAlpha = alpha;
-    ctx.fillStyle = color + '30';
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1.2;
-    ctx.shadowColor = color;
-    ctx.shadowBlur = 7;
-    const w = size * 1.4, h = size * 0.8;
-    // bed base
-    ctx.beginPath();
-    ctx.roundRect(x - w/2, y - h/2, w, h, 3);
-    ctx.fill();
-    ctx.stroke();
-    // pillow
-    ctx.fillStyle = color + '55';
-    ctx.beginPath();
-    ctx.roundRect(x - w/2 + 3, y - h/2 + 3, w*0.35, h - 6, 2);
-    ctx.fill();
-    ctx.restore();
-  }
-
-  function drawStar(ctx, x, y, size, color, alpha) {
-    ctx.save();
-    ctx.globalAlpha = alpha;
-    ctx.fillStyle = color;
-    ctx.shadowColor = color;
-    ctx.shadowBlur = 10;
-    ctx.beginPath();
-    for (let i = 0; i < 5; i++) {
-      const outerA = (i * 4 * Math.PI / 5) - Math.PI / 2;
-      const innerA = outerA + (2 * Math.PI / 10);
-      if (i === 0) ctx.moveTo(x + Math.cos(outerA)*size, y + Math.sin(outerA)*size);
-      else ctx.lineTo(x + Math.cos(outerA)*size, y + Math.sin(outerA)*size);
-      ctx.lineTo(x + Math.cos(innerA)*size*0.4, y + Math.sin(innerA)*size*0.4);
-    }
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
-  }
-
-  // Particle class
-  class Particle {
-    constructor() { this.reset(true); }
-    reset(initial) {
-      this.x     = Math.random() * canvas.width;
-      this.y     = initial ? Math.random() * canvas.height : canvas.height + 30;
-      this.type  = ITEMS[Math.floor(Math.random() * ITEMS.length)];
-      this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-      this.size  = 5 + Math.random() * 9;
-      this.speedY = -(0.2 + Math.random() * 0.5);
-      this.speedX = (Math.random() - 0.5) * 0.3;
-      this.alpha  = 0.08 + Math.random() * 0.18;
-      this.angle  = Math.random() * Math.PI * 2;
-      this.rotSpeed = (Math.random() - 0.5) * 0.012;
-      this.pulse  = Math.random() * Math.PI * 2;
-      this.pulseSpeed = 0.02 + Math.random() * 0.02;
-    }
-    update() {
-      this.y     += this.speedY;
-      this.x     += this.speedX;
-      this.angle += this.rotSpeed;
-      this.pulse += this.pulseSpeed;
-      if (this.y < -40) this.reset(false);
-    }
-    draw() {
-      const a = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
-      switch(this.type) {
-        case 'diamond': drawDiamond(ctx, this.x, this.y, this.size, this.color, a); break;
-        case 'emerald': drawEmerald(ctx, this.x, this.y, this.size, this.color, a); break;
-        case 'sword':   drawSword(ctx, this.x, this.y, this.size, this.color, a, this.angle); break;
-        case 'bed':     drawBed(ctx, this.x, this.y, this.size, this.color, a); break;
-        case 'star':    drawStar(ctx, this.x, this.y, this.size * 0.5, this.color, a); break;
-      }
-    }
-  }
-
-  const particles = Array.from({length: 38}, () => new Particle());
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
+// Particles removed for performance
 </script>
 </body>
 </html>

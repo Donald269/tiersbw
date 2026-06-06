@@ -1072,7 +1072,7 @@
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.07);
       box-shadow: 0 6px 24px rgba(0,0,0,0.5);
-      overflow: hidden; cursor: pointer;
+      overflow: visible; cursor: pointer;
       transition: transform 0.15s, box-shadow 0.15s;
       animation: cardIn 0.35s ease both;
       position: relative;
@@ -1091,8 +1091,8 @@
       display: flex; align-items: flex-end;
       justify-content: space-between;
       padding: 14px 16px 0;
-      position: relative; height: 160px;
-      overflow: hidden;
+      position: relative; height: 140px;
+      overflow: visible;
     }
     .card-header-rank1  { background: linear-gradient(135deg, #1e1040 0%, #140c28 100%); }
     .card-header-rank2  { background: linear-gradient(135deg, #2a1e00 0%, #1a1400 100%); }
@@ -1113,9 +1113,9 @@
 
     /* Skin image — large, centered, spans header bottom into card body */
     .card-skin-wrap {
-      position: absolute; bottom: 0; left: 72px;
+      position: absolute; top: -18px; left: 72px;
       width: 160px; height: 158px;
-      z-index: 3; pointer-events: none;
+      z-index: 10; pointer-events: none;
     }
     .card-skin-wrap img {
       width: 100%; height: 100%;

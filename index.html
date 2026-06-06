@@ -1090,7 +1090,7 @@
       display: flex; align-items: flex-end;
       justify-content: space-between;
       padding: 14px 16px 0;
-      position: relative; height: 100px; overflow: hidden;
+      position: relative; height: 160px; overflow: hidden;
     }
     .card-header-rank1  { background: linear-gradient(135deg, #1e1040 0%, #140c28 100%); }
     .card-header-rank2  { background: linear-gradient(135deg, #2a1e00 0%, #1a1400 100%); }
@@ -1099,39 +1099,39 @@
 
     /* Rank number — bold italic like reference */
     .card-rank-num {
-      font-family: var(--font-brand); font-size: 2rem;
+      font-family: var(--font-brand); font-size: 2.2rem;
       color: rgba(255,255,255,0.85);
       text-shadow: 2px 3px 0 rgba(0,0,0,0.6);
-      line-height: 1; align-self: flex-end; padding-bottom: 10px;
+      line-height: 1; align-self: flex-end; padding-bottom: 12px;
       flex-shrink: 0; z-index: 2;
     }
     .card-rank-num.rank1 { color: #c084fc; text-shadow: 0 0 18px #c084fc66, 2px 3px 0 rgba(0,0,0,0.7); }
     .card-rank-num.rank2 { color: #ffd700; text-shadow: 0 0 14px #ffd70055, 2px 3px 0 rgba(0,0,0,0.7); }
     .card-rank-num.rank3 { color: #ffd700; text-shadow: 0 0 10px #ffd70033, 2px 3px 0 rgba(0,0,0,0.7); }
 
-    /* Skin image — centered in header, sits at bottom edge */
+    /* Skin image — large, centered, sits at bottom of header */
     .card-skin-wrap {
       position: absolute; bottom: 0; left: 50%;
       transform: translateX(-50%);
-      width: 90px; height: 110px;
+      width: 130px; height: 155px;
       z-index: 3; pointer-events: none;
-      display: flex; align-items: flex-end; justify-content: center;
     }
     .card-skin-wrap img {
       width: 100%; height: 100%;
-      object-fit: contain; object-position: bottom;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.8));
+      object-fit: contain; object-position: bottom center;
+      filter: drop-shadow(0 4px 14px rgba(0,0,0,0.9));
       image-rendering: pixelated;
     }
 
-    /* Region badge — top right */
+    /* Region badge — top right, shows country flag */
     .card-region {
-      font-weight: 800; font-size: 0.78rem;
-      padding: 6px 13px; border-radius: 8px;
-      background: rgba(60,80,180,0.55);
-      border: 1px solid rgba(120,140,255,0.3);
-      color: #c8d4ff; letter-spacing: 0.04em;
-      align-self: flex-start; z-index: 2;
+      font-size: 1.3rem;
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      background: rgba(40,50,120,0.7);
+      border: 1px solid rgba(120,140,255,0.35);
+      align-self: flex-start; z-index: 2; flex-shrink: 0;
     }
 
     /* Card body below header */
@@ -2501,9 +2501,8 @@ function renderCards() {
         <span class="tier-sub-label">${subTier}</span>
       </div>`).join('');
 
-    // Country flag + region code
-    const countryParts = p.country.split(' ');
-    const flag = countryParts[0] || '';
+    // Country flag only
+    const flagOnly = p.country.split(' ')[0] || '🌍';
     const region = currentMode === 'arena' ? 'Combat' : 'Wild';
 
     return `
@@ -2513,7 +2512,7 @@ function renderCards() {
         <div class="card-skin-wrap">
           <img src="${p.name}.png" alt="${p.name}" onerror="this.src='player.png'">
         </div>
-        <div class="card-region">${flag}</div>
+        <div class="card-region">${flagOnly}</div>
       </div>
       <div class="card-body">
         <div class="card-player-name">${p.name}</div>

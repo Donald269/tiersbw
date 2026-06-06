@@ -1072,9 +1072,10 @@
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.07);
       box-shadow: 0 6px 24px rgba(0,0,0,0.5);
-      overflow: hidden; cursor: pointer;
+      overflow: visible; cursor: pointer;
       transition: transform 0.15s, box-shadow 0.15s;
       animation: cardIn 0.35s ease both;
+      position: relative;
     }
     @keyframes cardIn {
       from { opacity: 0; transform: translateY(12px); }
@@ -1090,7 +1091,8 @@
       display: flex; align-items: flex-end;
       justify-content: space-between;
       padding: 14px 16px 0;
-      position: relative; height: 160px; overflow: hidden;
+      position: relative; height: 160px;
+      overflow: visible;
     }
     .card-header-rank1  { background: linear-gradient(135deg, #1e1040 0%, #140c28 100%); }
     .card-header-rank2  { background: linear-gradient(135deg, #2a1e00 0%, #1a1400 100%); }
@@ -1109,11 +1111,11 @@
     .card-rank-num.rank2 { color: #ffd700; text-shadow: 0 0 14px #ffd70055, 2px 3px 0 rgba(0,0,0,0.7); }
     .card-rank-num.rank3 { color: #ffd700; text-shadow: 0 0 10px #ffd70033, 2px 3px 0 rgba(0,0,0,0.7); }
 
-    /* Skin image — large, centered, sits at bottom of header */
+    /* Skin image — large, centered, spans header bottom into card body */
     .card-skin-wrap {
-      position: absolute; bottom: 0; left: 50%;
+      position: absolute; bottom: -50px; left: 50%;
       transform: translateX(-50%);
-      width: 130px; height: 155px;
+      width: 130px; height: 190px;
       z-index: 3; pointer-events: none;
     }
     .card-skin-wrap img {
@@ -1136,7 +1138,7 @@
 
     /* Card body below header */
     .card-body {
-      padding: 14px 16px 16px; text-align: center;
+      padding: 60px 16px 16px; text-align: center;
     }
     .card-player-name {
       font-family: var(--font-brand); font-size: 1rem;

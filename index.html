@@ -2184,7 +2184,7 @@ function avatarBg(tier){
 function getViewControls() {
   return {
     search: document.getElementById('search-input'),
-    tier: document.getElementById('tier-filter'),
+    tier: null,
     results: document.getElementById('results-count'),
     hint: document.getElementById('active-filters'),
   };
@@ -2203,12 +2203,12 @@ function getSavedViewState() {
 }
 
 function saveViewState() {
-  const { search, tier } = getViewControls();
+  const { search } = getViewControls();
   try {
     localStorage.setItem(VIEW_STATE_KEY, JSON.stringify({
       tab: currentTab,
       search: search?.value || '',
-      tier: tier?.value || ''
+      tier: ''
     }));
   } catch (e) {}
 }
@@ -2481,7 +2481,7 @@ function renderCards() {
     const isNC = p.name === 'No Contestant';
     const subTier = getSubTier(p.tier, rank);
     const stClass = subTierClass(subTier);
-    const skinPath = `skins/${p.name.replace(/\s+/g,'_')}.png`;
+    const skinPath = `player.png`;
 
     // Build tier icons row
     const tiersHtml = cats.map(cat => `

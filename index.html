@@ -2761,50 +2761,55 @@ function closeRules(e){
 
 // Helper to hide the loader safely
 function hideLoader() {
-  setTimeout(() => {
+  try {
     document.getElementById('page-loader').classList.add('hidden');
     document.getElementById('app').classList.add('visible');
-  }, CONFIG.LOADER_DELAY);
+  } catch(e) {}
+  // Also try after a short delay as extra fallback
+  setTimeout(() => {
+    try {
+      document.getElementById('page-loader').classList.add('hidden');
+      document.getElementById('app').classList.add('visible');
+    } catch(e) {}
+  }, 400);
 }
 
 // ── INITIALIZATION ───────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  // Set last updated date
-  document.getElementById('last-updated').innerHTML = `${CONFIG.UPDATE_DATE.split(' ')[0]} <span>${CONFIG.UPDATE_DATE.split(' ')[1]}</span>`;
+  try {
+    // Set last updated date
+    document.getElementById('last-updated').innerHTML = `${CONFIG.UPDATE_DATE.split(' ')[0]} <span>${CONFIG.UPDATE_DATE.split(' ')[1]}</span>`;
 
-  // Restore last view, then draw the current tab with live filters.
-  const saved = getSavedViewState();
-  if (saved.tab && players[saved.tab]) currentTab = saved.tab;
-  const controls = getViewControls();
-  if (controls.search) controls.search.value = saved.search || '';
-  if (controls.tier) controls.tier.value = saved.tier || '';
-  setActiveTabButton(currentTab);
-  renderCurrentView();
-  updateSpotlight();
+    // Restore last view, then draw the current tab with live filters.
+    const saved = getSavedViewState();
+    if (saved.tab && players[saved.tab]) currentTab = saved.tab;
+    const controls = getViewControls();
+    if (controls.search) controls.search.value = saved.search || '';
+    setActiveTabButton(currentTab);
+    renderCurrentView();
+    updateSpotlight();
 
-  const searchInput = document.getElementById('search-input');
-  if (searchInput) {
-    searchInput.addEventListener('keydown', e => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        searchInput.focus();
-        searchInput.select();
-      }
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+      searchInput.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          searchInput.focus();
+          searchInput.select();
+        }
+      });
+    }
+
+    // Global keyboard listeners
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeHistory(); closeChangelog(); closeChallengePopup(); closeModalBtn(); closeAboutBtn(); closeRulesBtn(); }
     });
+  } catch(e) {
+    console.error('Init error:', e);
   }
 
-  // Global keyboard listeners
-  document.addEventListener('keydown', e => {
-    if(e.key === 'Escape') { closeDrawer(); closeHOF(); closeHistory(); closeChangelog(); closeChallengePopup(); closeModalBtn(); closeAboutBtn(); closeRulesBtn(); }
-  });
-
-  // Handle Loader: If the page is already loaded (common with fast local files), 
-  // hide it immediately. Otherwise, wait for the window load event.
-  if (document.readyState === 'complete') {
-    hideLoader();
-  } else {
-    window.addEventListener('load', hideLoader);
-  }
+  // Always hide loader regardless of errors above
+  hideLoader();
 });
 
 // ── CHALLENGE POPUP ──────────────────────────────────────────────────────

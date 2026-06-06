@@ -2481,7 +2481,7 @@ function renderCards() {
     const isNC = p.name === 'No Contestant';
     const subTier = getSubTier(p.tier, rank);
     const stClass = subTierClass(subTier);
-    const skinPath = `player.png`;
+    const skinPath = `${p.name}.png`;
 
     // Build tier icons row
     const tiersHtml = cats.map(cat => `

@@ -474,71 +474,103 @@
     /* CONFETTI CANVAS */
     #confetti-canvas { position: fixed; inset: 0; z-index: 1100; pointer-events: none; }
 
-    /* TOP 1 SPOTLIGHT — gold chest style */
-    .spotlight-wrap {
+    /* TOP 3 PODIUM */
+    .podium-wrap {
       position: relative; z-index: 1;
-      max-width: 980px; margin: 0 auto 0;
-      padding: 0 20px 24px;
+      max-width: 700px; margin: 0 auto 0;
+      padding: 16px 20px 24px;
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 14px;
     }
-    .spotlight-card {
-      position: relative; overflow: hidden;
-      background: #1a1208;
-      border: 4px solid #000;
-      box-shadow:
-        inset -6px -6px 0 #6a4e00,
-        inset  6px  6px 0 #ffe080,
-        0 0 0 2px #000,
-        6px 6px 0 #000;
-      padding: 26px 28px;
-      display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
-      animation: spotlightPulse 4s ease-in-out infinite;
+    .podium-block {
+      position: relative;
+      border-radius: 12px 12px 0 0;
+      border: 2px solid rgba(255,255,255,0.10);
       cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+      padding: 12px 10px;
+      transition: transform 0.15s;
+      flex: 1; max-width: 220px;
     }
-    @keyframes spotlightPulse {
-      0%,100% { box-shadow: inset -6px -6px 0 #6a4e00, inset 6px 6px 0 #ffe080, 0 0 0 2px #000, 6px 6px 0 #000, 0 0 20px rgba(255,215,0,0.06); }
-      50%      { box-shadow: inset -6px -6px 0 #6a4e00, inset 6px 6px 0 #ffe080, 0 0 0 2px #000, 6px 6px 0 #000, 0 0 40px rgba(255,215,0,0.18); }
+    .podium-block:hover { transform: translateY(-4px); }
+
+    .podium-block.p1 {
+      height: 200px;
+      background: linear-gradient(135deg, #2d1a5e 0%, #1a1030 100%);
+      box-shadow: 0 0 40px rgba(192,132,252,0.18), 0 8px 30px rgba(0,0,0,0.5);
+      order: 2; z-index: 2;
     }
-    .spotlight-card::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(255,215,0,0.04) 0%, transparent 55%);
-      pointer-events: none;
+    .podium-block.p2 {
+      height: 150px;
+      background: linear-gradient(135deg, #3a2e00 0%, #1f1800 100%);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      order: 1;
     }
-    .spotlight-card::after {
-      content: '⚔ REIGNING CHAMPION ⚔'; position: absolute; top: 12px; right: 16px;
-      font-family: 'Press Start 2P', monospace; font-size: 0.42rem; font-weight: 400;
-      letter-spacing: 0.12em; color: rgba(255,215,0,0.5);
-      text-shadow: 1px 1px 0 #000;
+    .podium-block.p3 {
+      height: 120px;
+      background: linear-gradient(135deg, #2a1206 0%, #1a0c04 100%);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      order: 3;
     }
-    .spotlight-diamond { position: relative; width: 72px; height: 72px; flex-shrink: 0; }
-    @keyframes spotlightPulse { 0%{} }
-    .spotlight-diamond svg { width: 72px; height: 72px; filter: drop-shadow(0 0 12px #c084fc); }
-    @keyframes diamondSpin { 0%{} }
-    .spotlight-rank-num {
-      position: absolute; bottom: -6px; right: -8px;
-      font-family: 'Press Start 2P', monospace; font-weight: 400; font-size: 0.7rem;
-      background: #1a1208; border: 2px solid #c8a000;
-      box-shadow: 2px 2px 0 #000;
-      padding: 2px 6px; color: #ffd700; line-height: 1.3;
-      text-shadow: 1px 1px 0 #6a4e00;
+
+    .podium-skin-wrap {
+      position: absolute; bottom: 100%; left: 50%;
+      transform: translateX(-50%);
+      width: 90px; height: 105px;
+      pointer-events: none; z-index: 3;
     }
-    .spotlight-info { flex: 1; min-width: 160px; }
-    .spotlight-name {
-      font-family: 'Press Start 2P', monospace; font-weight: 400;
-      font-size: clamp(0.9rem, 2vw, 1.3rem); color: var(--text); line-height: 1.3;
-      text-shadow: 3px 3px 0 #000;
+    .podium-block.p1 .podium-skin-wrap { width: 115px; height: 135px; }
+    .podium-block.p2 .podium-skin-wrap { width: 90px; height: 105px; }
+    .podium-block.p3 .podium-skin-wrap { width: 80px; height: 95px; }
+    .podium-skin-wrap img {
+      width: 100%; height: 100%;
+      object-fit: contain; object-position: bottom center;
+      filter: drop-shadow(0 4px 14px rgba(0,0,0,0.8));
+      image-rendering: pixelated;
+      color: transparent; /* hides broken-image alt text */
     }
-    .spotlight-sub { font-size: 0.85rem; color: var(--muted); margin-top: 7px; font-family: 'Rajdhani', sans-serif; }
-    .spotlight-titles { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-    .spotlight-right { margin-left: auto; text-align: center; flex-shrink: 0; }
-    .spotlight-tier {
-      font-family: 'Press Start 2P', monospace; font-weight: 400; font-size: 1.4rem;
-      letter-spacing: 0.08em; padding: 10px 22px;
-      background: #2a0a10; color: var(--s-tier);
-      border: 3px solid #ff4d6d55;
-      box-shadow: inset -2px -3px 0 #15050a, inset 2px 2px 0 #ff4d6d22, 3px 3px 0 #000;
-      text-shadow: 3px 3px 0 #7a0010, 0 0 12px #ff4d6d88;
+    .podium-skin-wrap img::before {
+      content: ''; display: block; width: 100%; height: 100%;
     }
-    .spotlight-cat { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 8px; font-family: 'Rajdhani', sans-serif; }
+
+    .podium-rank-badge {
+      font-family: var(--font-brand);
+      font-size: 1.6rem; line-height: 1;
+      margin-bottom: 6px;
+    }
+    .podium-block.p1 .podium-rank-badge { color: #c084fc; text-shadow: 0 0 16px #c084fc88; font-size: 2rem; }
+    .podium-block.p2 .podium-rank-badge { color: #ffd700; text-shadow: 0 0 10px #ffd70055; }
+    .podium-block.p3 .podium-rank-badge { color: #cd7f32; text-shadow: 0 0 8px #cd7f3255; }
+
+    .podium-name {
+      font-family: var(--font-brand);
+      font-size: 0.78rem; color: #fff;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.6);
+      text-align: center; line-height: 1.4;
+      margin-bottom: 4px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+    }
+    .podium-block.p1 .podium-name { font-size: 0.92rem; }
+
+    .podium-tier {
+      font-size: 0.68rem; font-weight: 800;
+      padding: 2px 9px; border-radius: 5px;
+      letter-spacing: 0.05em;
+    }
+    .podium-block.p1 .podium-tier { background: #b8860b; color: #fffbe8; }
+    .podium-block.p2 .podium-tier { background: #5a6070; color: #e8eaf0; }
+    .podium-block.p3 .podium-tier { background: #7c3d12; color: #fde8cc; }
+
+    @media (max-width: 540px) {
+      .podium-wrap { gap: 8px; padding: 16px 12px 18px; }
+      .podium-block.p1 { height: 180px; }
+      .podium-block.p2 { height: 135px; }
+      .podium-block.p3 { height: 108px; }
+      .podium-block.p1 .podium-skin-wrap { width: 85px; height: 102px; }
+      .podium-block.p2 .podium-skin-wrap { width: 68px; height: 82px; }
+      .podium-block.p3 .podium-skin-wrap { width: 62px; height: 75px; }
+    }
+
     .spotlight-hidden { display: none; }
 
     /* MODAL — obsidian/stone border */
@@ -1601,21 +1633,24 @@
   <button class="tab-btn" onclick="switchTab('emulator',this)"><span>🖥️</span> Emulator</button>
 </div>
 
-<div class="spotlight-wrap" id="spotlight-wrap">
-  <div class="spotlight-card" onclick="openModal(0)">
-    <div class="spotlight-diamond" id="spotlight-icon">
-      <!-- filled by JS -->
-      <div class="spotlight-rank-num">#1</div>
-    </div>
-    <div class="spotlight-info">
-      <div class="spotlight-name" id="spot-name">—</div>
-      <div class="spotlight-sub" id="spot-sub">Loading…</div>
-      <div class="spotlight-titles" id="spot-titles"></div>
-    </div>
-    <div class="spotlight-right">
-      <div class="spotlight-tier" id="spot-tier">S</div>
-      <div class="spotlight-cat" id="spot-cat">📱 Mobile</div>
-    </div>
+<div class="podium-wrap" id="podium-wrap">
+  <div class="podium-block p2" onclick="openModal(1)">
+    <div class="podium-skin-wrap"><img id="podium-skin-2" src="" alt="" onerror="handleSkinError(this)"></div>
+    <div class="podium-rank-badge">2</div>
+    <div class="podium-name" id="podium-name-2">—</div>
+    <div class="podium-tier" id="podium-tier-2">—</div>
+  </div>
+  <div class="podium-block p1" onclick="openModal(0)">
+    <div class="podium-skin-wrap"><img id="podium-skin-1" src="" alt="" onerror="handleSkinError(this)"></div>
+    <div class="podium-rank-badge">1</div>
+    <div class="podium-name" id="podium-name-1">—</div>
+    <div class="podium-tier" id="podium-tier-1">—</div>
+  </div>
+  <div class="podium-block p3" onclick="openModal(2)">
+    <div class="podium-skin-wrap"><img id="podium-skin-3" src="" alt="" onerror="handleSkinError(this)"></div>
+    <div class="podium-rank-badge">3</div>
+    <div class="podium-name" id="podium-name-3">—</div>
+    <div class="podium-tier" id="podium-tier-3">—</div>
   </div>
 </div>
 
@@ -1921,7 +1956,7 @@
     <div class="modal-titles" id="modal-titles"></div>
     <div class="modal-actions">
       <button class="modal-btn" id="copy-discord-btn" onclick="copyDiscord()">💬 Copy Discord</button>
-      <button class="modal-btn" id="share-btn" onclick="shareProfile()">🔗 Share Profile</button>
+      <button class="modal-btn" id="download-btn" onclick="downloadProfile()">⬇️ Download Profile</button>
     </div>
     <div class="modal-actions" style="margin-top:8px">
       <button class="modal-btn challenge-btn" onclick="openChallengePopup()" style="width:100%;background:#1a0a00;border-color:#ff6b35;color:#ff6b35;">⚔️ Challenge This Player</button>
@@ -2107,23 +2142,23 @@ let players = {
     {name:"Matin",          ign:"Matin",            discord:"_gotin",                  country:"🇦🇱 Albania",     tier:"S", titles:["2024 Top 1","2025 Top 1","2026 Top 1"]},
     {name:"Aneld",          ign:"Aneld",            discord:"x646x",                   country:"🇦🇱 Albania",     tier:"S", titles:["2022 Top 3","2023 Top 1","2024 Top 2","2025 Top 2","2026 Top 2"]},
     {name:"Quar",           ign:"Quar",             discord:"onezz.23",                country:"🇩🇪 Germany",     tier:"S", titles:["2023 Top 3","2024 Top 3","2026 Top 3"]},
-    {name:"Beast",          ign:"Beast",            discord:".b4ast.",                 country:"🇮🇳 India",       tier:"A", titles:["2025 Top 6","2026 Top 4"]},
+    {name:"Zeus",           ign:"Zeus",             discord:"iownyou777",              country:"🇮🇳 India",       tier:"A", titles:["2026 Top 4"]},
     {name:"Sarthak",        ign:"Sarthak",          discord:"_.fireofc_.",             country:"🇳🇵 Nepal",       tier:"A", titles:["2026 Top 5"]},
     {name:"MxrningStar",    ign:"MxrningStar",      discord:"kurio_neko1",             country:"🇮🇳 India",       tier:"A", titles:["2026 Top 6"]},
     {name:"Hashim",         ign:"Hashim",           discord:"nightowns74",             country:"🇵🇰 Pakistan",    tier:"A", titles:["2026 Top 7"]},
-    {name:"Bloody",         ign:"Bloody",           discord:"vex__z",                  country:"🇵🇭 Philippines", tier:"B", titles:["2026 Top 8"]},
+    {name:"Harsh",            ign:"Harsh",            discord:".harshbg",                country:"🇮🇳 India",       tier:"B", titles:["2026 Top 8"]},
     {name:"Dark",           ign:"Dark",             discord:"ofc dark0310",            country:"🇮🇳 India",       tier:"B", titles:["2026 Top 9"]},
     {name:"Amitesh",        ign:"Amitesh",          discord:"insanesavi",              country:"🇮🇳 India",       tier:"B", titles:["2026 Top 10"]},
     {name:"HolyCritFall",   ign:"Null",             discord:"holycritfall_74204",      country:"🇮🇳 India",       tier:"B", titles:["2026 Top 11"]},
     {name:"Rise",           ign:"Rize Gamerz",      discord:"risegamerz77",            country:"🇮🇳 India",       tier:"B", titles:["2026 Top 12"]},
-    {name:"Baly",           ign:"Baly",             discord:"baly0495_68229",          country:"🇦🇱 Albania",     tier:"B", titles:["2026 Top 13"]},
+    {name:"Creed",          ign:"Creed",            discord:"baly0495_68229",          country:"🇦🇱 Albania",     tier:"B", titles:["2026 Top 13"]},
     {name:"IamNotPC",       ign:"IamNotPC",         discord:"veteranuser_",            country:"🇧🇩 Bangladesh",  tier:"C", titles:["2026 Top 14"]},
     {name:"Chained",        ign:"Chained",          discord:"darkraven9002",           country:"🇮🇳 India",       tier:"C", titles:["2026 Top 15"]},
     {name:"Zenvor",         ign:"Zenvor",           discord:"zenvor.owns",             country:"🇷🇺 Russia",      tier:"C", titles:["2026 Top 16"]},
     {name:"Beta",           ign:"Puttar",           discord:"lowkbeta2.0",             country:"🇮🇳 India",       tier:"C", titles:["2026 Top 17"]},
     {name:"Princi",         ign:"Princi",           discord:"princiblockmango",        country:"🇮🇳 India",       tier:"C", titles:["2026 Top 18"]},
     {name:"SirWinter",      ign:"SirWinter",        discord:"fastestguyalive8",        country:"🇮🇳 India",       tier:"D", titles:["2026 Top 19"]},
-    {name:"Nakib",          ign:"Nakib",            discord:"sahariyarnakib",          country:"🇮🇳 India",       tier:"D", titles:["2026 Top 20"]},
+    {name:"Dhruv",          ign:"Dhruv",            discord:"all.heil.dhruv",          country:"🇮🇳 India",       tier:"D", titles:["2026 Top 20"]},
   ],
   emulator:[
     {name:"Beny",          ign:"beny(goat)",     discord:"totallynotbeny.",         country:"🇨🇿 Czech",       tier:"S", titles:["2026 Top 1"]},
@@ -2511,7 +2546,7 @@ function renderCards() {
       <div class="card-header ${cardHeaderClass(rank)}">
         <div class="card-rank-num ${rankNumClass(rank)}">${rank}.</div>
         <div class="card-skin-wrap">
-          <img src="${p.name}.png" alt="${p.name}" onerror="this.src='player.png'">
+          <img src="${p.name}.png" alt="" onerror="handleSkinError(this)">
         </div>
         <div class="card-region">${flagOnly}</div>
       </div>
@@ -2582,17 +2617,35 @@ function refreshSpotlightBadge(){
   el.appendChild(num);
 }
 
+// Handles broken skin images: falls back to player.png once, then hides if that fails too
+function handleSkinError(img) {
+  if (!img.dataset.fallback) {
+    img.dataset.fallback = '1';
+    img.src = 'player.png';
+  } else {
+    img.style.visibility = 'hidden';
+  }
+}
+
 function updateSpotlight(){
-  const p = tabPlayers(currentTab)[0];
-  if(!p) return;
-  const isEmulator = currentTab === 'emulator';
-  document.getElementById('spot-name').textContent = p.name;
-  document.getElementById('spot-sub').innerHTML = `${p.country} &nbsp;·&nbsp; @${p.discord}`;
-  document.getElementById('spot-tier').textContent = p.tier;
-  document.getElementById('spot-cat').textContent = isEmulator ? '🖥️ Emulator' : '📱 Mobile';
-  document.getElementById('spot-titles').innerHTML = p.titles.map(titleChip).join('');
-  document.getElementById('spotlight-wrap').style.display = p.name === 'No Contestant' ? 'none' : '';
-  refreshSpotlightBadge();
+  const list = tabPlayers(currentTab);
+  for (let i = 0; i < 3; i++) {
+    const p = list[i];
+    const num = i + 1;
+    const nameEl = document.getElementById(`podium-name-${num}`);
+    const tierEl = document.getElementById(`podium-tier-${num}`);
+    const skinEl = document.getElementById(`podium-skin-${num}`);
+    if (!p || p.name === 'No Contestant') {
+      if (nameEl) nameEl.textContent = '—';
+      if (tierEl) tierEl.textContent = '—';
+      if (skinEl) { skinEl.dataset.fallback=''; skinEl.style.visibility=''; skinEl.src = 'player.png'; }
+      continue;
+    }
+    if (nameEl) nameEl.textContent = p.name;
+    if (tierEl) tierEl.textContent = p.tier + ' Tier';
+    if (skinEl) { skinEl.dataset.fallback=''; skinEl.style.visibility=''; skinEl.src = `${p.name}.png`; }
+  }
+  document.getElementById('podium-wrap').style.display = list[0] && list[0].name === 'No Contestant' ? 'none' : '';
 }
 
 // ── CONFETTI ────────────────────────────────────────────────────────────
@@ -2672,17 +2725,119 @@ function copyDiscord() {
 }
 
 // ── SHARE PROFILE ───────────────────────────────────────────────────────
-function shareProfile() {
-  if(!currentModalPlayer) return;
+function downloadProfile() {
+  if (!currentModalPlayer) return;
   const p = currentModalPlayer;
-  const rank = tabPlayers(currentTab).indexOf(p)+1;
-  const text = `🏆 ${p.name} — #${rank} ${currentTab==='mobile'?'Mobile':'Emulator'} | ${p.country} | Tier ${p.tier} | BGTiers Rankings`;
-  navigator.clipboard.writeText(text).then(()=>{
-    const btn = document.getElementById('share-btn');
-    btn.textContent = '✅ Copied to clipboard!';
-    btn.classList.add('shared');
-    setTimeout(()=>{ btn.textContent='🔗 Share Profile'; btn.classList.remove('shared'); }, 2000);
-  });
+  const rank = tabPlayers(currentTab).indexOf(p) + 1;
+  const btn = document.getElementById('download-btn');
+  btn.textContent = '⏳ Generating...';
+  btn.disabled = true;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 500; canvas.height = 280;
+  const ctx = canvas.getContext('2d');
+
+  function draw(skinImg) {
+    // Background
+    const grad = ctx.createLinearGradient(0, 0, 500, 280);
+    grad.addColorStop(0, '#1a1208');
+    grad.addColorStop(1, '#0d0d0d');
+    ctx.fillStyle = grad;
+    ctx.roundRect(0, 0, 500, 280, 16);
+    ctx.fill();
+
+    // Header strip
+    const hGrad = ctx.createLinearGradient(0, 0, 500, 0);
+    hGrad.addColorStop(0, rank === 1 ? '#2d1a5e' : rank <= 3 ? '#2a1e00' : '#1c1c26');
+    hGrad.addColorStop(1, rank === 1 ? '#140c28' : rank <= 3 ? '#1a1400' : '#131318');
+    ctx.fillStyle = hGrad;
+    ctx.roundRect(0, 0, 500, 140, [16, 16, 0, 0]);
+    ctx.fill();
+
+    // Border
+    ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+    ctx.lineWidth = 1.5;
+    ctx.roundRect(0, 0, 500, 280, 16);
+    ctx.stroke();
+
+    // Rank number
+    ctx.font = 'bold 52px serif';
+    ctx.fillStyle = rank === 1 ? '#c084fc' : rank <= 3 ? '#ffd700' : 'rgba(255,255,255,0.8)';
+    ctx.shadowColor = rank === 1 ? '#c084fc' : rank <= 3 ? '#ffd700' : 'transparent';
+    ctx.shadowBlur = 16;
+    ctx.fillText(`${rank}.`, 24, 88);
+    ctx.shadowBlur = 0;
+
+    // Skin image
+    if (skinImg) {
+      ctx.drawImage(skinImg, 90, 0, 140, 140);
+    }
+
+    // Country badge
+    ctx.fillStyle = 'rgba(40,50,120,0.7)';
+    ctx.roundRect(432, 14, 54, 36, 8);
+    ctx.fill();
+    ctx.font = '22px serif';
+    ctx.fillText(p.country.split(' ')[0] || '🌍', 438, 40);
+
+    // Player name
+    ctx.shadowBlur = 0;
+    ctx.font = 'bold 28px monospace';
+    ctx.fillStyle = '#f0f0e8';
+    ctx.fillText(p.name, 24, 180);
+
+    // Sub info
+    ctx.font = '14px sans-serif';
+    ctx.fillStyle = '#8a8a7a';
+    ctx.fillText(`◈ ${currentTab === 'mobile' ? 'Mobile' : 'Emulator'} · ${p.tier} Tier · ${p.country.split(' ').slice(1).join(' ')}`, 24, 202);
+
+    // Divider
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(24, 215); ctx.lineTo(476, 215); ctx.stroke();
+
+    // IGN & Discord
+    ctx.font = '13px sans-serif';
+    ctx.fillStyle = '#8a8a7a';
+    ctx.fillText('IGN', 24, 234);
+    ctx.fillStyle = '#f0f0e8';
+    ctx.font = 'bold 13px sans-serif';
+    ctx.fillText(p.ign, 70, 234);
+
+    ctx.fillStyle = '#8a8a7a';
+    ctx.font = '13px sans-serif';
+    ctx.fillText('Discord', 24, 255);
+    ctx.fillStyle = '#f0f0e8';
+    ctx.font = 'bold 13px sans-serif';
+    ctx.fillText(p.discord === 'unavailable' ? '🔒 Unavailable' : '@' + p.discord, 90, 255);
+
+    // Titles
+    ctx.font = '11px monospace';
+    ctx.fillStyle = '#ffd700';
+    const titles = (p.titles || []).slice(0, 3).join('  ·  ');
+    ctx.fillText(titles, 24, 274);
+
+    // Watermark
+    ctx.font = '10px monospace';
+    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.fillText('bwtiers.vercel.app', 376, 274);
+
+    // Download
+    const a = document.createElement('a');
+    a.download = `${p.name}_profile.png`;
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+    btn.textContent = '✅ Downloaded!';
+    btn.disabled = false;
+    setTimeout(() => { btn.textContent = '⬇️ Download Profile'; }, 2000);
+  }
+
+  // Load skin image
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = () => draw(img);
+  img.onerror = () => draw(null);
+  img.src = `${p.name}.png`;
 }
 
 function openModal(idx){
@@ -2704,8 +2859,8 @@ function openModal(idx){
   const cb=document.getElementById('copy-discord-btn');
   cb.textContent='💬 Copy Discord'; cb.classList.remove('copied');
   cb.style.opacity = p.discord==='unavailable'?'0.4':'1';
-  document.getElementById('share-btn').textContent='🔗 Share Profile';
-  document.getElementById('share-btn').classList.remove('shared');
+  const db=document.getElementById('download-btn');
+  if(db){ db.textContent='⬇️ Download Profile'; db.disabled=false; }
   document.getElementById("modal-overlay").classList.add("open");
   document.body.style.overflow="hidden";
   // Confetti for top 3
@@ -2962,5 +3117,89 @@ function closeHistory() {
 
 // Particles removed for performance
 </script>
+
+<!-- ── V2.2 UPDATE POPUP ── -->
+<div id="update-popup-overlay" onclick="if(event.target===this)closeUpdatePopup()" style="
+  position:fixed;inset:0;z-index:10000;
+  background:rgba(0,0,0,0.88);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity 0.3s;
+">
+<div style="
+  background:#1a1400;
+  border:3px solid #000;
+  box-shadow:inset -4px -4px 0 #6a4e00,inset 4px 4px 0 #ffe080,0 0 0 2px #000,6px 6px 0 #000;
+  width:90%;max-width:400px;padding:30px 26px;position:relative;
+  font-family:'Press Start 2P',monospace;
+">
+  <button onclick="closeUpdatePopup()" style="
+    position:absolute;top:12px;right:12px;
+    background:#2a1e00;border:3px solid #000;
+    box-shadow:inset -2px -2px 0 #1a0e00,inset 2px 2px 0 #c8a000,2px 2px 0 #000;
+    color:#c8a000;font-size:1rem;cursor:pointer;
+    width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+    font-family:sans-serif;line-height:1;
+  " onmouseover="this.style.background='#3a2a00'" onmouseout="this.style.background='#2a1e00'">✕</button>
+
+  <div style="
+    display:inline-block;background:#2a1e00;
+    border:3px solid #000;
+    box-shadow:inset -2px -2px 0 #1a0e00,inset 2px 2px 0 #ffd700,2px 2px 0 #000;
+    color:#ffd700;font-size:0.42rem;letter-spacing:0.14em;
+    padding:6px 14px;margin-bottom:18px;
+  ">📢 UPDATES!</div>
+
+  <div style="font-size:0.85rem;color:#fff8e0;line-height:1.5;margin-bottom:6px;text-shadow:2px 2px 0 #000;">
+    WHAT'S NEW IN <span style="color:#ffd700;text-shadow:2px 2px 0 #6a4e00;">v2.2?</span>
+  </div>
+
+  <div style="height:3px;background:#000;box-shadow:0 1px 0 #6a4e00;margin:14px 0 18px;"></div>
+
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:#241a00;border:2px solid #000;box-shadow:inset -2px -2px 0 #100c00,inset 2px 2px 0 #c8a00033,2px 2px 0 #000;">
+      <span style="font-size:1rem;flex-shrink:0;">🎨</span>
+      <span style="font-size:0.46rem;color:#fff8e0;line-height:1.8;">Fully changed website UI</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:#241a00;border:2px solid #000;box-shadow:inset -2px -2px 0 #100c00,inset 2px 2px 0 #c8a00033,2px 2px 0 #000;">
+      <span style="font-size:1rem;flex-shrink:0;">🧑‍🎤</span>
+      <span style="font-size:0.46rem;color:#fff8e0;line-height:1.8;">Added player skins</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:#241a00;border:2px solid #000;box-shadow:inset -2px -2px 0 #100c00,inset 2px 2px 0 #c8a00033,2px 2px 0 #000;">
+      <span style="font-size:1rem;flex-shrink:0;">⚔️</span>
+      <span style="font-size:0.46rem;color:#fff8e0;line-height:1.8;">Updated individual rankings</span>
+    </div>
+  </div>
+
+  <button onclick="closeUpdatePopup()" style="
+    margin-top:22px;width:100%;
+    font-family:'Press Start 2P',monospace;font-size:0.52rem;
+    letter-spacing:0.05em;padding:12px;
+    border:3px solid #000;
+    box-shadow:inset -3px -3px 0 #6a4e00,inset 3px 3px 0 #ffe080,3px 3px 0 #000;
+    background:#2a1e00;color:#ffd700;cursor:pointer;transition:background 0.1s;
+  " onmouseover="this.style.background='#3a2a00'" onmouseout="this.style.background='#2a1e00'">
+    ✓ GOT IT
+  </button>
+</div>
+</div>
+
+<style>
+  #update-popup-overlay.open { opacity:1 !important; pointer-events:all !important; }
+</style>
+
+<script>
+  const UPDATE_VERSION = 'v2.2';
+  function closeUpdatePopup() {
+    document.getElementById('update-popup-overlay').classList.remove('open');
+  }
+  (function() {
+    const key = 'bwtiers_seen_' + UPDATE_VERSION;
+    if (!localStorage.getItem(key)) {
+      localStorage.setItem(key, '1');
+      setTimeout(() => document.getElementById('update-popup-overlay').classList.add('open'), 900);
+    }
+  })();
+</script>
+
 </body>
 </html>

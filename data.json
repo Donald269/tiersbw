@@ -1,0 +1,620 @@
+{
+  "config": {
+    "updateDate": "16 June",
+    "updateVersion": "v2.5"
+  },
+  "players": {
+    "mobile": [
+      {
+        "name": "Matin",
+        "ign": "Matin",
+        "discord": "_gotin",
+        "country": "🇦🇱 Albania",
+        "tier": "S",
+        "titles": [
+          "2024 Top 1",
+          "2025 Top 1",
+          "2026 Top 1"
+        ]
+      },
+      {
+        "name": "Aneld",
+        "ign": "Aneld",
+        "discord": "x646x",
+        "country": "🇦🇱 Albania",
+        "tier": "S",
+        "titles": [
+          "2022 Top 3",
+          "2023 Top 1",
+          "2024 Top 2",
+          "2025 Top 2",
+          "2026 Top 2"
+        ]
+      },
+      {
+        "name": "Quar",
+        "ign": "Quar",
+        "discord": "onezz.23",
+        "country": "🇩🇪 Germany",
+        "tier": "S",
+        "titles": [
+          "2023 Top 3",
+          "2024 Top 3",
+          "2026 Top 3"
+        ]
+      },
+      {
+        "name": "Poyraz",
+        "ign": "Poyraz",
+        "discord": "_xpoyraz2024_",
+        "country": "🇹🇷 Turkey",
+        "tier": "S",
+        "titles": [
+          "2026 Top 4"
+        ]
+      },
+      {
+        "name": "Hashim",
+        "ign": "Hashim",
+        "discord": "nightowns74",
+        "country": "🇵🇰 Pakistan",
+        "tier": "A",
+        "titles": [
+          "2026 Top 5"
+        ]
+      },
+      {
+        "name": "CN-Beast",
+        "ign": "CN-Beast",
+        "discord": "chronics.beast",
+        "country": "🇮🇳 India",
+        "tier": "A",
+        "titles": [
+          "2026 Top 6"
+        ]
+      },
+      {
+        "name": "Harsh",
+        "ign": "Harsh",
+        "discord": ".harshbg",
+        "country": "🇮🇳 India",
+        "tier": "A",
+        "titles": [
+          "2026 Top 7"
+        ]
+      },
+      {
+        "name": "Rishi",
+        "ign": "Rishi",
+        "discord": "rishi012986",
+        "country": "🇮🇳 India",
+        "tier": "A",
+        "titles": [
+          "2026 Top 8"
+        ]
+      },
+      {
+        "name": "Amitesh",
+        "ign": "Amitesh",
+        "discord": "insanesavi",
+        "country": "🇮🇳 India",
+        "tier": "B",
+        "titles": [
+          "2026 Top 9"
+        ]
+      },
+      {
+        "name": "Rise",
+        "ign": "Rize Gamerz",
+        "discord": "risegamerz77",
+        "country": "🇮🇳 India",
+        "tier": "B",
+        "titles": [
+          "2026 Top 10"
+        ]
+      },
+      {
+        "name": "HolyCritFall",
+        "ign": "Null",
+        "discord": "holycritfall_74204",
+        "country": "🇮🇳 India",
+        "tier": "B",
+        "titles": [
+          "2026 Top 11"
+        ]
+      },
+      {
+        "name": "Beta",
+        "ign": "Puttar",
+        "discord": "lowkbeta2.0",
+        "country": "🇮🇳 India",
+        "tier": "C",
+        "titles": [
+          "2026 Top 12"
+        ]
+      },
+      {
+        "name": "Levi",
+        "ign": "Levi",
+        "discord": "leviathan_bg",
+        "country": "🇮🇳 India",
+        "tier": "B",
+        "titles": [
+          "2026 Top 13"
+        ]
+      },
+      {
+        "name": "Creed",
+        "ign": "Creed",
+        "discord": "baly0495_68229",
+        "country": "🇦🇱 Albania",
+        "tier": "B",
+        "titles": [
+          "2026 Top 14"
+        ]
+      },
+      {
+        "name": "IamNotPC",
+        "ign": "IamNotPC",
+        "discord": "veteranuser_",
+        "country": "🇧🇩 Bangladesh",
+        "tier": "C",
+        "titles": [
+          "2026 Top 15"
+        ]
+      },
+      {
+        "name": "Chained",
+        "ign": "Chained",
+        "discord": "darkraven9002",
+        "country": "🇮🇳 India",
+        "tier": "C",
+        "titles": [
+          "2026 Top 16"
+        ]
+      },
+      {
+        "name": "Zenvor",
+        "ign": "Zenvor",
+        "discord": "zenvor.owns",
+        "country": "🇷🇺 Russia",
+        "tier": "C",
+        "titles": [
+          "2026 Top 17"
+        ]
+      },
+      {
+        "name": "Princi",
+        "ign": "Princi",
+        "discord": "princiblockmango",
+        "country": "🇮🇳 India",
+        "tier": "C",
+        "titles": [
+          "2026 Top 18"
+        ]
+      },
+      {
+        "name": "Aiden",
+        "ign": "Aiden",
+        "discord": "sn_aiden",
+        "country": "🇵🇰 Pakistan",
+        "tier": "D",
+        "titles": [
+          "2026 Top 19"
+        ]
+      },
+      {
+        "name": "Dhruv",
+        "ign": "Dhruv",
+        "discord": "dhruvwsm",
+        "country": "🇮🇳 India",
+        "tier": "D",
+        "titles": [
+          "2026 Top 20"
+        ]
+      }
+    ],
+    "emulator": [
+      {
+        "name": "Beny",
+        "ign": "beny(goat)",
+        "discord": "totallynotbeny.",
+        "country": "🇨🇿 Czech",
+        "tier": "S",
+        "titles": [
+          "2026 Top 1"
+        ]
+      },
+      {
+        "name": "Bannks",
+        "ign": "bannks(goat)",
+        "discord": "bannks0583_33632",
+        "country": "🇪🇸 Spain",
+        "tier": "S",
+        "titles": [
+          "2026 Top 2"
+        ]
+      },
+      {
+        "name": "Cold",
+        "ign": "cold(goat)",
+        "discord": "unavailable",
+        "country": "🇮🇳 India",
+        "tier": "S",
+        "titles": [
+          "2026 Top 3"
+        ]
+      },
+      {
+        "name": "Goodbye",
+        "ign": "Goodbye(goat)",
+        "discord": "goodbyebg.",
+        "country": "🇧🇩 Bangladesh",
+        "tier": "A",
+        "titles": [
+          "2026 Top 4"
+        ]
+      },
+      {
+        "name": "Astro",
+        "ign": "astro(goat)",
+        "discord": "astrogaming1966",
+        "country": "🇮🇳 India",
+        "tier": "A",
+        "titles": [
+          "2026 Top 5"
+        ]
+      },
+      {
+        "name": "Zeus",
+        "ign": "zeus(gey)",
+        "discord": "unavailable",
+        "country": "🇩🇪 Germany",
+        "tier": "A",
+        "titles": [
+          "2026 Top 6"
+        ]
+      },
+      {
+        "name": "Teck",
+        "ign": "Teck(gey)",
+        "discord": "tecksmw",
+        "country": "🇮🇳 India",
+        "tier": "A",
+        "titles": [
+          "2026 Top 7"
+        ]
+      },
+      {
+        "name": "Furina",
+        "ign": "Furina(gey)",
+        "discord": "unavailable",
+        "country": "🇮🇳 India",
+        "tier": "B",
+        "titles": [
+          "2026 Top 8"
+        ]
+      },
+      {
+        "name": "Hito",
+        "ign": "Hito(t1 gey)",
+        "discord": "hitomdx",
+        "country": "🇮🇶 Iraq",
+        "tier": "B",
+        "titles": [
+          "2026 Top 9"
+        ]
+      },
+      {
+        "name": "Madox",
+        "ign": "Madox(gey)",
+        "discord": "unavailable",
+        "country": "🇮🇶 Iraq",
+        "tier": "B",
+        "titles": [
+          "2026 Top 10"
+        ]
+      },
+      {
+        "name": "Swigh",
+        "ign": "Swigh",
+        "discord": "y00474",
+        "country": "🇮🇶 Iraq",
+        "tier": "B",
+        "titles": [
+          "2026 Top 11"
+        ]
+      },
+      {
+        "name": "Atyab",
+        "ign": "Atyab",
+        "discord": "1377651412388937828",
+        "country": "🇮🇳 India",
+        "tier": "C",
+        "titles": [
+          "2026 Top 12"
+        ]
+      },
+      {
+        "name": "Egoist",
+        "ign": "Egoist",
+        "discord": "sheesh_crazydawgs",
+        "country": "🇵🇭 Philippines",
+        "tier": "C",
+        "titles": [
+          "2026 Top 13"
+        ]
+      },
+      {
+        "name": "No Contestant",
+        "ign": "—",
+        "discord": "unavailable",
+        "country": "🌍 Soon",
+        "tier": "D",
+        "titles": [
+          "Under Maintenance"
+        ]
+      },
+      {
+        "name": "No Contestant",
+        "ign": "—",
+        "discord": "unavailable",
+        "country": "🌍 Soon",
+        "tier": "D",
+        "titles": [
+          "Under Maintenance"
+        ]
+      },
+      {
+        "name": "No Contestant",
+        "ign": "—",
+        "discord": "unavailable",
+        "country": "🌍 Soon",
+        "tier": "D",
+        "titles": [
+          "Under Maintenance"
+        ]
+      },
+      {
+        "name": "No Contestant",
+        "ign": "—",
+        "discord": "unavailable",
+        "country": "🌍 Soon",
+        "tier": "D",
+        "titles": [
+          "Under Maintenance"
+        ]
+      },
+      {
+        "name": "No Contestant",
+        "ign": "—",
+        "discord": "unavailable",
+        "country": "🌍 Soon",
+        "tier": "D",
+        "titles": [
+          "Under Maintenance"
+        ]
+      },
+      {
+        "name": "No Contestant",
+        "ign": "—",
+        "discord": "unavailable",
+        "country": "🌍 Soon",
+        "tier": "D",
+        "titles": [
+          "Under Maintenance"
+        ]
+      },
+      {
+        "name": "No Contestant",
+        "ign": "—",
+        "discord": "unavailable",
+        "country": "🌍 Soon",
+        "tier": "D",
+        "titles": [
+          "Under Maintenance"
+        ]
+      }
+    ]
+  },
+  "changelogs": [
+    {
+      "date": "16 June 2026",
+      "version": "v2.5",
+      "entries": [
+        {
+          "type": "added",
+          "text": "Poyraz added at #4 Mobile"
+        },
+        {
+          "type": "removed",
+          "text": "Zeus removed from Mobile rankings"
+        },
+        {
+          "type": "moved",
+          "text": "Hashim moved to #5 Mobile"
+        },
+        {
+          "type": "tier",
+          "text": "Harsh tier upgraded to A"
+        },
+        {
+          "type": "updated",
+          "text": "Creed discord updated"
+        }
+      ]
+    },
+    {
+      "date": "14 June 2026",
+      "version": "v2.4",
+      "entries": [
+        {
+          "type": "removed",
+          "text": "Sarthak removed from Mobile rankings"
+        },
+        {
+          "type": "removed",
+          "text": "MxrningStar removed from Mobile rankings"
+        },
+        {
+          "type": "removed",
+          "text": "Dark removed from Mobile rankings"
+        },
+        {
+          "type": "removed",
+          "text": "SirWinter removed from Mobile rankings"
+        },
+        {
+          "type": "added",
+          "text": "CN-Beast added at #6 Mobile"
+        },
+        {
+          "type": "added",
+          "text": "Rishi returned at #8 Mobile"
+        },
+        {
+          "type": "tier",
+          "text": "Rishi tier upgraded to A"
+        },
+        {
+          "type": "moved",
+          "text": "Hashim moved to #5 Mobile"
+        },
+        {
+          "type": "moved",
+          "text": "Levi returned at #13 Mobile"
+        },
+        {
+          "type": "moved",
+          "text": "Beta moved to #12 Mobile"
+        },
+        {
+          "type": "updated",
+          "text": "Aiden country updated to Pakistan"
+        },
+        {
+          "type": "updated",
+          "text": "Dhruv discord updated"
+        }
+      ]
+    },
+    {
+      "date": "28 May 2026",
+      "version": "v2.3",
+      "entries": [
+        {
+          "type": "added",
+          "text": "Chainedr added at #14 Mobile"
+        },
+        {
+          "type": "moved",
+          "text": "Pirinci moved to #17 Mobile"
+        }
+      ]
+    },
+    {
+      "date": "27 May 2026",
+      "version": "v2.2",
+      "entries": [
+        {
+          "type": "moved",
+          "text": "CN-MxrningStar moved to #5 Mobile"
+        },
+        {
+          "type": "tier",
+          "text": "CN-MxrningStar tier upgraded to A"
+        },
+        {
+          "type": "moved",
+          "text": "CN-Sarthak moved to #6 Mobile"
+        },
+        {
+          "type": "updated",
+          "text": "Sarthak updated to CN-Sarthak"
+        }
+      ]
+    },
+    {
+      "date": "24 May 2026",
+      "version": "v2.1",
+      "entries": [
+        {
+          "type": "added",
+          "text": "Sarthak added at #6 Mobile"
+        },
+        {
+          "type": "added",
+          "text": "CN-Amitesh added at #10 Mobile"
+        },
+        {
+          "type": "added",
+          "text": "Zenvor added at #15 Mobile"
+        },
+        {
+          "type": "moved",
+          "text": "Aneld moved to #2 Mobile"
+        },
+        {
+          "type": "moved",
+          "text": "NotEgo moved to #4 Mobile"
+        }
+      ]
+    },
+    {
+      "date": "17 May 2026",
+      "version": "v2.0",
+      "entries": [
+        {
+          "type": "removed",
+          "text": "HarshBG removed from rankings"
+        },
+        {
+          "type": "removed",
+          "text": "Hexa removed from rankings"
+        },
+        {
+          "type": "removed",
+          "text": "Dragon removed from rankings"
+        },
+        {
+          "type": "removed",
+          "text": "Abhi removed from rankings"
+        },
+        {
+          "type": "moved",
+          "text": "Aneld moved to Top 1 Mobile"
+        },
+        {
+          "type": "moved",
+          "text": "Quar moved to Top 3 Mobile"
+        },
+        {
+          "type": "tier",
+          "text": "NotEgo tier changed to A"
+        },
+        {
+          "type": "added",
+          "text": "Bely added at #12 Mobile"
+        }
+      ]
+    },
+    {
+      "date": "1 Jan 2026",
+      "version": "v1.0",
+      "entries": [
+        {
+          "type": "added",
+          "text": "BGTiers website launched"
+        },
+        {
+          "type": "added",
+          "text": "Mobile leaderboard — Season 2026 rankings go live"
+        },
+        {
+          "type": "added",
+          "text": "Emulator leaderboard — Season 2026 rankings go live"
+        }
+      ]
+    }
+  ]
+}
